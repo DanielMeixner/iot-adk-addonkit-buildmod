@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FeatureManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+  <BasePackages>
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.SystemInformation.cab" FeatureIdentifierPackage="true"/>
+  </BasePackages>
+  
+  <OEMDevicePlatformPackages>
+    <PackageFile Device="MBM" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.OEMDevicePlatform.cab" FeatureIdentifierPackage="true"/>
+  </OEMDevicePlatformPackages>
+
+  <DeviceLayoutPackages>
+    <PackageFile SOC="MBM" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.DeviceLayout.cab" FeatureIdentifierPackage="true"/>
+  </DeviceLayoutPackages>
+
+  <DeviceSpecificPackages>
+     <PackageFile Device="MBM" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.DeviceInfo.cab" /> 
+  </DeviceSpecificPackages>
+
+  <Features>
+    <Microsoft />
+    <MSFeatureGroups />
+    <OEM>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.DeviceTargetingInfo.cab"  FeatureIdentifierPackage="true">
+        <FeatureIDs>
+          <FeatureID>MBM_DEVICE_TARGETINGINFO</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.GPIO.cab" FeatureIdentifierPackage="true">
+        <FeatureIDs>
+          <FeatureID>MBM_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.UART.cab" >
+        <FeatureIDs>
+          <FeatureID>MBM_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.I2C.cab" >
+        <FeatureIDs>
+          <FeatureID>MBM_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.SPI.cab" >
+        <FeatureIDs>
+          <FeatureID>MBM_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.GRFX.cab" >
+        <FeatureIDs>
+          <FeatureID>MBM_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+    </OEM>
+    <OEMFeatureGroups />
+  </Features>
+</FeatureManifest>

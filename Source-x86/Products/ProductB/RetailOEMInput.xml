@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OEMInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+  <Description>Windows 10 IoT Core MBM Production VHD generation for x86.fre with build number 20150824-1849 by wincbld</Description>
+  <SOC>MBM</SOC>
+  <SV>Intel</SV>
+  <Device>MBM</Device>
+  <ReleaseType>Production</ReleaseType>
+  <BuildType>fre</BuildType>
+  <SupportedLanguages>
+    <UserInterface>
+      <Language>en-us</Language>
+    </UserInterface>
+    <Keyboard>
+      <Language>en-us</Language>
+    </Keyboard>
+    <Speech>
+      <Language>en-us</Language>
+    </Speech>
+  </SupportedLanguages>
+  <BootUILanguage>en-us</BootUILanguage>
+  <BootLocale>en-us</BootLocale>
+  <Resolutions>
+    <Resolution>1024x768</Resolution>
+  </Resolutions>
+  <AdditionalFMs>
+    <AdditionalFM>%AKROOT%\FMFiles\x86\MBMFM.xml</AdditionalFM>
+  </AdditionalFMs>
+  <Features>
+    <Microsoft>
+      <Feature>IOT_EFIESP</Feature>
+      <Feature>IOT_EFIESP_BCD</Feature>
+      <Feature>IOT_DMAP_DRIVER</Feature>
+      <Feature>IOT_POWER_SETIINGS</Feature>
+      <Feature>IOT_UAP_OOBE</Feature> 
+    </Microsoft>
+    <OEM>
+      <Feature>MBM_DEVICE_TARGETINGINFO</Feature>
+      <Feature>PLACEHOLDER_FEATURE</Feature>
+      <Feature>MBM_DRIVERS</Feature> 
+    </OEM>
+  </Features>
+  <PackageFiles />
+  <Product>Windows 10 IoT Core</Product>
+</OEMInput>

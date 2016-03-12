@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <Package xmlns="urn:Microsoft.WindowsPhone/PackageSchema.v8.00"
+    Owner="$(OEMNAME)"
+    OwnerType="OEM"
+    ReleaseType="Production"
+    Platform="RPi2"
+    Component="Appx"
+    SubComponent="Main">
+    <Components>
+       <OSComponent>
+         <Files>
+			 <!-- Copy batch files for appx installation -->
+			 <!-- DestinationDir should be always starting with global macros defined in %KITROOT%\Tools\bin\i386\pkggen.cfg.xml-->
+             <File Source="$(PRJDIR)\Updates\Update1\Appx.Main\AppInstall\AppInstall.bat"
+			    DestinationDir="$(runtime.root)\AppInstall" Name="AppInstall.bat"/>
+             <File Source="$(PRJDIR)\Updates\Update1\Appx.Main\AppInstall\DeployAppx.bat"
+			    DestinationDir="$(runtime.root)\AppInstall" Name="DeployAppx.bat"/>
+
+			<!-- Copy appx files and its dependencies -->
+             <File Source="$(PRJDIR)\Updates\Update1\Appx.Main\AppInstall\MainAppx_1.0.2.0_arm.appx"
+			    DestinationDir="$(runtime.root)\AppInstall" Name="MainAppx_1.0.2.0_arm.appx"/>
+             <File Source="$(PRJDIR)\Updates\Update1\Appx.Main\AppInstall\MainAppx_1.0.2.0_arm.cer"
+			    DestinationDir="$(runtime.root)\AppInstall" Name="MainAppx_1.0.2.0_arm.cer"/>
+             <File Source="$(PRJDIR)\Updates\Update1\Appx.Main\AppInstall\Microsoft.NET.Native.Runtime.1.1.appx"
+			    DestinationDir="$(runtime.root)\AppInstall" Name="Microsoft.NET.Native.Runtime.1.1.appx"/>
+             <File Source="$(PRJDIR)\Updates\Update1\Appx.Main\AppInstall\Microsoft.NET.Native.Framework.1.2.appx"
+			    DestinationDir="$(runtime.root)\AppInstall" Name="Microsoft.NET.Native.Framework.1.2.appx"/>
+             <File Source="$(PRJDIR)\Updates\Update1\Appx.Main\AppInstall\Microsoft.VCLibs.arm.14.00.appx"
+			    DestinationDir="$(runtime.root)\AppInstall" Name="Microsoft.VCLibs.arm.14.00.appx"/>
+        </Files>
+       </OSComponent>
+    </Components>
+ </Package>
