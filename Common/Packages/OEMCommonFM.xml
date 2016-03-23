@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FeatureManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+  <BasePackages>
+    <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Registry.Version.cab"/>
+	<PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Registry.TestSettings.cab"/>
+  </BasePackages>
+  <Features>
+    <OEM>
+	  <!-- Feature definitions below -->
+ 
+      <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Provisioning.Manual.cab">
+        <FeatureIDs>
+          <FeatureID>OEM_ProvManual</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+	  
+      <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Registry.CrashSettings.cab">
+        <FeatureIDs>
+          <FeatureID>OEM_CrashSettings</FeatureID>
+        </FeatureIDs>
+      </PackageFile>	  
+
+	  <!-- Packages with Product specific contents included -->
+      <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Custom.Cmd.cab">
+        <FeatureIDs>
+          <FeatureID>OEM_CustomCmd</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Provisioning.Auto.cab">
+        <FeatureIDs>
+          <FeatureID>OEM_ProvAuto</FeatureID>
+        </FeatureIDs>
+      </PackageFile>	  
+	  
+    </OEM>
+    <OEMFeatureGroups>
+	<!-- Feature Constraints below -->
+	<!-- This ensures that only one of the Provisioning package is included -->
+      <FeatureGroup Constraint="ZeroOrOne">
+        <FeatureIDs>
+          <FeatureID>OEM_ProvAuto</FeatureID>
+          <FeatureID>OEM_ProvManual</FeatureID>        
+        </FeatureIDs>
+      </FeatureGroup>
+	</OEMFeatureGroups>
+  </Features>
+</FeatureManifest>

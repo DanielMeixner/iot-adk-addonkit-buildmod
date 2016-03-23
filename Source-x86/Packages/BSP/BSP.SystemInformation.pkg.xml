@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation.  All rights reserved.
+-->
+<Package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         Owner="$(OEMNAME)"
+         Component="BSP"
+         SubComponent="SystemInformation"
+         OwnerType="OEM"
+         ReleaseType="Production"
+         Platform="MBM"
+         xmlns="urn:Microsoft.WindowsPhone/PackageSchema.v8.00">
+  <Components>
+    <OSComponent>
+        <RegKeys>
+            <RegKey KeyName="$(hklm.system)\ControlSet001\Control\SystemInformation">
+                <RegValue 
+                    Name="SystemProductName"
+                    Type="REG_SZ"
+                    Value="MBM"/>
+                <RegValue 
+                    Name="SystemManufacturer"
+                    Type="REG_SZ"
+                    Value="Intel"/>
+            </RegKey>
+         </RegKeys>	
+    </OSComponent>
+  </Components>
+</Package>
