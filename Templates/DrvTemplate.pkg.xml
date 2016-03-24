@@ -3,16 +3,16 @@
     Owner="$(OEMNAME)"
     OwnerType="OEM"    
     ReleaseType="Production"
-    Platform="arm"
-    Component="Drivers"
-    SubComponent="GPIO">
+    Platform="PLFNAME"
+    Component="COMPNAME"
+    SubComponent="SUBNAME">
     <Components>
      <Driver
-       InfSource="$(PRJDIR)\Updates\Update2\Drivers.GPIO\iaiogpio.inf">
+       InfSource="$(PRJDIR)\Packages\COMPNAME.SUBNAME\iaiogpio.inf">
        <Reference
-         Source="$(PRJDIR)\Updates\Update2\Drivers.GPIO\iaiogpio.sys" />
+         Source="$(PRJDIR)\Packages\COMPNAME.SUBNAME\iaiogpio.sys" />
        <Files>
-         <File Source="$(PRJDIR)\Updates\Update2\Drivers.GPIO\iaiogpio.sys" />
+         <File Source="$(PRJDIR)\Packages\COMPNAME.SUBNAME\iaiogpio.sys" />
        </Files>
      </Driver>
     </Components>
