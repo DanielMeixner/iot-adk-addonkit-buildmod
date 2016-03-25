@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 Copyright (c) Microsoft Corporation.  All rights reserved.
 -->
@@ -6,19 +6,19 @@ Copyright (c) Microsoft Corporation.  All rights reserved.
          xmlns:xsd="http://www.w3.org/2001/XMLSchema"
          Owner="$(OEMNAME)"
          Component="BSP"
-         SubComponent="DeviceLayout"
+         SubComponent="OEMDevicePlatform"
          OwnerType="OEM"
          ReleaseType="Production"
          Platform="MBM"
          xmlns="urn:Microsoft.WindowsPhone/PackageSchema.v8.00">
-	<Components>
-		<OSComponent>
-			<Files>
-				<File
-          Source="$(PRJDIR)\Packages\BSP\DeviceLayout.xml"
+  <Components>
+    <OSComponent>
+      <Files>
+        <File
+          Source="$(PRJDIR)\Packages\BSP.OEMDevicePlatform\DevicePlatform.xml"
           DestinationDir="$(runtime.windows)\ImageUpdate"
-          Name="DeviceLayout.xml" />
-			</Files>
-		</OSComponent>
-	</Components>
+          Name="OEMDevicePlatform.xml" />
+      </Files>
+    </OSComponent>
+  </Components>
 </Package>
