@@ -1,5 +1,5 @@
 :: Run setenv before running this script
-:: This script creates the folder structure and copies the template files for a new product
+:: This script creates the folder structure and copies the template files for a new package
 :: usage : newpkg <pkgtype> <comp name> <sub-comp name>
 @echo off
 if [%1] == [/?] goto Usage
@@ -13,27 +13,31 @@ if NOT DEFINED SRC_DIR (
 	echo Environment not defined. Call setenv
 	goto End
 )
-:: Error Checks
+SET NEWPKG_DIR=%SRC_DIR%\Packages\%2.%3
 
-if /i EXIST %SRC_DIR%\Packages\%2.%3 (
-	echo Error : %2.%3 already exists; 
+:: Error Checks
+if /i EXIST %NEWPKG_DIR% (
+	echo Error : %2.%3 already exists 
 	goto End
 )
+
 :: Start processing command
 echo Creating %2.%3 package
-SET NEWPKG_DIR=%SRC_DIR%\Packages\%2.%3
 
 mkdir "%NEWPKG_DIR%"
 
 if [%1] ==[pkgAppx] (
+:: Create Appx Package using template files
 mkdir "%NEWPKG_DIR%\AppInstall"
 copy "%IOTADK_ROOT%\Templates\AppInstall\*.cmd" "%NEWPKG_DIR%\AppInstall"
 powershell -Command "(gc %IOTADK_ROOT%\Templates\AppxTemplate.pkg.xml) -replace 'COMPNAME', '%2' -replace 'SUBNAME', '%3' -replace 'PLFNAME', '%BSP_ARCH%' | Out-File %NEWPKG_DIR%\%2.%3.pkg.xml -Encoding utf8"
 )
 if [%1] ==[pkgDrv] (
+:: Create Driver package using template files
 powershell -Command "(gc %IOTADK_ROOT%\Templates\DrvTemplate.pkg.xml) -replace 'COMPNAME', '%2' -replace 'SUBNAME', '%3' -replace 'PLFNAME', '%BSP_ARCH%' | Out-File %NEWPKG_DIR%\%2.%3.pkg.xml -Encoding utf8"
 )
 if [%1] ==[pkgFile] (
+:: Create File/Registry package using template files
 powershell -Command "(gc %IOTADK_ROOT%\Templates\FileTemplate.pkg.xml) -replace 'COMPNAME', '%2' -replace 'SUBNAME', '%3' -replace 'PLFNAME', '%BSP_ARCH%' | Out-File %NEWPKG_DIR%\%2.%3.pkg.xml -Encoding utf8"
 )
 
