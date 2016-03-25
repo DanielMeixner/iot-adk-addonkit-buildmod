@@ -8,7 +8,7 @@ provtool C:\OEMInstall\Provisioning\ProvSetA.ppkg
 provtool C:\OEMInstall\Provisioning\ProvSetB.ppkg
 
 REM Enable Application Installation
-call C:\Appinstall\AppInstall.bat
+call C:\Appinstall\AppInstall.cmd
 
 REM Cleanup Application Installation Files
 cd \

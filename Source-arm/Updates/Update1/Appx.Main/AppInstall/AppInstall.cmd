@@ -6,17 +6,7 @@
 pushd %~dp0
 SETLOCAL
 
-:: ---------------------------------------------------------------------
-:: Variable setup
-::
-:: Example:
-:: set defaultappx=defappxname (Name only. No need for .appx extension)
-:: set certslist=cert1name cert2name (Name only. No need for .cer extension. You can delimit mutliple certificates with a space.)
-:: ---------------------------------------------------------------------
-set defaultappx=MainAppx_1.0.2.0_x86
-set certslist=MainAppx_1.0.2.0_x86
-::set defaultappx=MainAppx_1.0.2.0_x86
-::set certslist=MainAppx_1.0.2.0_x86
+call AppxConfig.cmd
 
 ::
 :: Get Appx Family Name
@@ -112,7 +102,7 @@ set taskname=DeployAppxTask
 echo Creating Scheduled Task "%taskname%" for Appx Installation.
 del /Q %systemdrive%\data\users\defaultaccount\appdata\local\temp\%taskname%_deploy_done.txt 2> nul:
 del /Q %systemdrive%\data\users\defaultaccount\appdata\local\temp\%defaultappx%_result.txt 2> nul:
-schtasks /create /f /tn "%taskname%" /ru DefaultAccount /sc ONSTART /tr "%~dp0deployappx.bat %taskname% %installtype%"
+schtasks /create /f /tn "%taskname%" /ru DefaultAccount /sc ONSTART /tr "%~dp0deployappx.cmd %taskname% %installtype%"
 if %errorlevel% == 0 (
     echo Successfuly Created Scheduled Task "%taskname%".
 ) else (

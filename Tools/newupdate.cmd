@@ -1,6 +1,6 @@
 :: Run setenv before running this script
 :: This script creates the folder structure and copies the template files for a new product
-:: usage : newproduct <product name>
+:: usage : newupdate <update name> <update version>
 @echo off
 setlocal
 if [%1] == [/?] goto Usage

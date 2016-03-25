@@ -4,7 +4,7 @@ REM Enable Administrator User
 net user Administrator p@ssw0rd /active:yes
 
 REM Enable Application Installation
-call C:\Appinstall\AppInstall.bat
+call C:\Appinstall\AppInstall.cmd
 
 REM Cleanup Application Installation Files
 cd \

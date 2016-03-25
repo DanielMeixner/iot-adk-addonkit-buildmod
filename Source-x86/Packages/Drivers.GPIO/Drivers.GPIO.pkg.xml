@@ -3,7 +3,7 @@
          Owner="$(OEMNAME)"
          OwnerType="OEM"
          ReleaseType="Production"
-         Platform="RPi2"
+         Platform="x86"
          Component="Drivers"
          SubComponent="GPIO">
 	<Components>
