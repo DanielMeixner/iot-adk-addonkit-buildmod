@@ -21,23 +21,23 @@ if /i EXIST %SRC_DIR%\Packages\%2.%3 (
 )
 :: Start processing command
 echo Creating %2.%3 package
-SET PKGSRC_DIR=%SRC_DIR%\Packages\%2.%3
+SET NEWPKG_DIR=%SRC_DIR%\Packages\%2.%3
 
-mkdir "%PKGSRC_DIR%"
+mkdir "%NEWPKG_DIR%"
 
 if [%1] ==[pkgAppx] (
-mkdir "%PKGSRC_DIR%\AppInstall"
-copy "%IOTADK_ROOT%\Templates\AppInstall\*.cmd" "%PKGSRC_DIR%\AppInstall"
-powershell -Command "(gc %IOTADK_ROOT%\Templates\AppxTemplate.pkg.xml) -replace 'COMPNAME', '%2' -replace 'SUBNAME', '%3' -replace 'PLFNAME', '%BSP_ARCH%' | Out-File %PKGSRC_DIR%\%2.%3.pkg.xml -Encoding utf8"
+mkdir "%NEWPKG_DIR%\AppInstall"
+copy "%IOTADK_ROOT%\Templates\AppInstall\*.cmd" "%NEWPKG_DIR%\AppInstall"
+powershell -Command "(gc %IOTADK_ROOT%\Templates\AppxTemplate.pkg.xml) -replace 'COMPNAME', '%2' -replace 'SUBNAME', '%3' -replace 'PLFNAME', '%BSP_ARCH%' | Out-File %NEWPKG_DIR%\%2.%3.pkg.xml -Encoding utf8"
 )
 if [%1] ==[pkgDrv] (
-powershell -Command "(gc %IOTADK_ROOT%\Templates\DrvTemplate.pkg.xml) -replace 'COMPNAME', '%2' -replace 'SUBNAME', '%3' -replace 'PLFNAME', '%BSP_ARCH%' | Out-File %PKGSRC_DIR%\%2.%3.pkg.xml -Encoding utf8"
+powershell -Command "(gc %IOTADK_ROOT%\Templates\DrvTemplate.pkg.xml) -replace 'COMPNAME', '%2' -replace 'SUBNAME', '%3' -replace 'PLFNAME', '%BSP_ARCH%' | Out-File %NEWPKG_DIR%\%2.%3.pkg.xml -Encoding utf8"
 )
 if [%1] ==[pkgFile] (
-powershell -Command "(gc %IOTADK_ROOT%\Templates\FileTemplate.pkg.xml) -replace 'COMPNAME', '%2' -replace 'SUBNAME', '%3' -replace 'PLFNAME', '%BSP_ARCH%' | Out-File %PKGSRC_DIR%\%2.%3.pkg.xml -Encoding utf8"
+powershell -Command "(gc %IOTADK_ROOT%\Templates\FileTemplate.pkg.xml) -replace 'COMPNAME', '%2' -replace 'SUBNAME', '%3' -replace 'PLFNAME', '%BSP_ARCH%' | Out-File %NEWPKG_DIR%\%2.%3.pkg.xml -Encoding utf8"
 )
 
-echo %PKGSRC_DIR% ready
+echo %NEWPKG_DIR% ready
 goto End
 
 :Usage
