@@ -1,4 +1,20 @@
 @echo off
+
+goto START
+
+:Usage
+echo Usage: createpkg packagefile.pkg.xml [version]
+echo    packagefile.pkg.xml....... Required, Package definition XML file
+echo    [version]................. Optional, Package version. If not specified, it uses BSP_VERSION 
+echo    [/?]...................... Displays this usage string. 
+echo    Example:
+echo        createpkg sample.pkg.xml
+echo        createpkg sample.pkg.xml 10.0.1.0
+
+exit /b 1
+
+:START
+
 setlocal
 REM Input validation
 if [%1] == [/?] goto Usage
@@ -35,18 +51,9 @@ del %PKGBLD_DIR%\*.spkg
 echo Package creation completed
 goto End
 
-:Usage
-echo Usage: createpkg packagefile.pkg.xml [version]
-echo    packagefile.pkg.xml....... Required, Package definition XML file
-echo    [version]................. Optional, Package version. If not specified, it uses BSP_VERSION 
-echo    [/?]...................... Displays this usage string. 
-echo    Example:
-echo        createpkg sample.pkg.xml
-echo        createpkg sample.pkg.xml 10.0.1.0
-
-exit /b 1
 
 :Error
+endlocal
 echo "createpkg %1" failed with error %ERRORLEVEL%
 exit /b 1
 

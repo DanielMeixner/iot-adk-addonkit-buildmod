@@ -2,6 +2,23 @@
 :: This script creates the folder structure and copies the template files for a new product
 :: usage : newproduct <product name>
 @echo off
+
+goto START
+
+:Usage
+echo Usage: newproduct ProductName 
+echo    ProductName....... Required, Name of the product to be created. 
+echo    [/?].............. Displays this usage string. 
+echo    Example:
+echo        newproduct SampleA 
+echo Existing products are
+dir /b /AD %SRC_DIR%\Products
+
+exit /b 1
+
+:START
+setlocal
+
 if [%1] == [/?] goto Usage
 if [%1] == [-?] goto Usage
 if [%1] == [] goto Usage
@@ -60,20 +77,12 @@ powershell -Command "(gc %IOTADK_ROOT%\Templates\customizations.xml) -replace 'P
 echo %1 product directories ready
 goto End
 
-:Usage
-echo Usage: newproduct ProductName 
-echo    ProductName....... Required, Name of the product to be created. 
-echo    [/?].............. Displays this usage string. 
-echo    Example:
-echo        newproduct SampleA 
-echo Existing products are
-dir /b /AD %SRC_DIR%\Products
-
-exit /b 1
 
 :Error
+endlocal
 echo "newproduct %1 " failed with error %ERRORLEVEL%
 exit /b 1
 
 :End
+endlocal
 exit /b 0

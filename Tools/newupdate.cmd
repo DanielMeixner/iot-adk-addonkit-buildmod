@@ -1,7 +1,22 @@
-:: Run setenv before running this script
 :: This script creates the folder structure and copies the template files for a new product
-:: usage : newupdate <update name> <update version>
 @echo off
+
+goto :START
+
+:Usage
+echo Usage: newupdate UpdateName Version
+echo    UpdateName....... Required, Name of the Update to be created. 
+echo    Version.......... Version number (eg. x.y.z.a)
+echo    [/?]............. Displays this usage string. 
+echo    Example:
+echo        newupdate Update2 10.0.2.0
+
+echo Existing Updates and versions are
+type %SRC_DIR%\Updates\UpdateVersions.txt
+
+exit /b 1
+
+:START
 setlocal
 if [%1] == [/?] goto Usage
 if [%1] == [-?] goto Usage
@@ -32,21 +47,11 @@ powershell -Command "(gc %IOTADK_ROOT%\Templates\UpdateInput.xml) -replace 'Upda
 echo %1 directories ready
 goto End
 
-:Usage
-echo Usage: newupdate UpdateName Version
-echo    UpdateName....... Required, Name of the Update to be created. 
-echo    Version.......... Version number (eg. x.y.z.a)
-echo    [/?]............. Displays this usage string. 
-echo    Example:
-echo        newupdate Update2 10.0.2.0
-echo Existing Updates and versions are
-type %SRC_DIR%\Updates\UpdateVersions.txt
-
-exit /b 1
-
 :Error
+endlocal
 echo "newupdate %1 " failed with error %ERRORLEVEL%
 exit /b 1
 
 :End
+endlocal
 exit /b 0

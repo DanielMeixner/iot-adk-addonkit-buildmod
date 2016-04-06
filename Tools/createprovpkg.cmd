@@ -1,4 +1,19 @@
 @echo off
+
+goto START
+
+:Usage
+echo Usage: createprovpkg customizations.xml provpkgname 
+echo    customizations.xml.......... Input customization.xml file
+echo    provpkgname................. Output filename 
+echo    [/?]........................ Displays this usage string. 
+echo    Example:
+echo        createprovpkg C:\IotCoreOEMSDK\Templates\customizations.xml C:\temp\provpkg.ppkg
+
+exit /b 1
+
+:START
+
 setlocal
 REM Input validation
 if [%1] == [/?] goto Usage
@@ -19,17 +34,8 @@ if errorlevel 1 goto Error
 
 goto End
 
-:Usage
-echo Usage: provpkg customization.xml provpkgname 
-echo    customization.xml.......... Input customization.xml file
-echo    provpkgname................ Output filename 
-echo    [/?].............. Displays this usage string. 
-echo    Example:
-echo        provpkg C:\IotCoreOEMSDK\Templates\customizations.xml C:\temp\provpkg.ppkg
-
-exit /b 1
-
 :Error
+endlocal
 echo "provpkg %1" failed with error %ERRORLEVEL%
 exit /b 1
 
