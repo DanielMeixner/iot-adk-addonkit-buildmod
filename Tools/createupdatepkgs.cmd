@@ -1,4 +1,18 @@
 @echo off
+
+goto :START
+
+:Usage
+echo Usage: createupdatepkgs updatename 
+echo    updatename....... Name of the update directory under Updates 
+echo    [/?]........Displays this usage string. 
+echo    Example:
+echo        createupdatepkgs Update1 
+
+exit /b 1
+
+:START
+
 setlocal
 if [%1] == [/?] goto Usage
 if [%1] == [-?] goto Usage
@@ -33,16 +47,7 @@ REM always rebuild the version packages
 call createpkg.cmd %COMMON_DIR%\Packages\Registry.Version\Registry.Version.pkg.xml %PKG_VER%
 copy "%IOTADK_ROOT%\Templates\installupdates.cmd" "%PKGBLD_DIR%\installupdates.cmd"
 
-goto END
-
-:Usage
-echo Usage: createupdatepkgs updatename 
-echo    updatename....... Name of the update directory under Updates 
-echo    [/?]........Displays this usage string. 
-echo    Example:
-echo        createupdatepkgs Update1 
-
-exit /b 1
 
 :END
+endlocal
 exit /b 0

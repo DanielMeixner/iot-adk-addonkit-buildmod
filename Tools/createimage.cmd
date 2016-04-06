@@ -1,4 +1,18 @@
 @echo off
+
+goto START
+
+:Usage
+echo Usage: createimage ProductName BuildType 
+echo    ProductName....... Required, Name of the product to be created. 
+echo    BuildType......... Required, Retail/Test 
+echo    [/?].............. Displays this usage string. 
+echo    Example:
+echo        createimage SampleA Retail
+
+exit /b 1
+
+:START
 setlocal
 REM Input validation
 if [%1] == [/?] goto Usage
@@ -12,6 +26,7 @@ if NOT DEFINED SRC_DIR (
 	echo Environment not defined. Call setenv
 	goto End
 )
+
 set PRODUCT=%1
 set PRODSRC_DIR=%SRC_DIR%\Products\%PRODUCT%
 set PRODBLD_DIR=%BLD_DIR%\%1\%2
@@ -43,17 +58,8 @@ echo Build End Time : %TIME%
 echo Image creation completed
 goto End
 
-:Usage
-echo Usage: createimage ProductName BuildType 
-echo    ProductName....... Required, Name of the product to be created. 
-echo    BuildType......... Required, Retail/Test 
-echo    [/?].............. Displays this usage string. 
-echo    Example:
-echo        createimage SampleA Retail
-
-exit /b 1
-
 :Error
+endlocal
 echo "CreateImage %1 %2" failed with error %ERRORLEVEL%
 exit /b 1
 
