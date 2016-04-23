@@ -6,14 +6,14 @@
 pushd %~dp0
 SETLOCAL
 
-if exist C:\windows\system32\mindeployappx.exe (
+if exist %systemdrive%\windows\system32\mindeployappx.exe (
 	echo Mindeployappx.exe found. Using older install script
 	if exist AppInstall_TH.cmd (call AppInstall_TH.cmd )
 	exit /b %errorlevel%
 )
 
 REM New Install Mechanism
-if not exists c:\windows\system32\deployappx.exe ( 
+if not exist %systemdrive%\windows\system32\deployappx.exe ( 
 	echo deployappx.exe not found. exiting. 
 	exit /b 1
 )
@@ -108,6 +108,9 @@ echo.
 echo Error %1
 echo Result=%ERRORLEVEL%
 echo.
+popd
+ENDLOCAL
+exit /b %ERRORLEVEL%
 
 :CLEANUP
 popd

@@ -6,7 +6,7 @@
 pushd %~dp0
 SETLOCAL
 
-if not exists c:\windows\system32\mindeployappx.exe ( 
+if not exist %systemdrive%\windows\system32\mindeployappx.exe ( 
 	echo mindeployappx.exe not found. exiting. 
 	exit /b 1
 )
