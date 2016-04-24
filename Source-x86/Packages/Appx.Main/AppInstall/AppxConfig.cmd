@@ -11,3 +11,4 @@ set defaultappx=MainAppx_1.0.0.0_x86
 set certslist=MainAppx_1.0.0.0_x86
 set defaultappxid=7a11c6a0-d9a8-40cd-80cf-91d6a409edae_pft3qchy8afw0
 set dependencylist=Microsoft.VCLibs.x86.14.00 Microsoft.NET.Native.Runtime.1.1 Microsoft.NET.Native.Framework.1.2
+set forceinstall=1
