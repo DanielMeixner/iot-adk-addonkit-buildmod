@@ -15,7 +15,7 @@ echo IOTADK_ROOT : %IOTADK_ROOT%
 set PATH=%PATH%;%IOTADK_ROOT%\Tools;
 TITLE IoTCoreShell
 REM Change to Working directory
-cd %IOTADK_ROOT%\Tools
+cd /D %IOTADK_ROOT%\Tools
 call setOEM.cmd
 echo OEM_NAME    : %OEM_NAME%
 echo.
