@@ -1,22 +1,19 @@
 @echo off
 
 echo Creating all packages under %COMMON_DIR%\Packages
+dir %COMMON_DIR%\Packages\*.pkg.xml /S /b > %PKGLOG_DIR%\commonpackagelist.txt
 
-dir %COMMON_DIR%\Packages\*.pkg.xml /S /b > commonpackagelist.txt
-
-for /f "delims=" %%i in (commonpackagelist.txt) do (
-   echo Processing %%i
-   call createpkg.cmd %%i
+for /f "delims=" %%i in (%PKGLOG_DIR%\commonpackagelist.txt) do (
+   echo. Processing %%~nxi
+   call createpkg.cmd %%i > %PKGLOG_DIR%\%%~ni.log
 )
-del commonpackagelist.txt
 
 echo Creating all packages under %PKGSRC_DIR%
+dir %PKGSRC_DIR%\*.pkg.xml /S /b > %PKGLOG_DIR%\packagelist.txt
 
-dir %PKGSRC_DIR%\*.pkg.xml /S /b > packagelist.txt
-
-for /f "delims=" %%i in (packagelist.txt) do (
-   echo Processing %%i
-   call createpkg.cmd %%i
+for /f "delims=" %%i in (%PKGLOG_DIR%\packagelist.txt) do (
+   echo. Processing %%~nxi
+   call createpkg.cmd %%i > %PKGLOG_DIR%\%%~ni.log
 )
 
-del packagelist.txt
+exit /b
