@@ -34,7 +34,7 @@ if [%2] == [] (
 )
 
 cd %~dp1
-if NOT DEFINED PRODUCT (
+if not defined PRODUCT (
 	set PRODUCT=SampleA
 )
 
@@ -46,11 +46,15 @@ if errorlevel 0 (
 	REM remove unused .spkg files
 	del %PKGBLD_DIR%\*.spkg
 	echo Package creation completed
-	set RETVAL=0
 ) else (
 	echo Package creation failed with error %ERRORLEVEL%
-	set RETVAL=1
+	goto :Error
 )
 popd
 endlocal
-exit /b %RETVAL%
+exit /b 0
+
+:Error
+popd
+endlocal
+exit /b -1

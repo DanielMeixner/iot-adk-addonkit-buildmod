@@ -1,7 +1,7 @@
 @echo off
 goto START
 
-:Usage
+:USAGE
 echo Usage: setenv arch 
 echo    arch....... Required, %SUPPORTED_ARCH% 
 echo    [/?]........Displays this usage string. 
@@ -12,47 +12,48 @@ exit /b 1
 
 :START
 
-if [%1] == [/?] goto Usage
-if [%1] == [-?] goto Usage
-if [%1] == [] goto Usage
+if [%1] == [/?] goto USAGE
+if [%1] == [-?] goto USAGE
+if [%1] == [] goto USAGE
 
 set SUPPORTED_ARCH=arm x86 x64
 echo.%SUPPORTED_ARCH% | findstr /C:"%1" >nul && (
 	echo Configuring for %1 architecture
 ) || (
 	echo.Error: %1 not supported
-	goto Usage 
+	goto USAGE 
 )
 
 REM Environment configurations
 dir /B /AD "%KITSROOT%CoreSystem" > %IOTADK_ROOT%\wdkversion.txt
-SET /P WDK_VERSION=<%IOTADK_ROOT%\wdkversion.txt
+set /P WDK_VERSION=<%IOTADK_ROOT%\wdkversion.txt
 echo WDK_VERSION : %WDK_VERSION%
 del %IOTADK_ROOT%\wdkversion.txt
 
-SET PATH=%KITSROOT%tools\bin\i386;%PATH%
-SET AKROOT=%KITSROOT%
-SET WPDKCONTENTROOT=%KITSROOT%
-SET PKG_CONFIG_XML=%KITSROOT%Tools\bin\i386\pkggen.cfg.xml
+set PATH=%KITSROOT%tools\bin\i386;%PATH%
+set AKROOT=%KITSROOT%
+set WPDKCONTENTROOT=%KITSROOT%
+set PKG_CONFIG_XML=%KITSROOT%Tools\bin\i386\pkggen.cfg.xml
 
-SET BSP_ARCH=%1
-if [%1] == [x64] ( SET BSP_ARCH=amd64 )
-SET HIVE_ROOT=%KITSROOT%CoreSystem\%WDK_VERSION%\%BSP_ARCH%
-SET WIM_ROOT=%KITSROOT%CoreSystem\%WDK_VERSION%\%BSP_ARCH%
+set BSP_ARCH=%1
+set HIVE_ROOT=%KITSROOT%CoreSystem\%WDK_VERSION%\%BSP_ARCH%
+set WIM_ROOT=%KITSROOT%CoreSystem\%WDK_VERSION%\%BSP_ARCH%
+
+if [%1] == [x64] ( set BSP_ARCH=amd64)
 REM The following variables ensure the package is appropriately signed
-SET SIGN_OEM=1
-SET SIGN_WITH_TIMESTAMP=0
+set SIGN_OEM=1
+set SIGN_WITH_TIMESTAMP=0
 
 
 REM Local project settings
-SET COMMON_DIR=%IOTADK_ROOT%\Common
-SET SRC_DIR=%IOTADK_ROOT%\Source-%1
-SET PKGSRC_DIR=%SRC_DIR%\Packages
-SET PKGUPD_DIR=%SRC_DIR%\Updates
-SET BLD_DIR=%IOTADK_ROOT%\Build\%BSP_ARCH%
-SET PKGBLD_DIR=%BLD_DIR%\pkgs
-SET PKGLOG_DIR=%PKGBLD_DIR%\logs
-SET TOOLS_DIR=%IOTADK_ROOT%\Tools
+set COMMON_DIR=%IOTADK_ROOT%\Common
+set SRC_DIR=%IOTADK_ROOT%\Source-%1
+set PKGSRC_DIR=%SRC_DIR%\Packages
+set PKGUPD_DIR=%SRC_DIR%\Updates
+set BLD_DIR=%IOTADK_ROOT%\Build\%BSP_ARCH%
+set PKGBLD_DIR=%BLD_DIR%\pkgs
+set PKGLOG_DIR=%PKGBLD_DIR%\logs
+set TOOLS_DIR=%IOTADK_ROOT%\Tools
 
 if not exist %PKGLOG_DIR% ( mkdir %PKGLOG_DIR% )
 
