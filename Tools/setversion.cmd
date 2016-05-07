@@ -9,7 +9,7 @@ SET BSP_VERSION=%1
 		SET /P BSP_VERSION=< %PKGSRC_DIR%\versioninfo.txt
 	) else (
 		SET BSP_VERSION=10.0.0.0
-		echo Packages\versioninfo.txt not found. Defaulting to 10.0.0.0
+		echo. %PKGSRC_DIR%\versioninfo.txt not found. Defaulting to 10.0.0.0
 	)
 )
 

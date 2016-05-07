@@ -25,11 +25,6 @@ echo.%SUPPORTED_ARCH% | findstr /C:"%1" >nul && (
 )
 
 REM Environment configurations
-dir /B /AD "%KITSROOT%CoreSystem" > %IOTADK_ROOT%\wdkversion.txt
-set /P WDK_VERSION=<%IOTADK_ROOT%\wdkversion.txt
-echo WDK_VERSION : %WDK_VERSION%
-del %IOTADK_ROOT%\wdkversion.txt
-
 set PATH=%KITSROOT%tools\bin\i386;%PATH%
 set AKROOT=%KITSROOT%
 set WPDKCONTENTROOT=%KITSROOT%
@@ -58,14 +53,6 @@ set TOOLS_DIR=%IOTADK_ROOT%\Tools
 if not exist %PKGLOG_DIR% ( mkdir %PKGLOG_DIR% )
 
 call setversion.cmd
-
-REM Get version number of the Corekit packages installed
-for /F "skip=2 tokens=3" %%r in ('reg query "HKEY_CLASSES_ROOT\Installer\Dependencies\Microsoft.Windows.Windows_10_IoT_Core_%1_Packages.x86.10" /v Version') do (
-	set KIT_VERSION=%%r 
-)
-REM echo KIT_VERSION : %KIT_VERSION%
-for /f "tokens=3 delims=." %%r in ("%KIT_VERSION%") do ( set BUILD_NR=%%r )
-echo BUILD_NR    : %BUILD_NR%
 
 set PROMPT=IoTCore %BSP_ARCH% %BSP_VERSION%$_$P$G
 TITLE IoTCoreShell %BSP_ARCH% %BSP_VERSION%

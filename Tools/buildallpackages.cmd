@@ -24,7 +24,6 @@ REM ----------------------------------------------------------------------------
 for /f "delims=" %%i in (%1) do (
    echo. Processing %%~nxi
    call createpkg.cmd %%i > %PKGLOG_DIR%\%%~ni.log
-   if not errorlevel 0 ( echo. Error : Failed to create %%~nxi. See %PKGLOG_DIR%\%%~ni.log )
+   if not errorlevel 0 ( echo. Error : Failed to create package. See %PKGLOG_DIR%\%%~ni.log )
 )
-
 exit /b
