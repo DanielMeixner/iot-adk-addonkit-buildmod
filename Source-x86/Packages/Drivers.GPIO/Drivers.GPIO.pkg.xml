@@ -10,7 +10,7 @@
 		<Driver InfSource="$(PRJDIR)\Packages\Drivers.GPIO\iaiogpio.inf">
 			<Reference Source="$(PRJDIR)\Packages\Drivers.GPIO\iaiogpio.sys" />
 			<Files>
-				<File Source="$(PRJDIR)\Packages\Drivers.GPIO\iaiogpio.sys" />
+				<File Source="$(PRJDIR)\Packages\Drivers.GPIO\iaiogpio.sys" DestinationDir="$(runtime.drivers)" />
 			</Files>
 		</Driver>
 	</Components>
