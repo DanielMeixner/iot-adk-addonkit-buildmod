@@ -1,41 +1,56 @@
 @echo off
-if [%1] == [/?] goto Usage
-if [%1] == [-?] goto Usage
-if [%1] == [] goto Usage
-if NOT [%1] == [arm] ( if NOT [%1] == [x86] (
- echo Error: %1 not supported
- goto Usage 
-)
+goto START
+
+:USAGE
+echo Usage: setenv arch 
+echo    arch....... Required, %SUPPORTED_ARCH% 
+echo    [/?]........Displays this usage string. 
+echo    Example:
+echo        setenv arm 
+
+exit /b 1
+
+:START
+
+if [%1] == [/?] goto USAGE
+if [%1] == [-?] goto USAGE
+if [%1] == [] goto USAGE
+
+set SUPPORTED_ARCH=arm x86 x64
+echo.%SUPPORTED_ARCH% | findstr /C:"%1" >nul && (
+	echo Configuring for %1 architecture
+) || (
+	echo.Error: %1 not supported
+	goto USAGE 
 )
 
 REM Environment configurations
-dir /B /AD "%KITSROOT%CoreSystem" > %IOTADK_ROOT%\coreversion.txt
-SET /P KIT_VERSION=<%IOTADK_ROOT%\coreversion.txt
-echo KIT_VERSION : %KIT_VERSION%
-del %IOTADK_ROOT%\coreversion.txt
-REM SET KIT_VERSION=10.0.10586.0
+set PATH=%KITSROOT%tools\bin\i386;%PATH%
+set AKROOT=%KITSROOT%
+set WPDKCONTENTROOT=%KITSROOT%
+set PKG_CONFIG_XML=%KITSROOT%Tools\bin\i386\pkggen.cfg.xml
 
-SET PATH=%KITSROOT%tools\bin\i386;%PATH%
-SET AKROOT=%KITSROOT%
-SET WPDKCONTENTROOT=%KITSROOT%
-SET PKG_CONFIG_XML=%KITSROOT%Tools\bin\i386\pkggen.cfg.xml
+set BSP_ARCH=%1
+set HIVE_ROOT=%KITSROOT%CoreSystem\%WDK_VERSION%\%BSP_ARCH%
+set WIM_ROOT=%KITSROOT%CoreSystem\%WDK_VERSION%\%BSP_ARCH%
 
-SET BSP_ARCH=%1
-SET HIVE_ROOT=%KITSROOT%CoreSystem\%KIT_VERSION%\%BSP_ARCH%
-SET WIM_ROOT=%KITSROOT%CoreSystem\%KIT_VERSION%\%BSP_ARCH%
+if [%1] == [x64] ( set BSP_ARCH=amd64)
 REM The following variables ensure the package is appropriately signed
-SET SIGN_OEM=1
-SET SIGN_WITH_TIMESTAMP=0
+set SIGN_OEM=1
+set SIGN_WITH_TIMESTAMP=0
 
 
 REM Local project settings
-SET COMMON_DIR=%IOTADK_ROOT%\Common
-SET SRC_DIR=%IOTADK_ROOT%\Source-%1
-SET PKGSRC_DIR=%SRC_DIR%\Packages
-SET PKGUPD_DIR=%SRC_DIR%\Updates
-SET BLD_DIR=%IOTADK_ROOT%\Build\%BSP_ARCH%
-SET PKGBLD_DIR=%BLD_DIR%\pkgs
-SET TOOLS_DIR=%IOTADK_ROOT%\Tools
+set COMMON_DIR=%IOTADK_ROOT%\Common
+set SRC_DIR=%IOTADK_ROOT%\Source-%1
+set PKGSRC_DIR=%SRC_DIR%\Packages
+set PKGUPD_DIR=%SRC_DIR%\Updates
+set BLD_DIR=%IOTADK_ROOT%\Build\%BSP_ARCH%
+set PKGBLD_DIR=%BLD_DIR%\pkgs
+set PKGLOG_DIR=%PKGBLD_DIR%\logs
+set TOOLS_DIR=%IOTADK_ROOT%\Tools
+
+if not exist %PKGLOG_DIR% ( mkdir %PKGLOG_DIR% )
 
 call setversion.cmd
 
@@ -45,16 +60,5 @@ TITLE IoTCoreShell %BSP_ARCH% %BSP_VERSION%
 echo BSP_ARCH    : %BSP_ARCH%
 echo BSP_VERSION : %BSP_VERSION%
 echo.
-goto End
 
-:Usage
-echo Usage: setenv arch 
-echo    arch....... Required, arm/x86 
-echo    [/?]........Displays this usage string. 
-echo    Example:
-echo        setenv arm 
-
-exit /b 1
-
-:End
 exit /b 0

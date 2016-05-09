@@ -1,11 +1,10 @@
 @echo off
-
-if NOT DEFINED SRC_DIR (
+if not defined BLD_DIR (
 	echo Environment not defined. Call setenv
-	goto End
+	exit /b 1
 )
 if exist %BLD_DIR% (
-rmdir "%BLD_DIR%" /S /Q 
-echo Build directories cleaned
+	del %BLD_DIR%\*.* /S /Q >nul
+	echo Build directories cleaned
 ) else echo Nothing to clean.
-:End
+exit /b 0

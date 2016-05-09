@@ -14,6 +14,9 @@
 				<File Source="$(PRJDIR)\Packages\Appx.Main\AppInstall\AppInstall.cmd"
 				      DestinationDir="$(runtime.root)\AppInstall"
 				      Name="AppInstall.cmd"/>
+				<File Source="$(PRJDIR)\Packages\Appx.Main\AppInstall\AppInstall_TH.cmd"
+				      DestinationDir="$(runtime.root)\AppInstall"
+				      Name="AppInstall_TH.cmd"/>
 				<File Source="$(PRJDIR)\Packages\Appx.Main\AppInstall\DeployAppx.cmd"
 				      DestinationDir="$(runtime.root)\AppInstall"
 				      Name="DeployAppx.cmd"/>

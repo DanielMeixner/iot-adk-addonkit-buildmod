@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FeatureManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+  <!-- Packages defined under BasePackages are always included when this feature manifest is included in the OEMInput file -->
   <BasePackages>
+	<!-- This package defines in the OEM Package Version  -->
     <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Registry.Version.cab"/>
-	<PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Registry.TestSettings.cab"/>
   </BasePackages>
   <Features>
     <OEM>
@@ -10,13 +11,30 @@
  
       <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Provisioning.Manual.cab">
         <FeatureIDs>
+		  <!-- This feature id brings in provisioning packages for manual installation via Custom.Cmd -->
+		  <!-- Depends on OEM_CustomCmd -->
           <FeatureID>OEM_ProvManual</FeatureID>
         </FeatureIDs>
       </PackageFile>
 	  
-      <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Registry.CrashSettings.cab">
+      <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.ImageSettings.CrashControl.cab">
         <FeatureIDs>
-          <FeatureID>OEM_CrashSettings</FeatureID>
+		  <!-- This feature id sets the Crashdump settings -->
+          <FeatureID>OEMCommon_CrashControl</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+	  
+      <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.ImageSettings.VideoMode.cab">
+        <FeatureIDs>
+		  <!-- This feature id sets the headless/headed mode. Default is headed-->
+          <FeatureID>OEMCommon_VideoMode</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+	  
+      <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.ImageSettings.BootLogoMode.cab">
+        <FeatureIDs>
+		  <!-- This feature id enables/disables BootLogo from UEFI. Default is Enabled-->
+          <FeatureID>OEMCommon_BootLogoMode</FeatureID>
         </FeatureIDs>
       </PackageFile>	  
 

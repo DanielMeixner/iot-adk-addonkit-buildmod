@@ -7,12 +7,10 @@
     Component="Drivers"
     SubComponent="GPIO">
     <Components>
-     <Driver
-       InfSource="$(PRJDIR)\Packages\Drivers.GPIO\iaiogpio.inf">
-       <Reference
-         Source="$(PRJDIR)\Packages\Drivers.GPIO\iaiogpio.sys" />
+     <Driver InfSource="iaiogpio.inf">
+       <Reference Source="iaiogpio.sys" />
        <Files>
-         <File Source="$(PRJDIR)\Packages\Drivers.GPIO\iaiogpio.sys" />
+         <File Source="iaiogpio.sys" DestinationDir="$(runtime.drivers)" />
        </Files>
      </Driver>
     </Components>

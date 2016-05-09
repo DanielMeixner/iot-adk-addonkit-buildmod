@@ -10,8 +10,8 @@
        <OSComponent>
 	      <!-- Storing the Product Name in the registry in this package -->
           <RegKeys>
- 		     <RegKey KeyName="$(hklm.software)\$(OEMNAME)\Product">
-                <RegValue Name="StringValue" Value="$(PROD)" Type="REG_SZ"/>
+ 		     <RegKey KeyName="$(hklm.software)\$(OEMNAME)">
+                <RegValue Name="Product" Value="$(PROD)" Type="REG_SZ"/>
              </RegKey>
          </RegKeys>		   
          <Files>
