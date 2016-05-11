@@ -14,6 +14,7 @@ echo        inf2cab C:\test\testdriver.inf
 exit /b 1
 
 :START
+setlocal
 
 if NOT DEFINED SRC_DIR (
 	echo Environment not defined. Call setenv
