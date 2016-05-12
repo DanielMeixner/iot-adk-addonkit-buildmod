@@ -67,7 +67,7 @@ if exist %FILE_PATH%\inf_filelist.txt ( del %FILE_PATH%\inf_filelist.txt )
 if exist %FILE_PATH%\input.inf ( del %FILE_PATH%\input.inf )
 echo. Processing %1
 REM Convert the encoding format to utf8
-powershell -Command "(gc %1) | Out-File %FILE_PATH%\input.inf -Encoding utf8"
+powershell -Command "(gc %1)| ?{$_.trim()}  | Out-File %FILE_PATH%\input.inf -Encoding utf8"
 REM Parse the inf section and get the list of dependencies
 for /f "delims=" %%i in (%FILE_PATH%\input.inf) do (
    if !TOKEN_FOUND! == 1 (
@@ -179,11 +179,12 @@ exit /b 0
 :INIT_CONFIG
 set TOKENLIST=[SourceDisksFiles] [DestinationDirs] 
 REM Add DirID and the corresponding location here for extending support for more DirIDs
-set DIRIDLIST= 10 11 12  
+set DIRIDLIST= 10 11 12 24   
 
 set DIRID10LOC=$(runtime.windows)
 set DIRID11LOC=$(runtime.system32)
 set DIRID12LOC=$(runtime.drivers)
+set DIRID24LOC=$(runtime.root)
 
 exit /b 0
 
