@@ -121,7 +121,7 @@ set defaultaccTemp=%systemdrive%\data\users\defaultaccount\appdata\local\temp
 echo Creating Scheduled Task "%taskname%" for Appx Installation.
 del /Q %defaultaccTemp%\%taskname%_deploy_done.txt 2> nul:
 del /Q %defaultaccTemp%\%AppxName%_result.txt 2> nul:
-schtasks /create /f /tn "%taskname%" /ru DefaultAccount /sc ONSTART /tr "%~dp0deployappx.cmd %taskname% %installtype% > %~dp0logs\deployappxlog.txt"
+schtasks /create /f /tn "%taskname%" /ru DefaultAccount /sc ONSTART /tr "%~dp0deploytask.cmd %taskname% %installtype% > %~dp0logs\deployappxlog.txt"
 if %errorlevel% == 0 (
     echo Successfuly Created Scheduled Task "%taskname%".
 ) else (

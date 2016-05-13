@@ -6,7 +6,9 @@
       <Driver InfSource="DRIVER_NAME.inf"> 
          <Reference Source="DRIVER_NAME.sys" />
          <Files> 
-            <File Source="DRIVER_NAME.sys" />
+            <File Source="DRIVER_NAME.sys"
+                  DestinationDir="$(runtime.drivers)"
+                  Name="DRIVER_NAME.sys" />
          </Files> 
       </Driver> 
    </Components> 
