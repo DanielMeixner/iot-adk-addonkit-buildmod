@@ -50,8 +50,6 @@ set PKGBLD_DIR=%BLD_DIR%\pkgs
 set PKGLOG_DIR=%PKGBLD_DIR%\logs
 set TOOLS_DIR=%IOTADK_ROOT%\Tools
 
-if not exist %PKGLOG_DIR% ( mkdir %PKGLOG_DIR% )
-
 call setversion.cmd
 
 set PROMPT=IoTCore %BSP_ARCH% %BSP_VERSION%$_$P$G

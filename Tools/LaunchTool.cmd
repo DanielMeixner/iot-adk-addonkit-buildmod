@@ -29,7 +29,7 @@ if exist "%KITSROOT%\CoreSystem" (
 	del %IOTADK_ROOT%\wdkversion.txt
 ) else (
 	set WDK_VERSION=NotFound
-	echo.Warning : WDK not found. Driver package creation will fail.
+
 )
 
 REM Check for Corekit packages
