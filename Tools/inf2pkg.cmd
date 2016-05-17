@@ -43,13 +43,13 @@ call :PARSE_INF_FILE %1
 echo. Authoring %COMP_NAME%.%SUB_NAME%.pkg.xml
 if exist "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" (del "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" )
 call :CREATE_PKGFILE 
-
-REM check for dependency files in the same folder and flag error if missing
-for /f "delims=" %%i in (%FILE_PATH%\inf_filelist.txt) do (
-	if not exist "%FILE_PATH%%%i" (
-	    echo.   Warning : %FILE_PATH%%%i not found, package creation will fail. 		
-	)
-	
+if exist %OUTPUT_PATH%\inf_filelist.txt (
+    REM check for dependency files in the same folder and flag error if missing
+    for /f "delims=" %%i in (%OUTPUT_PATH%\inf_filelist.txt) do (
+        if not exist "%FILE_PATH%%%i" (
+            echo.   Warning : %FILE_PATH%%%i not found, package creation will fail. 		
+        )
+    )
 )	
 
 REM Cleanup temp files
@@ -63,13 +63,13 @@ exit /b 0
 set TOKEN=0
 set TOKEN_FOUND=0
 REM Cleanup files before start
-if exist %FILE_PATH%\inf_filelist.txt ( del %FILE_PATH%\inf_filelist.txt )
-if exist %FILE_PATH%\input.inf ( del %FILE_PATH%\input.inf )
+if exist %OUTPUT_PATH%\inf_filelist.txt ( del %OUTPUT_PATH%\inf_filelist.txt )
+if exist %OUTPUT_PATH%\input.inf ( del %OUTPUT_PATH%\input.inf )
 echo. Processing %1
 REM Convert the encoding format to utf8
-powershell -Command "(gc %1) | Out-File %FILE_PATH%\input.inf -Encoding utf8"
+powershell -Command "(gc %1)| ?{$_.trim()}  | Out-File %OUTPUT_PATH%\input.inf -Encoding utf8"
 REM Parse the inf section and get the list of dependencies
-for /f "delims=" %%i in (%FILE_PATH%\input.inf) do (
+for /f "delims=" %%i in (%OUTPUT_PATH%\input.inf) do (
    if !TOKEN_FOUND! == 1 (
       REM Check if next field has started
         set TEST=%%i
@@ -81,21 +81,21 @@ for /f "delims=" %%i in (%FILE_PATH%\input.inf) do (
             if "!TOKEN!" EQU "[SourceDisksFiles]" (
                 REM Parsing SourceDisksFiles section
                 for /f "tokens=1,* delims= " %%A in ("%%i") do (
-                    echo.%%A>> %FILE_PATH%\inf_filelist.txt
+                    echo.%%A>> %OUTPUT_PATH%\inf_filelist.txt
                 )
             ) else if "!TOKEN!" EQU "[DestinationDirs]" (
-                REM Parsing DestinationDirs section
-                for /f "tokens=1,2,3 delims= " %%A in ("%%i") do (
-                    call :FIND_TEXT "%DIRIDLIST%" %%C
+                REM Parsing DestinationDirs section, sub folder parsing not yet done.
+                for /f "tokens=1,2 delims=,= " %%A in ("%%i") do (
+                    call :FIND_TEXT "%DIRIDLIST%" %%B
                     if errorlevel 1 (
                         if "%%A" EQU "DefaultDestDir" (
-                            set "DEFAULTLOC=!DIRID%%CLOC!"
+                            set "DEFAULTLOC=!DIRID%%BLOC!"
                         ) else (
-                            set "DIRIDGRP%%C=[%%A] !DIRIDGRP%%C!"
+                            set "DIRIDGRP%%B=[%%A] !DIRIDGRP%%B!"
                             set TOKENLIST=[%%A] !TOKENLIST!
                         )                            
                     ) else ( 
-                        echo Error : Unsupported DIRID %%C. Using this as 12. Please edit generated file to put to actual path
+                        echo Error : Unsupported DIRID %%B. Using this as 12. Please edit generated file to put to actual path
                         if "%%A" EQU "DefaultDestDir" (
                             set "DEFAULTLOC=%DIRID12LOC%"
                         ) else (
@@ -117,20 +117,25 @@ for /f "delims=" %%i in (%FILE_PATH%\input.inf) do (
             )
         )
     )
-    call :FIND_TEXT "!TOKENLIST!" %%i
-    if errorlevel 1 (
-        echo.   Parsing %%i
-        set TOKEN=%%i
-        set TOKEN_FOUND=1
+    set TEST=%%i
+    set TEST=!TEST:[=!
+    if "!TEST!" NEQ "!%%i" (
+        REM Found [] check if this field needs to be parsed
+        REM Extracting the first text ( to remove potential comments in the line)
+        for /f "tokens=1 delims= " %%A in ("%%i") do (
+            call :FIND_TEXT "!TOKENLIST!" %%A
+            if errorlevel 1 (
+                echo.   Parsing %%A
+                set TOKEN=%%A
+                set TOKEN_FOUND=1
+            )
+        )
     )
 )
 exit /b
 
 :CREATE_PKGFILE
-if not exist %FILE_PATH%\inf_filelist.txt (
-	echo. error, file not found :%FILE_PATH%\inf_filelist.txt 
-	exit /b 1
-)
+
 REM Printing the headers
 call :PRINT_TEXT "<?xml version="1.0" encoding="utf-8" ?>" 
 call :PRINT_TEXT "<Package xmlns="urn:Microsoft.WindowsPhone/PackageSchema.v8.00""
@@ -138,27 +143,32 @@ echo          Owner="$(OEMNAME)" OwnerType="OEM" ReleaseType="Production" >> %OU
 call :PRINT_TEXT "         Platform="%BSP_ARCH%" Component="%COMP_NAME%" SubComponent="%SUB_NAME%">"
 call :PRINT_TEXT "   <Components>"
 call :PRINT_TEXT "      <Driver InfSource="%FILE_NAME%.inf">"
-REM Printing references
-for /f "delims=" %%A in (%FILE_PATH%\inf_filelist.txt) do (
-	call :PRINT_TEXT "         <Reference Source="%%A" />"
-)
-call :PRINT_TEXT "         <Files>"
-REM Printing file sources
-for /f "delims=" %%A in (%FILE_PATH%\inf_filelist.txt) do (
-    set "LOCATION=%DEFAULTLOC%"
-    REM Check if the file name is in any DIRID list and set dir location accordingly
-    for %%d in (%DIRIDLIST%) do (
-        call :FIND_TEXT "!DIRID%%dLIST!" %%A
-        if errorlevel 1 (
-            set "LOCATION=!DIRID%%dLOC!"
-        )
+if exist %OUTPUT_PATH%\inf_filelist.txt (
+    REM Printing references
+    for /f "delims=" %%A in (%OUTPUT_PATH%\inf_filelist.txt) do (
+        call :PRINT_TEXT "         <Reference Source="%%A" />"
     )
-    echo.   Placing %%A in !LOCATION!
-	call :PRINT_TEXT "           <File Source="%%A" "
-    echo                  DestinationDir="!LOCATION!" >> %OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml 
-    call :PRINT_TEXT "                 Name="%%A" />"
+    call :PRINT_TEXT "         <Files>"
+    REM Printing file sources
+    for /f "delims=" %%A in (%OUTPUT_PATH%\inf_filelist.txt) do (
+        set "LOCATION=%DEFAULTLOC%"
+        REM Check if the file name is in any DIRID list and set dir location accordingly
+        for %%d in (%DIRIDLIST%) do (
+            call :FIND_TEXT "!DIRID%%dLIST!" %%A
+            if errorlevel 1 (
+                set "LOCATION=!DIRID%%dLOC!"
+            )
+        )
+        echo.   Placing %%A in !LOCATION!
+        call :PRINT_TEXT "           <File Source="%%A" "
+        echo                  DestinationDir="!LOCATION!" >> %OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml 
+        call :PRINT_TEXT "                 Name="%%A" />"
+    )
+    call :PRINT_TEXT "         </Files>"
+) else (
+    echo. No Source files found.
 )
-call :PRINT_TEXT "         </Files>"
+
 call :PRINT_TEXT "      </Driver>"
 call :PRINT_TEXT "   </Components>" 
 call :PRINT_TEXT "</Package>" 		
@@ -179,11 +189,12 @@ exit /b 0
 :INIT_CONFIG
 set TOKENLIST=[SourceDisksFiles] [DestinationDirs] 
 REM Add DirID and the corresponding location here for extending support for more DirIDs
-set DIRIDLIST= 10 11 12  
+set DIRIDLIST= 10 11 12 24   
 
 set DIRID10LOC=$(runtime.windows)
 set DIRID11LOC=$(runtime.system32)
 set DIRID12LOC=$(runtime.drivers)
+set DIRID24LOC=$(runtime.root)
 
 exit /b 0
 

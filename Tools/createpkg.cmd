@@ -35,8 +35,10 @@ if [%2] == [] (
 	REM TODO validate version format
 	set PKG_VER=%2
 )
+set INPUT=%1
+set EXTN=%INPUT:~-8%
 
-if [%~x1] == [.xml] (
+if [%EXTN%] == [.pkg.xml] (
     set INPUT_FILE=%~nx1
     cd %~dp1
 ) else (
@@ -46,7 +48,7 @@ if [%~x1] == [.xml] (
     ) else if exist "%COMMON_DIR%\Packages\%1\%1.pkg.xml" (
         cd "%COMMON_DIR%\Packages\%1"        
     ) else (
-        echo Error : %1.pkg.xml package not found
+        echo Error : %1 is not a valid input.
         goto Usage
     )
 )
@@ -57,7 +59,7 @@ if not defined PRODUCT (
 
 echo Creating %INPUT_FILE% Package with version %PKG_VER% for %PRODUCT%
 
-call pkggen.exe "%INPUT_FILE%" /config:"%PKG_CONFIG_XML%" /output:"%PKGBLD_DIR%" /version:%PKG_VER% /build:fre /cpu:%BSP_ARCH% /variables:"HIVE_ROOT=%HIVE_ROOT%;WIM_ROOT=%WIM_ROOT%;_RELEASEDIR=%BLD_DIR%\;PROD=%PRODUCT%;PRJDIR=%SRC_DIR%;COMDIR=%COMMON_DIR%;BSPVER=%PKG_VER%;OEMNAME=%OEM_NAME%"
+call pkggen.exe "%INPUT_FILE%" /config:"%PKG_CONFIG_XML%" /output:"%PKGBLD_DIR%" /version:%PKG_VER% /build:fre /cpu:%BSP_ARCH% /variables:"_RELEASEDIR=%BLD_DIR%\;PROD=%PRODUCT%;PRJDIR=%SRC_DIR%;COMDIR=%COMMON_DIR%;BSPVER=%PKG_VER%;OEMNAME=%OEM_NAME%" /nohives
 
 if errorlevel 0 (
 	REM remove unused .spkg files

@@ -1,4 +1,5 @@
 @echo off
+if not exist %PKGLOG_DIR% ( mkdir %PKGLOG_DIR% )
 
 echo Creating all packages under %COMMON_DIR%\Packages
 dir %COMMON_DIR%\Packages\*.pkg.xml /S /b > %PKGLOG_DIR%\commonpackagelist.txt
