@@ -37,6 +37,7 @@
       <Feature>IOT_EFIESP_BCD</Feature> 
       <Feature>IOT_DMAP_DRIVER</Feature> 
       <Feature>IOT_POWER_SETIINGS</Feature>
+      <Feature>IOT_POWER_SETTINGS</Feature> <!-- Correct spelling in RS. Keeping old value for backward compatibility -->
 	  <!-- Following two required for Appx Installation -->
 	  <Feature>IOT_UAP_OOBE</Feature> 
 	  <Feature>IOT_APP_TOOLKIT</Feature> 
@@ -54,7 +55,6 @@
     <OEM>
 	  <!-- Inclide BSP Features -->
       <Feature>MBM_DEVICE_TARGETINGINFO</Feature> 
-      <Feature>PLACEHOLDER_FEATURE</Feature> 
       <Feature>MBM_DRIVERS</Feature> 
 	  <!-- Include OEM features -->
 	  <Feature>OEM_AppxMain</Feature>

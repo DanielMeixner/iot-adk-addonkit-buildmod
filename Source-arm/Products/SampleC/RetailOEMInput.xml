@@ -35,6 +35,7 @@
     <Microsoft>
       <Feature>IOT_EFIESP</Feature>
       <Feature>IOT_DMAP_DRIVER</Feature>
+	  <Feature>IOT_GENERIC_POP</Feature> 	  
 	  <!-- Following two required for Appx Installation -->
 	  <Feature>IOT_UAP_OOBE</Feature> 
 	  <Feature>IOT_APP_TOOLKIT</Feature> 
@@ -48,13 +49,12 @@
     <OEM>
 	  <!-- Include BSP Features -->
 	  <Feature>GENERIC_DEVICE_TARGETINGINFO</Feature>
-      <Feature>PLACEHOLDER_FEATURE</Feature>
       <Feature>RPI2_DRIVERS</Feature>
 	  <!-- Include OEM features -->
 	  <Feature>OEM_Drivers</Feature>
 	  <Feature>OEM_AppxMain</Feature>
 	  <Feature>OEM_CustomCmd</Feature>
-      <Feature>OEM_ProvManual</Feature>
+	   <Feature>OEM_ProvManual</Feature> 
     </OEM>
   </Features>
   <Product>Windows 10 IoT Core</Product>

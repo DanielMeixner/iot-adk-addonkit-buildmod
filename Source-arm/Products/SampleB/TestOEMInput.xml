@@ -54,7 +54,6 @@
 <OEM> 
 	  <!-- Include BSP Features -->
 	  <Feature>GENERIC_DEVICE_TARGETINGINFO</Feature>
-      <Feature>PLACEHOLDER_FEATURE</Feature>
       <Feature>RPI2_DRIVERS</Feature>
 	  <!-- Include OEM features -->
 	  <Feature>OEM_Drivers</Feature>

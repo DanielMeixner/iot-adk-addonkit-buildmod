@@ -8,12 +8,6 @@
     SubComponent="Cmd">
     <Components>
        <OSComponent>
-	      <!-- Storing the Product Name in the registry in this package -->
-          <RegKeys>
- 		     <RegKey KeyName="$(hklm.software)\$(OEMNAME)">
-                <RegValue Name="Product" Value="$(PROD)" Type="REG_SZ"/>
-             </RegKey>
-         </RegKeys>		   
          <Files>
 			<!-- 
 			Source : OEM Customisation command is product specific, so copied from the Product directory
