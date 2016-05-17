@@ -47,7 +47,7 @@ dir /b "%IOTADK_ROOT%\Templates\AppInstall\*.cmd" > %FILE_PATH%\appx_scriptlist.
 dir /b %FILE_PATH%\*.cer > %FILE_PATH%\appx_cerlist.txt
 echo. Authoring %COMP_NAME%.%SUB_NAME%.pkg.xml
 if exist "%FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" (del "%FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" )
-call :Create_PkgXml 
+call :CREATE_PKGFILE 
 
 
 REM Cleanup temp files
@@ -57,7 +57,7 @@ del %FILE_PATH%\appx_scriptlist.txt
 endlocal
 exit /b 0
 
-:Create_PkgXml
+:CREATE_PKGFILE
 if not exist %FILE_PATH%\appx_deplist.txt (
 	echo. error, file not found :%FILE_PATH%\appx_deplist.txt 
 	exit /b 1

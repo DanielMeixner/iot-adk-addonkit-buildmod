@@ -35,8 +35,10 @@ if [%2] == [] (
 	REM TODO validate version format
 	set PKG_VER=%2
 )
+set INPUT=%1
+set EXTN=%INPUT:~-8%
 
-if [%~x1] == [.xml] (
+if [%EXTN%] == [.pkg.xml] (
     set INPUT_FILE=%~nx1
     cd %~dp1
 ) else (
@@ -46,7 +48,7 @@ if [%~x1] == [.xml] (
     ) else if exist "%COMMON_DIR%\Packages\%1\%1.pkg.xml" (
         cd "%COMMON_DIR%\Packages\%1"        
     ) else (
-        echo Error : %1.pkg.xml package not found
+        echo Error : %1 is not a valid input.
         goto Usage
     )
 )
