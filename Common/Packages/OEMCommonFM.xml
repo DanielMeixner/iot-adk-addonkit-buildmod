@@ -34,14 +34,6 @@
         </FeatureIDs>
       </PackageFile>
 	  
-      <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.ImageSettings.BootLogoMode.cab">
-        <FeatureIDs>
-		  <!-- This feature id enables/disables BootLogo from UEFI. Default is Enabled-->
-          <FeatureID>OEMCommon_BootLogoMode</FeatureID>
-		  <FeatureID>OEMCommon_ALL</FeatureID>
-        </FeatureIDs>
-      </PackageFile>	  
-
 	  <!-- Packages with Product specific contents included -->
       <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Custom.Cmd.cab">
         <FeatureIDs>
