@@ -43,9 +43,9 @@ if [%2] == [] (
 REM Start processing command
 REM Get Appx dependencies
 if exist %FILE_PATH%\Dependencies\%ARCH% (
-    dir /b %FILE_PATH%\Dependencies\%ARCH% > %FILE_PATH%\appx_deplist.txt
+    dir /b %FILE_PATH%\Dependencies\%ARCH%\*.appx > %FILE_PATH%\appx_deplist.txt
 ) else (
-    dir /b %FILE_PATH%\Dependencies > %FILE_PATH%\appx_deplist.txt
+    dir /b %FILE_PATH%\Dependencies\*.appx > %FILE_PATH%\appx_deplist.txt
 )
 dir /b "%IOTADK_ROOT%\Templates\AppInstall\*.cmd" > %FILE_PATH%\appx_scriptlist.txt
 dir /b %FILE_PATH%\*.cer > %FILE_PATH%\appx_cerlist.txt
