@@ -67,16 +67,21 @@ if [%FILE_TYPE%] == [.appx] (
 	call appx2pkg.cmd %1 %COMP_NAME%.%SUB_NAME%
 	REM Copy the files to the package directory
 	move "%FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" "%NEWPKG_DIR%\%COMP_NAME%.%SUB_NAME%.pkg.xml" >nul
-	copy "%FILE_PATH%\Dependencies\*.appx" "%NEWPKG_DIR%\AppInstall\" >nul
-	copy "%FILE_PATH%\*.cer" "%NEWPKG_DIR%\AppInstall\" >nul
+    if exist "%FILE_PATH%\Dependencies\%ARCH%" (
+        copy "%FILE_PATH%\Dependencies\%ARCH%\*.appx" "%NEWPKG_DIR%\AppInstall\" >nul
+    ) else (
+        copy "%FILE_PATH%\Dependencies\*.appx" "%NEWPKG_DIR%\AppInstall\" >nul
+    )
+	
+    copy "%FILE_PATH%\*.cer" "%NEWPKG_DIR%\AppInstall\" >nul
 	copy "%FILE_PATH%\%FILE_NAME%.appx" "%NEWPKG_DIR%\AppInstall\%FILE_NAME%.appx" >nul
 	copy "%IOTADK_ROOT%\Templates\AppInstall\*.cmd" "%NEWPKG_DIR%\AppInstall" >nul
 	REM Update AppxConfig.cmd
-	echo set defaultappx=%FILE_NAME% > %NEWPKG_DIR%\AppInstall\AppxConfig.cmd
+	echo set AppxName=%FILE_NAME%> %NEWPKG_DIR%\AppInstall\AppxConfig.cmd
 	for /f "delims=" %%i in (%FILE_PATH%\appx_cerlist.txt) do (
-		set certlist=!certlist!%%~ni 
+		set certslist=!certslist!%%~ni 
 	)
-	echo set certlist=!certlist! >> %NEWPKG_DIR%\AppInstall\AppxConfig.cmd
+	echo set certslist=!certslist! >> %NEWPKG_DIR%\AppInstall\AppxConfig.cmd
 	for /f "delims=" %%i in (%FILE_PATH%\appx_deplist.txt) do (
 		set dependencylist=!dependencylist!%%~ni 
 	)	

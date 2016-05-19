@@ -13,8 +13,6 @@ if not exist %systemdrive%\windows\system32\mindeployappx.exe (
 
 call AppxConfig.cmd
 
-set AppxID=%defaultappxid% 
-set AppxName=%defaultappx%.appx
 echo Appx Name :%AppxName%
 
 if not defined forceinstall (set forceinstall=0)
@@ -23,7 +21,7 @@ if not exist .\logs ( mkdir logs )
 ::
 :: Get Appx Family Name
 ::
-mindeployappx /FetchPackageFamilyName /packagepath:"%~dp0%AppxName%" > .\logs\appxfamname.txt
+mindeployappx /FetchPackageFamilyName /packagepath:"%~dp0%AppxName%.appx" > .\logs\appxfamname.txt
 set /p fullappxfamilyname=<.\logs\appxfamname.txt
 set AppxID=%fullappxfamilyname:~19,-1%
 echo Appx Family Name: %AppxID%
@@ -161,9 +159,9 @@ if NOT EXIST %defaultaccTemp%\%taskname%_deploy_done.txt (
 endlocal
 findstr /B /L "ReturnCode:[0x0]" %defaultaccTemp%\%AppxName%_result.txt
 if %errorlevel% == 0 (
-    echo Successfuly Deployed %AppxName%.
+    echo Successfuly Deployed %AppxName%.appx
 ) else (
-    echo Failed to Deploy %AppxName%
+    echo Failed to Deploy %AppxName%.appx
     echo ErrorCode: %errorlevel%
     goto CLEANUP
 )
