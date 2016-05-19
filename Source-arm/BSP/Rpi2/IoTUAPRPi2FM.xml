@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FeatureManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
   <BasePackages>
-     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-RPi2-DeviceFM-Package.cab" FeatureIdentifierPackage="true"/>
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-RPi2-DeviceFM-Package.cab"/>
    
      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-RPi2-BCD-Package.cab" />
 
@@ -9,10 +9,11 @@
 
   </BasePackages>
 
-   <DeviceLayoutPackages>
-    <PackageFile SOC="RPi2" Path="%PKGBLD_DIR%" Name="%OEM_NAME%.BSP.DeviceLayout.cab"/>
+  <DeviceLayoutPackages>
+    <PackageFile SOC="RPi2" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-RPi2-DeviceLayoutProd-Package.cab"/>
+    <PackageFile SOC="RPi2_2GB" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-RPi2-DeviceLayoutProd-Min2GB-Package.cab"/>
   </DeviceLayoutPackages>
-  
+
   <Features>
     <MSFeatureGroups>
       <FeatureGroup Name="RPi2Base" PublishingFeatureGroup="true">

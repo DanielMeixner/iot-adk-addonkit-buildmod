@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FeatureManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+  <BasePackages>
+     <!-- System Information package for providing system details , required for DM enrollment etc -->
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.APL.SystemInformation.cab"/>
+     <!-- UEFI for the silicon packaged in Bootfirmware : None -->
+     <!-- Drivers required for boot/reading partitions for UpdateOS: Not required -->
+     <!-- GPT BCD Settings : Include IOT_EFIESP_BCD in OEMInput xml file-->
+     <!-- Device Info/ Device Targeting Info : Include IOT_GENERIC_POP in OEMInput xml file-->
+     <!-- Mandatory device drivers : None -->
+     <!-- Device specific customisations if any : None -->    
+  </BasePackages>
+  
+  <OEMDevicePlatformPackages>
+    <PackageFile Device="APL" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.APL.OEMDevicePlatform.cab" />
+    <PackageFile Device="APL_2GB" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.APL.OEMDevicePlatform_Min2GB.cab" />
+  </OEMDevicePlatformPackages>
+
+  <DeviceLayoutPackages>
+    <PackageFile SOC="APL" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.APL.DeviceLayout.cab" />
+    <PackageFile SOC="APL_2GB" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.APL.DeviceLayout_Min2GB.cab" />
+  </DeviceLayoutPackages>
+
+  <Features>
+    <Microsoft />
+    <MSFeatureGroups />
+    <OEM>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.APL.GPIO.cab" >
+        <FeatureIDs>
+          <FeatureID>APL_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.APL.UART.cab" >
+        <FeatureIDs>
+          <FeatureID>APL_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.APL.I2C.cab" >
+        <FeatureIDs>
+          <FeatureID>APL_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.APL.SPI.cab" >
+        <FeatureIDs>
+          <FeatureID>APL_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.APL.GRFX.cab" >
+        <FeatureIDs>
+          <FeatureID>APL_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+    </OEM>
+    <OEMFeatureGroups />
+  </Features>
+</FeatureManifest>

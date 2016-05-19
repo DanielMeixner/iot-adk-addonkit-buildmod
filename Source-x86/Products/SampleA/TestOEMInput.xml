@@ -24,7 +24,7 @@
   </Resolutions>
   <AdditionalFMs>
     <!-- Including BSP feature manifest -->
-	<AdditionalFM>%AKROOT%\FMFiles\x86\MBMFM.xml</AdditionalFM>
+	<AdditionalFM>%BSPSRC_DIR%\MBM\MBMFM.xml</AdditionalFM>
 	<!-- Including OEM feature manifest -->
 	<AdditionalFM>%COMMON_DIR%\Packages\OEMCommonFM.xml</AdditionalFM>
 	<AdditionalFM>%SRC_DIR%\Packages\OEMFM.xml</AdditionalFM>
@@ -50,11 +50,16 @@
 	  <!-- Enabling Test images -->
 	  <Feature>IOT_DISABLE_UMCI</Feature> 
 	  <Feature>IOT_ENABLE_TESTSIGNING</Feature>		  
-	  <Feature>IOT_TOOLKIT</Feature> 
+	  <Feature>IOT_TOOLKIT</Feature>
+      <!-- RS1 Additions -->
+      <Feature>IOT_CP210x_MAKERDRIVER</Feature>
+      <Feature>IOT_FTSER2K_MAKERDRIVER</Feature>
+      <Feature>IOT_NANORDPSERVER</Feature>
+      <Feature>IOT_SHELL_HOTKEY_SUPPORT</Feature>
+      <Feature>IOT_APPLICATIONS</Feature>
     </Microsoft>
     <OEM>
 	  <!-- Inclide BSP Features -->
-      <Feature>MBM_DEVICE_TARGETINGINFO</Feature> 
       <Feature>MBM_DRIVERS</Feature> 
 	  <!-- Include OEM features -->
 	  <Feature>OEM_AppxMain</Feature>

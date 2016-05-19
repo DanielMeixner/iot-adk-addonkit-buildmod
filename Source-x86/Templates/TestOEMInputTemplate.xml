@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <OEMInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
-  <Description>Contoso Windows 10 IoT Core Test FFU with ModelA BSP</Description>
-  <SOC>ModelA</SOC>
+  <Description>Contoso Windows 10 IoT Core Test FFU with {BSP} BSP</Description>
+  <SOC>{BSP}</SOC>
   <SV>Intel</SV>
-  <Device>ModelA</Device>
+  <Device>{BSP}</Device>
   <ReleaseType>Test</ReleaseType>
   <BuildType>fre</BuildType>
   <SupportedLanguages>
@@ -24,7 +24,7 @@
   </Resolutions>
   <AdditionalFMs>
     <!-- Including BSP feature manifest -->
-    <AdditionalFM>%BSPSRC_DIR%\ModelA\ModelAFM.xml</AdditionalFM>
+    <AdditionalFM>%BSPSRC_DIR%\{BSP}\{BSP}FM.xml</AdditionalFM>
 	<!-- Including OEM feature manifest -->
 	<AdditionalFM>%COMMON_DIR%\Packages\OEMCommonFM.xml</AdditionalFM>
 	<AdditionalFM>%SRC_DIR%\Packages\OEMFM.xml</AdditionalFM>
@@ -36,7 +36,7 @@
       <Feature>IOT_EFIESP</Feature> 
       <Feature>IOT_EFIESP_BCD</Feature> 
       <Feature>IOT_DMAP_DRIVER</Feature>
-      <Feature>IOT_GENERIC_POP</Feature>      
+      <!-- Feature>IOT_GENERIC_POP</Feature -->      
       <Feature>IOT_POWER_SETIINGS</Feature>
       <Feature>IOT_POWER_SETTINGS</Feature> <!-- Correct spelling in RS. Keeping old value for backward compatibility -->
 	  <!-- Following two required for Appx Installation -->
@@ -61,10 +61,11 @@
    </Microsoft> 
    <OEM> 
 	  <!-- Include BSP Features -->
-      <Feature>ModelA_DRIVERS</Feature> 
+      <Feature>{BSP}_DRIVERS</Feature> 
 	  <!-- Include OEM features -->
-	  <Feature>OEM_AppxTextGlowClock</Feature>
+	  <Feature>OEM_AppxMain</Feature>
 	  <Feature>OEM_CustomCmd</Feature>
+	  <Feature>OEM_ProvAuto</Feature> 
    </OEM> 
   </Features>
  <Product>Windows 10 IoT Core</Product>

@@ -22,6 +22,9 @@ echo        buildpkg All 10.0.2.0
 exit /b 1
 
 :START
+pushd
+setlocal ENABLEDELAYEDEXPANSION
+
 if not defined PKGBLD_DIR (
 	echo Environment not defined. Call setenv
 	exit /b 1
@@ -43,6 +46,12 @@ if /I [%1] == [All] (
     dir %PKGSRC_DIR%\*.pkg.xml /S /b > %PKGLOG_DIR%\packagelist.txt
 
     call :SUB_PROCESSLIST %PKGLOG_DIR%\packagelist.txt %2
+
+    echo Building all packages under %BSPSRC_DIR%
+    dir %BSPSRC_DIR%\*.pkg.xml /S /b > %PKGLOG_DIR%\packagelist.txt
+
+    call :SUB_PROCESSLIST %PKGLOG_DIR%\packagelist.txt %2
+    
     
 ) else if /I [%1] == [Clean] (
     if exist %PKGBLD_DIR% (
@@ -63,13 +72,28 @@ if /I [%1] == [All] (
             REM Enabling support for multiple .pkg.xml files in one directory.
             dir "%1\*.pkg.xml" /S /b > %PKGLOG_DIR%\packagelist.txt
         ) else (
-            echo Error : %1 not found
-            goto Usage
+            REM Check if its in BSP path
+            cd "%BSPSRC_DIR%"
+            dir "%1" /S /B > %PKGLOG_DIR%\packagedir.txt 2>nul
+            set /P RESULT=<%PKGLOG_DIR%\packagedir.txt
+            if not defined RESULT (
+                echo Error : %1 not found
+                goto Usage
+            ) else (
+                if !RESULT! NEQ "" (
+                dir "!RESULT!\*.pkg.xml" /S /B > %PKGLOG_DIR%\packagelist.txt
+                )
+            )
         )
     )
-    call :SUB_PROCESSLIST %PKGLOG_DIR%\packagelist.txt %2
+    if exist %PKGLOG_DIR%\packagelist.txt (
+        call :SUB_PROCESSLIST %PKGLOG_DIR%\packagelist.txt %2
+    )
 )
-
+if exist %PKGLOG_DIR%\packagelist.txt ( del %PKGLOG_DIR%\packagelist.txt )
+if exist %PKGLOG_DIR%\packagedir.txt ( del %PKGLOG_DIR%\packagedir.txt )
+endlocal
+popd
 exit /b
 
 REM -------------------------------------------------------------------------------

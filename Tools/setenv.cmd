@@ -45,6 +45,7 @@ REM Local project settings
 set COMMON_DIR=%IOTADK_ROOT%\Common
 set SRC_DIR=%IOTADK_ROOT%\Source-%1
 set PKGSRC_DIR=%SRC_DIR%\Packages
+set BSPSRC_DIR=%SRC_DIR%\BSP
 set PKGUPD_DIR=%SRC_DIR%\Updates
 set BLD_DIR=%IOTADK_ROOT%\Build\%BSP_ARCH%
 set PKGBLD_DIR=%BLD_DIR%\pkgs

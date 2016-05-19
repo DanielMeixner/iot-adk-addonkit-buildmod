@@ -6,13 +6,17 @@
 goto START
 
 :Usage
-echo Usage: newproduct ProductName 
+echo Usage: newproduct ProductName BSPName
 echo    ProductName....... Required, Name of the product to be created. 
+echo    BSPName........... Required, Name of the BSP to be used
 echo    [/?].............. Displays this usage string. 
 echo    Example:
-echo        newproduct SampleA 
+echo        newproduct SampleA MBM
 echo Existing products are
 dir /b /AD %SRC_DIR%\Products
+
+echo Existing BSPs are
+dir /b /AD %SRC_DIR%\BSP
 
 exit /b 1
 
@@ -23,50 +27,34 @@ if [%1] == [/?] goto Usage
 if [%1] == [-?] goto Usage
 if [%1] == [] goto Usage
 
-if NOT DEFINED SRC_DIR (
+if not defined SRC_DIR (
 	echo Environment not defined. Call setenv
 	goto End
 )
 :: Error Checks
 
-if /i EXIST %SRC_DIR%\Products\%1 (
+if /i exist %SRC_DIR%\Products\%1 (
 	echo Error : %1 already exists; 
 	goto End
 )
+
+if /i not exist %SRC_DIR%\BSP\%2 (
+	echo Error : %2 not found 
+	goto End
+)
+
 :: Start processing command
-echo Creating %1 Product
+echo Creating %1 Product with BSP %2
 SET PRODUCT=%1
 SET PRODSRC_DIR=%SRC_DIR%\Products\%PRODUCT%
 
 mkdir "%PRODSRC_DIR%"
-mkdir "%PRODSRC_DIR%\bsp"
 mkdir "%PRODSRC_DIR%\prov"
 
-if [%BSP_ARCH%] ==[arm] (
-:: Copying template files
-if exist "%KITSROOT%OEMInputSamples\arm" (
-copy "%KITSROOT%OEMInputSamples\arm\RPi2\RetailOEMInput.xml" %PRODSRC_DIR%\RetailOEMInput.xml
-copy "%KITSROOT%OEMInputSamples\arm\RPi2\ProductionOEMInput.xml" %PRODSRC_DIR%\TestOEMInput.xml
-) else (
-copy "%KITSROOT%OEMInputSamples\RPi2\RetailOEMInput.xml" %PRODSRC_DIR%\RetailOEMInput.xml
-copy "%KITSROOT%OEMInputSamples\RPi2\ProductionOEMInput.xml" %PRODSRC_DIR%\TestOEMInput.xml
-)
-copy "%KITSROOT%FMFiles\arm\RPi2FM.xml" %PRODSRC_DIR%\bsp\OEM_RPi2FM.xml
-copy "%KITSROOT%FMFiles\arm\IoTUAPRPi2FM.xml" %PRODSRC_DIR%\bsp\OEM_IoTUAPRPi2FM.xml
-)
-if [%BSP_ARCH%] ==[x86] (
-:: Copying template files
-if exist "%KITSROOT%OEMInputSamples\x86" (
-copy "%KITSROOT%OEMInputSamples\x86\MBM\RetailOEMInput.xml" %PRODSRC_DIR%\RetailOEMInput.xml
-copy "%KITSROOT%OEMInputSamples\x86\MBM\ProductionOEMInput.xml" %PRODSRC_DIR%\TestOEMInput.xml
-) else (
-copy "%KITSROOT%OEMInputSamples\MBM\RetailOEMInput.xml" %PRODSRC_DIR%\RetailOEMInput.xml
-copy "%KITSROOT%OEMInputSamples\MBM\ProductionOEMInput.xml" %PRODSRC_DIR%\TestOEMInput.xml
-)
-copy "%KITSROOT%FMFiles\x86\MBMFM.xml" %PRODSRC_DIR%\bsp\OEM_MBMFM.xml
-)
+powershell -Command "(gc %SRC_DIR%\Templates\RetailOEMInputTemplate.xml) -replace '{BSP}', '%2' | Out-File %PRODSRC_DIR%\RetailOEMInput.xml -Encoding utf8"
+powershell -Command "(gc %SRC_DIR%\Templates\TestOEMInputTemplate.xml) -replace '{BSP}', '%2' | Out-File %PRODSRC_DIR%\TestOEMInput.xml -Encoding utf8"
 
-copy "%IOTADK_ROOT%\Templates\oemcustomization.cmd" %PRODSRC_DIR%\oemcustomization.cmd
+copy "%IOTADK_ROOT%\Templates\oemcustomization.cmd" %PRODSRC_DIR%\oemcustomization.cmd >nul
 REM Get a new GUID for the Provisioning config file
 call "%KITSROOT%bin\x64\uuidgen.exe" > %PRODSRC_DIR%\uuid.txt
 set /p NEWGUID=<%PRODSRC_DIR%\uuid.txt
