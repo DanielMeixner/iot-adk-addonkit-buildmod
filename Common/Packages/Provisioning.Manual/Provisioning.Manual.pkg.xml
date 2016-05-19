@@ -14,9 +14,9 @@
 			 Provisioning to be triggered in OEMCustomisation.cmd file by calling provtool.
 			 Advantange of this approach is that we can control the order of applying the provisioning packages
 		-->
-		<File Source="$(COMDIR)\Packages\Provisioning.Manual\ProvSetA.ppkg"
+		<File Source="ProvSetA.ppkg"
 			    DestinationDir="$(runtime.root)\OEMInstall\Provisioning" Name="ProvSetA.ppkg"/>
-		<File Source="$(COMDIR)\Packages\Provisioning.Manual\ProvSetB.ppkg"
+		<File Source="ProvSetB.ppkg"
 			    DestinationDir="$(runtime.root)\OEMInstall\Provisioning" Name="ProvSetB.ppkg"/>
 	   </Files>				
        </OSComponent>

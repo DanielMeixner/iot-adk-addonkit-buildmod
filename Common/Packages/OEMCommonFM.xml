@@ -14,6 +14,7 @@
 		  <!-- This feature id brings in provisioning packages for manual installation via Custom.Cmd -->
 		  <!-- Depends on OEM_CustomCmd -->
           <FeatureID>OEM_ProvManual</FeatureID>
+		  <!-- OEMCommon_ALL includes ProvAuto, so this is not included -->
         </FeatureIDs>
       </PackageFile>
 	  
@@ -21,6 +22,7 @@
         <FeatureIDs>
 		  <!-- This feature id sets the Crashdump settings -->
           <FeatureID>OEMCommon_CrashControl</FeatureID>
+		  <FeatureID>OEMCommon_ALL</FeatureID>
         </FeatureIDs>
       </PackageFile>
 	  
@@ -28,25 +30,21 @@
         <FeatureIDs>
 		  <!-- This feature id sets the headless/headed mode. Default is headed-->
           <FeatureID>OEMCommon_VideoMode</FeatureID>
+		  <FeatureID>OEMCommon_ALL</FeatureID>
         </FeatureIDs>
       </PackageFile>
 	  
-      <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.ImageSettings.BootLogoMode.cab">
-        <FeatureIDs>
-		  <!-- This feature id enables/disables BootLogo from UEFI. Default is Enabled-->
-          <FeatureID>OEMCommon_BootLogoMode</FeatureID>
-        </FeatureIDs>
-      </PackageFile>	  
-
 	  <!-- Packages with Product specific contents included -->
       <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Custom.Cmd.cab">
         <FeatureIDs>
           <FeatureID>OEM_CustomCmd</FeatureID>
+		  <FeatureID>OEMCommon_ALL</FeatureID>
         </FeatureIDs>
       </PackageFile>
       <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Provisioning.Auto.cab">
         <FeatureIDs>
           <FeatureID>OEM_ProvAuto</FeatureID>
+		  <FeatureID>OEMCommon_ALL</FeatureID>
         </FeatureIDs>
       </PackageFile>	  
 	  

@@ -9,8 +9,11 @@
     <Components>
        <OSComponent>
           <RegKeys>
-		     <RegKey KeyName="$(hklm.software)\$(OEMNAME)">
-                <RegValue Name="OEM_Version" Value="$(BSPVER)" Type="REG_SZ"/>
+             <!-- Storing the Product Name in the registry -->
+ 		     <RegKey KeyName="$(hklm.software)\$(OEMNAME)">
+                <RegValue Name="Product" Value="$(PROD)" Type="REG_SZ"/>
+             <!-- Storing the Version in the registry -->
+                <RegValue Name="Version" Value="$(BSPVER)" Type="REG_SZ"/>
              </RegKey>
           </RegKeys>
        </OSComponent>

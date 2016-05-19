@@ -8,7 +8,6 @@ SETLOCAL
 
 call AppxConfig.cmd
 set installtype=%2
-set AppxName=%defaultappx%.appx
 
 set /p fullappxfamilyname=<.\logs\appxfamname.txt
 set AppxID=%fullappxfamilyname:~19,-1%
@@ -29,7 +28,7 @@ if not %installtype% EQU "Add" (
 
 	if "%installtype%" EQU "forceinstall" (
 		set installtype=Add
-		mindeployappx /remove /PackageFullName:"%CurrentAppxID%" > .\logs\%defaultappx%_removeresult.txt
+		mindeployappx /remove /PackageFullName:"%CurrentAppxID%" > .\logs\%AppxName%_removeresult.txt
 		ping -n 4 localhost > nul:
 	)
 )
@@ -45,7 +44,7 @@ for %%d in (%dependencylist%) do (
 :: Install Appx
 ::
 
-mindeployappx /%installtype% /PackagePath:%~dp0%AppxName% > %temp%\%AppxName%_result.txt
+mindeployappx /%installtype% /PackagePath:%~dp0%AppxName%.appx > %temp%\%AppxName%_result.txt
 
 echo READY > %temp%\%~n1_deploy_done.txt
 REM Trigger IoTStartup

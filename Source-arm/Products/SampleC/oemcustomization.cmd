@@ -21,3 +21,4 @@ if exist C:\AppInstall\AppInstall.cmd (
 		rmdir /S /Q C:\AppInstall
 	)
 )
+
