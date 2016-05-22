@@ -4,6 +4,8 @@
   <BasePackages>
 	<!-- This package defines in the OEM Package Version  -->
     <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Registry.Version.cab"/>
+    <!-- This package tools required for OEM installation and servicing  -->
+    <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.OemTools.InstallTools.cab"/>
   </BasePackages>
   <Features>
     <OEM>
