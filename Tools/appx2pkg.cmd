@@ -22,7 +22,7 @@ if [%1] == [-?] goto Usage
 if [%1] == [] goto Usage
 if not [%~x1] == [.appx] goto Usage
 set LONG_NAME=%~n1
-set FILE_PATH=%~dp1
+set "FILE_PATH=%~dp1"
 
 for /f "tokens=1,2,3 delims=_" %%i in ("%LONG_NAME%") do ( 
 	set FILE_NAME=%%i
@@ -42,58 +42,58 @@ if [%2] == [] (
 
 REM Start processing command
 REM Get Appx dependencies
-if exist %FILE_PATH%\Dependencies\%ARCH% (
-    dir /b %FILE_PATH%\Dependencies\%ARCH%\*.appx > %FILE_PATH%\appx_deplist.txt
+if exist "%FILE_PATH%\Dependencies\%ARCH%" (
+    dir /b "%FILE_PATH%\Dependencies\%ARCH%\*.appx" > "%FILE_PATH%\appx_deplist.txt"
 ) else (
-    dir /b %FILE_PATH%\Dependencies\*.appx > %FILE_PATH%\appx_deplist.txt
+    dir /b "%FILE_PATH%\Dependencies\*.appx" > "%FILE_PATH%\appx_deplist.txt"
 )
-dir /b "%IOTADK_ROOT%\Templates\AppInstall\*.cmd" > %FILE_PATH%\appx_scriptlist.txt
-dir /b %FILE_PATH%\*.cer > %FILE_PATH%\appx_cerlist.txt
+dir /b "%IOTADK_ROOT%\Templates\AppInstall\*.cmd" > "%FILE_PATH%\appx_scriptlist.txt"
+dir /b "%FILE_PATH%\*.cer" > "%FILE_PATH%\appx_cerlist.txt"
 echo. Authoring %COMP_NAME%.%SUB_NAME%.pkg.xml
 if exist "%FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" (del "%FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" )
 call :CREATE_PKGFILE 
 
 
 REM Cleanup temp files
-REM del %FILE_PATH%\appx_deplist.txt
-del %FILE_PATH%\appx_scriptlist.txt
+REM del "%FILE_PATH%\appx_deplist.txt"
+del "%FILE_PATH%\appx_scriptlist.txt"
 
 endlocal
 exit /b 0
 
 :CREATE_PKGFILE
-if not exist %FILE_PATH%\appx_deplist.txt (
+if not exist "%FILE_PATH%\appx_deplist.txt" (
 	echo. error, file not found :%FILE_PATH%\appx_deplist.txt 
 	exit /b 1
 )
 REM Printing the headers
 call :PRINT_TEXT "<?xml version="1.0" encoding="utf-8" ?>" 
 call :PRINT_TEXT "<Package xmlns="urn:Microsoft.WindowsPhone/PackageSchema.v8.00""
-echo          Owner="$(OEMNAME)" OwnerType="OEM" ReleaseType="Production" >> %FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml
+echo          Owner="$(OEMNAME)" OwnerType="OEM" ReleaseType="Production" >> "%FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml"
 call :PRINT_TEXT "         Platform="%BSP_ARCH%" Component="%COMP_NAME%" SubComponent="%SUB_NAME%">"
 call :PRINT_TEXT "   <Components>"
 call :PRINT_TEXT "      <OSComponent>"
 call :PRINT_TEXT "         <Files>"
 REM Printing script files inclusion
-for /f "delims=" %%A in (%FILE_PATH%\appx_scriptlist.txt) do (
+for /f "useback delims=" %%A in ("%FILE_PATH%\appx_scriptlist.txt") do (
 	call :PRINT_TEXT "            <File Source="AppInstall\%%A" "
-	echo                   DestinationDir="$(runtime.root)\AppInstall" >> %FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml 
+	echo                   DestinationDir="$(runtime.root)\AppInstall" >> "%FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" 
 	call :PRINT_TEXT "                  Name="%%A" />"
 )
 call :PRINT_TEXT "            <File Source="AppInstall\%LONG_NAME%.appx" "
-echo                   DestinationDir="$(runtime.root)\AppInstall" >> %FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml 
+echo                   DestinationDir="$(runtime.root)\AppInstall" >> "%FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" 
 call :PRINT_TEXT "                  Name="%LONG_NAME%.appx" />"
 
 REM Printing Certificates
-for /f "delims=" %%A in (%FILE_PATH%\appx_cerlist.txt) do (
+for /f "useback delims=" %%A in ("%FILE_PATH%\appx_cerlist.txt") do (
 	call :PRINT_TEXT "            <File Source="AppInstall\%%A" "
-	echo                   DestinationDir="$(runtime.root)\AppInstall" >> %FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml 
+	echo                   DestinationDir="$(runtime.root)\AppInstall" >> "%FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" 
 	call :PRINT_TEXT "                  Name="%%A" />"
 )
 REM Printing Dependencies
-for /f "delims=" %%A in (%FILE_PATH%\appx_deplist.txt) do (
+for /f "useback delims=" %%A in ("%FILE_PATH%\appx_deplist.txt") do (
 	call :PRINT_TEXT "            <File Source="AppInstall\%%A" "
-	echo                   DestinationDir="$(runtime.root)\AppInstall" >> %FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml 
+	echo                   DestinationDir="$(runtime.root)\AppInstall" >> "%FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" 
 	call :PRINT_TEXT "                  Name="%%A" />"
 )
 
@@ -106,5 +106,5 @@ exit /b 0
 
 :PRINT_TEXT
 for /f "useback tokens=*" %%a in ('%1') do set TEXT=%%~a
-echo !TEXT! >> %FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml
+echo !TEXT! >> "%FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml"
 exit /b

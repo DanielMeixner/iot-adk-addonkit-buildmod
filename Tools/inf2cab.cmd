@@ -15,6 +15,7 @@ exit /b 1
 
 :START
 setlocal
+pushd
 
 if NOT DEFINED SRC_DIR (
 	echo Environment not defined. Call setenv
@@ -26,7 +27,7 @@ if [%1] == [-?] goto Usage
 if [%1] == [] goto Usage
 
 set FILE_NAME=%~n1
-set FILE_PATH=%~dp1
+set "FILE_PATH=%~dp1"
 if [%2] == [] (
 	set COMP_NAME=Drivers
 	set SUB_NAME=%FILE_NAME%
@@ -36,23 +37,26 @@ if [%2] == [] (
 		set SUB_NAME=%%j
 	)
 )
-
-call inf2pkg.cmd %1 %COMP_NAME%.%SUB_NAME%
+cd "%FILE_PATH%"
+call inf2pkg.cmd %FILE_NAME%.inf %COMP_NAME%.%SUB_NAME%
 
 echo. Processing %COMP_NAME%.%SUB_NAME%.pkg.xml 
-set PKGBLD_DIR=%FILE_PATH%\
-call createpkg %FILE_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml > %FILE_PATH%%COMP_NAME%.%SUB_NAME%.pkg.log
+REM set "PKGBLD_DIR=%FILE_PATH%"
+
+call createpkg %COMP_NAME%.%SUB_NAME%.pkg.xml > %COMP_NAME%.%SUB_NAME%.pkg.log
 if not errorlevel 0 ( echo. Error : Failed to create package. See %FILE_PATH%%COMP_NAME%.%SUB_NAME%.pkg.log 
-) else (echo. Package created. See %FILE_PATH%%OEM_NAME%.%COMP_NAME%.%SUB_NAME%.cab )
+) else (echo. Package created. See %PKGBLD_DIR%\%OEM_NAME%.%COMP_NAME%.%SUB_NAME%.cab )
 
 goto End
 
 :Error
+popd
 endlocal
 echo "inf2cab %1 " failed with error %ERRORLEVEL%
 exit /b 1
 
 :End
+popd
 endlocal
 exit /b 0
 

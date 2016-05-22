@@ -25,7 +25,7 @@ if [%1] == [] goto Usage
 
 set FILE_TYPE=%~x1
 set FILE_NAME=%~n1
-set FILE_PATH=%~dp1
+set "FILE_PATH=%~dp1"
 
 if [%FILE_TYPE%] == [.appx] (
 	set COMP_NAME=Appx
@@ -47,7 +47,7 @@ if NOT DEFINED SRC_DIR (
 	echo Environment not defined. Call setenv
 	goto End
 )
-SET NEWPKG_DIR=%SRC_DIR%\Packages\%COMP_NAME%.%SUB_NAME%
+SET "NEWPKG_DIR=%SRC_DIR%\Packages\%COMP_NAME%.%SUB_NAME%"
 
 :: Error Checks
 if /i EXIST %NEWPKG_DIR% (
@@ -78,16 +78,16 @@ if [%FILE_TYPE%] == [.appx] (
 	copy "%IOTADK_ROOT%\Templates\AppInstall\*.cmd" "%NEWPKG_DIR%\AppInstall" >nul
 	REM Update AppxConfig.cmd
 	echo set AppxName=%FILE_NAME%> %NEWPKG_DIR%\AppInstall\AppxConfig.cmd
-	for /f "delims=" %%i in (%FILE_PATH%\appx_cerlist.txt) do (
+	for /f "useback delims=" %%i in ("%FILE_PATH%\appx_cerlist.txt") do (
 		set certslist=!certslist!%%~ni 
 	)
 	echo set certslist=!certslist! >> %NEWPKG_DIR%\AppInstall\AppxConfig.cmd
-	for /f "delims=" %%i in (%FILE_PATH%\appx_deplist.txt) do (
+	for /f "useback delims=" %%i in ("%FILE_PATH%\appx_deplist.txt") do (
 		set dependencylist=!dependencylist!%%~ni 
 	)	
 	echo set dependencylist=!dependencylist! >> %NEWPKG_DIR%\AppInstall\AppxConfig.cmd
-	del %FILE_PATH%\appx_cerlist.txt
-	del %FILE_PATH%\appx_deplist.txt
+	del "%FILE_PATH%\appx_cerlist.txt"
+	del "%FILE_PATH%\appx_deplist.txt"
 )
 
 echo %NEWPKG_DIR% ready

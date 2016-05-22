@@ -24,7 +24,7 @@ if not [%~x1] == [.inf] goto Usage
 
 set FILE_NAME=%~n1
 set FILE_PATH=%~dp1
-set OUTPUT_PATH=%FILE_PATH%
+set "OUTPUT_PATH=%FILE_PATH%"
 if [%2] == [] (
 	set COMP_NAME=Drivers
 	set SUB_NAME=%FILE_NAME%
@@ -43,9 +43,9 @@ call :PARSE_INF_FILE %1
 echo. Authoring %COMP_NAME%.%SUB_NAME%.pkg.xml
 if exist "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" (del "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" )
 call :CREATE_PKGFILE 
-if exist %OUTPUT_PATH%\inf_filelist.txt (
+if exist "%OUTPUT_PATH%\inf_filelist.txt" (
     REM check for dependency files in the same folder and flag error if missing
-    for /f "delims=" %%i in (%OUTPUT_PATH%\inf_filelist.txt) do (
+    for /f "useback delims=" %%i in ("%OUTPUT_PATH%\inf_filelist.txt") do (
         if not exist "%FILE_PATH%%%i" (
             echo.   Warning : %FILE_PATH%%%i not found, package creation will fail. 		
         )
@@ -53,8 +53,8 @@ if exist %OUTPUT_PATH%\inf_filelist.txt (
 )	
 
 REM Cleanup temp files
-del %FILE_PATH%\input.inf
-REM del %FILE_PATH%\inf_filelist.txt
+del "%FILE_PATH%\input.inf"
+REM del "%FILE_PATH%\inf_filelist.txt"
 
 endlocal
 exit /b 0
@@ -63,13 +63,13 @@ exit /b 0
 set TOKEN=0
 set TOKEN_FOUND=0
 REM Cleanup files before start
-if exist %OUTPUT_PATH%\inf_filelist.txt ( del %OUTPUT_PATH%\inf_filelist.txt )
-if exist %OUTPUT_PATH%\input.inf ( del %OUTPUT_PATH%\input.inf )
+if exist "%OUTPUT_PATH%\inf_filelist.txt" ( del "%OUTPUT_PATH%\inf_filelist.txt" )
+if exist "%OUTPUT_PATH%\input.inf" ( del "%OUTPUT_PATH%\input.inf" )
 echo. Processing %1
 REM Convert the encoding format to utf8
-powershell -Command "(gc %1)| ?{$_.trim()}  | Out-File %OUTPUT_PATH%\input.inf -Encoding utf8"
+powershell -Command "(gc '%1' )| ?{$_.trim()}  | Out-File '%OUTPUT_PATH%\input.inf' -Encoding utf8"
 REM Parse the inf section and get the list of dependencies
-for /f "delims=" %%i in (%OUTPUT_PATH%\input.inf) do (
+for /f "useback delims=" %%i in ("%OUTPUT_PATH%\input.inf") do (
    if !TOKEN_FOUND! == 1 (
       REM Check if next field has started
         set TEST=%%i
@@ -81,7 +81,7 @@ for /f "delims=" %%i in (%OUTPUT_PATH%\input.inf) do (
             if "!TOKEN!" EQU "[SourceDisksFiles]" (
                 REM Parsing SourceDisksFiles section
                 for /f "tokens=1,* delims= " %%A in ("%%i") do (
-                    echo.%%A>> %OUTPUT_PATH%\inf_filelist.txt
+                    echo.%%A>> "%OUTPUT_PATH%\inf_filelist.txt"
                 )
             ) else if "!TOKEN!" EQU "[DestinationDirs]" (
                 REM Parsing DestinationDirs section, sub folder parsing not yet done.
@@ -139,18 +139,18 @@ exit /b
 REM Printing the headers
 call :PRINT_TEXT "<?xml version="1.0" encoding="utf-8" ?>" 
 call :PRINT_TEXT "<Package xmlns="urn:Microsoft.WindowsPhone/PackageSchema.v8.00""
-echo          Owner="$(OEMNAME)" OwnerType="OEM" ReleaseType="Production" >> %OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml
+echo          Owner="$(OEMNAME)" OwnerType="OEM" ReleaseType="Production" >> "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml"
 call :PRINT_TEXT "         Platform="%BSP_ARCH%" Component="%COMP_NAME%" SubComponent="%SUB_NAME%">"
 call :PRINT_TEXT "   <Components>"
 call :PRINT_TEXT "      <Driver InfSource="%FILE_NAME%.inf">"
-if exist %OUTPUT_PATH%\inf_filelist.txt (
+if exist "%OUTPUT_PATH%\inf_filelist.txt" (
     REM Printing references
-    for /f "delims=" %%A in (%OUTPUT_PATH%\inf_filelist.txt) do (
+    for /f "useback delims=" %%A in ("%OUTPUT_PATH%\inf_filelist.txt") do (
         call :PRINT_TEXT "         <Reference Source="%%A" />"
     )
     call :PRINT_TEXT "         <Files>"
     REM Printing file sources
-    for /f "delims=" %%A in (%OUTPUT_PATH%\inf_filelist.txt) do (
+    for /f "useback delims=" %%A in ("%OUTPUT_PATH%\inf_filelist.txt") do (
         set "LOCATION=%DEFAULTLOC%"
         REM Check if the file name is in any DIRID list and set dir location accordingly
         for %%d in (%DIRIDLIST%) do (
@@ -161,7 +161,7 @@ if exist %OUTPUT_PATH%\inf_filelist.txt (
         )
         echo.   Placing %%A in !LOCATION!
         call :PRINT_TEXT "           <File Source="%%A" "
-        echo                  DestinationDir="!LOCATION!" >> %OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml 
+        echo                  DestinationDir="!LOCATION!" >> "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" 
         call :PRINT_TEXT "                 Name="%%A" />"
     )
     call :PRINT_TEXT "         </Files>"
@@ -177,7 +177,7 @@ exit /b 0
 
 :PRINT_TEXT
 for /f "useback tokens=*" %%a in ('%1') do set TEXT=%%~a
-echo !TEXT! >> %OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml
+echo !TEXT! >> "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml"
 exit /b
 
 :FIND_TEXT
