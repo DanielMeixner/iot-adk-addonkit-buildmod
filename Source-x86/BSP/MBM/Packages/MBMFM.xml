@@ -2,32 +2,30 @@
 <FeatureManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
   <BasePackages>
      <!-- System Information package for providing system details , required for DM enrollment etc -->
-     <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Device.SystemInformation.cab"/>
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.SystemInformation.cab"/>
      <!-- UEFI for the silicon packaged in Bootfirmware : None -->
      <!-- Drivers required for boot/reading partitions for UpdateOS: Not required -->
      <!-- GPT BCD Settings : Include IOT_EFIESP_BCD in OEMInput xml file-->
-     <!-- Device Info/ Device Targeting Info : Include IOT_GENERIC_POP in OEMInput xml file-->
-     <!-- Following are for the older release (TH)
-     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.GENERIC.DeviceInfo.cab"/>
-     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.GENERIC.DeviceTargetingInfo.cab" />
-     -->
+     <!-- Device Info/ Device Targeting Info -->
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.DeviceInfo.cab"/>
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.DeviceTargetingInfo.cab" />
      <!-- Mandatory device drivers : None -->
      <!-- Device specific customisations if any : None -->
-     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-MBM-Customization-Package.cab" />      
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-MBM-Customization-Package.cab" />
   </BasePackages>
-  
+
   <OEMDevicePlatformPackages>
     <!-- GPT 4GB layout  -->
-    <PackageFile Device="CustomMBM" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.OEMDevicePlatform.cab"/>
+    <PackageFile Device="MBM" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.OEMDevicePlatform.cab"/>
     <!-- GPT 2GB layout - select this by specifying the SOC field in the OEMInput xml file -->
-    <PackageFile Device="CustomMBM_2GB" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.OEMDevicePlatform_Min2GB.cab"/>
+    <PackageFile Device="MBM_2GB" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.OEMDevicePlatform_Min2GB.cab"/>
   </OEMDevicePlatformPackages>
 
   <DeviceLayoutPackages>
     <!-- GPT 4GB layout  -->
-    <PackageFile SOC="CustomMBM" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.DeviceLayout.cab"/>
+    <PackageFile SOC="MBM" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.DeviceLayout.cab"/>
     <!-- GPT 2GB layout - select this by specifying the SOC field in the OEMInput xml file -->
-    <PackageFile SOC="CustomMBM_2GB" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.DeviceLayout_Min2GB.cab"/>
+    <PackageFile SOC="MBM_2GB" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.DeviceLayout_Min2GB.cab"/>
   </DeviceLayoutPackages>
 
   <Features>
@@ -37,15 +35,9 @@
       <!-- Optional Device Drivers -->
       <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.GPIO.cab">
         <FeatureIDs>
-          <FeatureID>MBM_GPIO_DRIVER</FeatureID>
+          <FeatureID>MBM_DRIVERS</FeatureID>
         </FeatureIDs>
       </PackageFile>
-     <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Drivers.GPIO.cab">
-        <FeatureIDs>
-          <FeatureID>CustomMBM_GPIO_DRIVER</FeatureID>
-          <FeatureID>CustomMBM_Drivers</FeatureID>
-        </FeatureIDs>
-      </PackageFile>      
       <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.UART.cab" >
         <FeatureIDs>
           <FeatureID>MBM_DRIVERS</FeatureID>

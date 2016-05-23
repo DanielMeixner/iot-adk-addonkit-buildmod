@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <OEMInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
-  <Description>Contoso Windows 10 IoT Core RPi2 Production FFU with Contoso BSP </Description>
-  <SOC>RPi2</SOC>
-  <SV>RASPBERRY PI</SV>
-  <Device>RPi2</Device>
+  <Description>Windows 10 IoT Core 8016sbc Retail FFU generation for arm.fre with build number 20150812-1709 by wesign</Description>
+  <SOC>QC8016</SOC>
+  <SV>Qualcomm</SV>
+  <Device>8016sbc</Device>
   <ReleaseType>Production</ReleaseType>
   <BuildType>fre</BuildType>
   <SupportedLanguages>
@@ -24,37 +24,33 @@
   </Resolutions>
   <AdditionalFMs>
     <!-- Including BSP feature manifest -->
-    <!-- Using CustomRPi2 BSP -->
-    <AdditionalFM>%BSPSRC_DIR%\CustomRpi2\Packages\CustomRPi2FM.xml</AdditionalFM>
+    <AdditionalFM>%BSPSRC_DIR%\QCDB410C\Packages\QCDB410CFM.xml</AdditionalFM>
     <!-- Including OEM feature manifest -->
     <AdditionalFM>%COMMON_DIR%\Packages\OEMCommonFM.xml</AdditionalFM>
     <AdditionalFM>%SRC_DIR%\Packages\OEMFM.xml</AdditionalFM>
   </AdditionalFMs>
   <Features>
     <Microsoft>
-      <Feature>IOT_EFIESP</Feature>
+      <Feature>IOT_EFIESP_TEST</Feature>
+      <Feature>IOT_EFIESP_BCD</Feature>
       <Feature>IOT_DMAP_DRIVER</Feature>
       <Feature>IOT_CP210x_MAKERDRIVER</Feature>
       <Feature>IOT_FTSER2K_MAKERDRIVER</Feature>
       <Feature>IOT_GENERIC_POP</Feature>
+      <Feature>IOT_POWER_SETIINGS</Feature>
+      <Feature>IOT_POWER_SETTINGS</Feature> <!-- Correct spelling in RS. Keeping old value for backward compatibility -->
       <!-- Following two required for Appx Installation -->
       <Feature>IOT_UAP_OOBE</Feature>
       <Feature>IOT_APP_TOOLKIT</Feature>
       <!-- for Connectivity -->
-      <Feature>IOT_WEBB_EXTN</Feature>
-      <Feature>IOT_POWERSHELL</Feature>
-      <Feature>IOT_NETCMD</Feature>
       <Feature>IOT_SSH</Feature>
-      <Feature>IOT_SIREP</Feature>
     </Microsoft>
     <OEM>
       <!-- Include BSP Features -->
-      <Feature>RPI2_DRIVERS</Feature>
-      <Feature>CustomRPI2_DRIVERS</Feature>
-      <!-- Include OEM features -->
-      <Feature>OEM_AppxMain</Feature>
-      <Feature>OEM_CustomCmd</Feature>
-      <Feature>OEM_ProvManual</Feature>
+      <Feature>QC_UEFI_TEST</Feature>
+      <Feature>SBC</Feature>
+      <Feature>QCDB410C_DEVICE_TARGETINGINFO</Feature>
+      <Feature>QCDB410C_DEVICE_INFO</Feature>
     </OEM>
   </Features>
   <Product>Windows 10 IoT Core</Product>

@@ -1,6 +1,6 @@
 :: Run setenv before running this script
 :: This script creates the folder structure and copies the template files for a new product
-:: usage : newproduct <product name>
+:: usage : newproduct <product name> <bsp name>
 @echo off
 
 goto START
@@ -26,6 +26,7 @@ setlocal
 if [%1] == [/?] goto Usage
 if [%1] == [-?] goto Usage
 if [%1] == [] goto Usage
+if [%2] == [] goto Usage
 
 if not defined SRC_DIR (
 	echo Environment not defined. Call setenv
@@ -51,8 +52,8 @@ SET PRODSRC_DIR=%SRC_DIR%\Products\%PRODUCT%
 mkdir "%PRODSRC_DIR%"
 mkdir "%PRODSRC_DIR%\prov"
 
-powershell -Command "(gc %SRC_DIR%\Templates\RetailOEMInputTemplate.xml) -replace '{BSP}', '%2' | Out-File %PRODSRC_DIR%\RetailOEMInput.xml -Encoding utf8"
-powershell -Command "(gc %SRC_DIR%\Templates\TestOEMInputTemplate.xml) -replace '{BSP}', '%2' | Out-File %PRODSRC_DIR%\TestOEMInput.xml -Encoding utf8"
+copy %BSPSRC_DIR%\%2\OEMInputSamples\RetailOEMInput.xml %PRODSRC_DIR%\RetailOEMInput.xml >nul
+copy %BSPSRC_DIR%\%2\OEMInputSamples\TestOEMInput.xml %PRODSRC_DIR%\TestOEMInput.xml >nul
 
 copy "%IOTADK_ROOT%\Templates\oemcustomization.cmd" %PRODSRC_DIR%\oemcustomization.cmd >nul
 REM Get a new GUID for the Provisioning config file

@@ -24,10 +24,10 @@
   </Resolutions>
   <AdditionalFMs>
     <!-- Including BSP feature manifest -->
-	<AdditionalFM>%BSPSRC_DIR%\MBM\MBMFM.xml</AdditionalFM>
-	<!-- Including OEM feature manifest -->
-	<AdditionalFM>%COMMON_DIR%\Packages\OEMCommonFM.xml</AdditionalFM>
-	<AdditionalFM>%SRC_DIR%\Packages\OEMFM.xml</AdditionalFM>
+    <AdditionalFM>%BSPSRC_DIR%\MBM\Packages\MBMFM.xml</AdditionalFM>
+    <!-- Including OEM feature manifest -->
+    <AdditionalFM>%COMMON_DIR%\Packages\OEMCommonFM.xml</AdditionalFM>
+    <AdditionalFM>%SRC_DIR%\Packages\OEMFM.xml</AdditionalFM>
   </AdditionalFMs>
   <Features>
     <Microsoft>
@@ -36,29 +36,20 @@
       <Feature>IOT_DMAP_DRIVER</Feature>
       <Feature>IOT_POWER_SETIINGS</Feature>
       <Feature>IOT_POWER_SETTINGS</Feature> <!-- Correct spelling in RS. Keeping old value for backward compatibility -->
-	  <!-- Following two required for Appx Installation -->
+      <!-- Following two required for Appx Installation -->
       <Feature>IOT_UAP_OOBE</Feature> 
-	  <Feature>IOT_APP_TOOLKIT</Feature> 
+      <Feature>IOT_APP_TOOLKIT</Feature> 
       <!-- for Connectivity --> 
-	  <Feature>IOT_WEBB_EXTN</Feature>
-      <Feature>IOT_POWERSHELL</Feature>
-	  <Feature>IOT_NETCMD</Feature> 	  
-	  <Feature>IOT_SSH</Feature> 
-	  <Feature>IOT_SIREP</Feature>
-      <!-- RS1 Additions -->
-      <Feature>IOT_CP210x_MAKERDRIVER</Feature>
-      <Feature>IOT_FTSER2K_MAKERDRIVER</Feature>
-      <Feature>IOT_NANORDPSERVER</Feature>
-      <Feature>IOT_SHELL_HOTKEY_SUPPORT</Feature>
-      <Feature>IOT_APPLICATIONS</Feature>
+      <Feature>IOT_SSH</Feature> 
+      <Feature>IOT_SIREP</Feature>
     </Microsoft>
     <OEM>
-	  <!-- Inclide BSP Features -->
+      <!-- Inclide BSP Features -->
       <Feature>MBM_DRIVERS</Feature> 
-	  <!-- Include OEM features -->
-	  <Feature>OEM_AppxMain</Feature>
+      <!-- Include OEM features -->
+      <Feature>OEM_AppxMain</Feature>
       <Feature>OEM_CustomCmd</Feature>
-	  <Feature>OEM_ProvAuto</Feature> 
+      <Feature>OEM_ProvAuto</Feature> 
     </OEM>
   </Features>
   <Product>Windows 10 IoT Core</Product>
