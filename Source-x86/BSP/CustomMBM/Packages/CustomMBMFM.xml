@@ -6,27 +6,25 @@
      <!-- UEFI for the silicon packaged in Bootfirmware : None -->
      <!-- Drivers required for boot/reading partitions for UpdateOS: Not required -->
      <!-- GPT BCD Settings : Include IOT_EFIESP_BCD in OEMInput xml file-->
-     <!-- Device Info/ Device Targeting Info : Include IOT_GENERIC_POP in OEMInput xml file-->
-     <!-- Following are for the older release (TH)
+     <!-- Device Info/ Device Targeting Info -->
      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.GENERIC.DeviceInfo.cab"/>
      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.GENERIC.DeviceTargetingInfo.cab" />
-     -->
      <!-- Mandatory device drivers : None -->
      <!-- Device specific customisations if any : None -->
   </BasePackages>
 
   <OEMDevicePlatformPackages>
     <!-- GPT 4GB layout  -->
-    <PackageFile Device="CustomMBM" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.OEMDevicePlatform.cab"/>
+    <PackageFile Device="CustomMBM" Path="%PKGBLD_DIR%" Name="%OEM_NAME%.DeviceLayout.GPT4GB.cab"/>
     <!-- GPT 2GB layout - select this by specifying the SOC field in the OEMInput xml file -->
-    <PackageFile Device="CustomMBM_2GB" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.OEMDevicePlatform_Min2GB.cab"/>
+    <PackageFile Device="CustomMBM_2GB" Path="%PKGBLD_DIR%" Name="%OEM_NAME%.DeviceLayout.GPT2GB.cab"/>
   </OEMDevicePlatformPackages>
 
   <DeviceLayoutPackages>
     <!-- GPT 4GB layout  -->
-    <PackageFile SOC="CustomMBM" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.DeviceLayout.cab"/>
+    <PackageFile SOC="CustomMBM" Path="%PKGBLD_DIR%" Name="%OEM_NAME%.DeviceLayout.GPT4GB.cab"/>
     <!-- GPT 2GB layout - select this by specifying the SOC field in the OEMInput xml file -->
-    <PackageFile SOC="CustomMBM_2GB" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.DeviceLayout_Min2GB.cab"/>
+    <PackageFile SOC="CustomMBM_2GB" Path="%PKGBLD_DIR%" Name="%OEM_NAME%.DeviceLayout.GPT2GB.cab"/>
   </DeviceLayoutPackages>
 
   <Features>
