@@ -10,7 +10,7 @@ echo    input.inf............... Required, input .inf file
 echo    CompName.SubCompName.... Optional, default is Drivers.input
 echo    [/?].................... Displays this usage string.
 echo    Example:
-echo        inf2pkg C:\test\testdriver.inf 
+echo        inf2pkg C:\test\testdriver.inf
 exit /b 1
 
 :START
@@ -26,13 +26,13 @@ set FILE_NAME=%~n1
 set FILE_PATH=%~dp1
 set "OUTPUT_PATH=%FILE_PATH%"
 if [%2] == [] (
-	set COMP_NAME=Drivers
-	set SUB_NAME=%FILE_NAME%
+    set COMP_NAME=Drivers
+    set SUB_NAME=%FILE_NAME%
 ) else (
-	for /f "tokens=1,2 delims=." %%i in ("%2") do ( 
-		set COMP_NAME=%%i
-		set SUB_NAME=%%j
-	)
+    for /f "tokens=1,2 delims=." %%i in ("%2") do (
+        set COMP_NAME=%%i
+        set SUB_NAME=%%j
+    )
 )
 
 REM Initialise required INF Configurations
@@ -42,15 +42,15 @@ call :PARSE_INF_FILE %1
 
 echo. Authoring %COMP_NAME%.%SUB_NAME%.pkg.xml
 if exist "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" (del "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" )
-call :CREATE_PKGFILE 
+call :CREATE_PKGFILE
 if exist "%OUTPUT_PATH%\inf_filelist.txt" (
     REM check for dependency files in the same folder and flag error if missing
     for /f "useback delims=" %%i in ("%OUTPUT_PATH%\inf_filelist.txt") do (
         if not exist "%FILE_PATH%%%i" (
-            echo.   Warning : %FILE_PATH%%%i not found, package creation will fail. 		
+            echo.   Warning : %FILE_PATH%%%i not found, package creation will fail.
         )
     )
-)	
+)
 
 REM Cleanup temp files
 del "%FILE_PATH%\input.inf"
@@ -93,15 +93,15 @@ for /f "useback delims=" %%i in ("%OUTPUT_PATH%\input.inf") do (
                         ) else (
                             set "DIRIDGRP%%B=[%%A] !DIRIDGRP%%B!"
                             set TOKENLIST=[%%A] !TOKENLIST!
-                        )                            
-                    ) else ( 
+                        )
+                    ) else (
                         echo Error : Unsupported DIRID %%B. Using this as 12. Please edit generated file to put to actual path
                         if "%%A" EQU "DefaultDestDir" (
                             set "DEFAULTLOC=%DIRID12LOC%"
                         ) else (
                             set DIRIDGRP12=[%%A] !DIRIDGRP12!
                             set TOKENLIST=[%%A] !TOKENLIST!
-                        )                     
+                        )
                     )
                 )
             ) else (
@@ -137,7 +137,7 @@ exit /b
 :CREATE_PKGFILE
 
 REM Printing the headers
-call :PRINT_TEXT "<?xml version="1.0" encoding="utf-8" ?>" 
+call :PRINT_TEXT "<?xml version="1.0" encoding="utf-8" ?>"
 call :PRINT_TEXT "<Package xmlns="urn:Microsoft.WindowsPhone/PackageSchema.v8.00""
 echo          Owner="$(OEMNAME)" OwnerType="OEM" ReleaseType="Production" >> "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml"
 call :PRINT_TEXT "         Platform="%BSP_ARCH%" Component="%COMP_NAME%" SubComponent="%SUB_NAME%">"
@@ -161,7 +161,7 @@ if exist "%OUTPUT_PATH%\inf_filelist.txt" (
         )
         echo.   Placing %%A in !LOCATION!
         call :PRINT_TEXT "           <File Source="%%A" "
-        echo                  DestinationDir="!LOCATION!" >> "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" 
+        echo                  DestinationDir="!LOCATION!" >> "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml"
         call :PRINT_TEXT "                 Name="%%A" />"
     )
     call :PRINT_TEXT "         </Files>"
@@ -170,8 +170,8 @@ if exist "%OUTPUT_PATH%\inf_filelist.txt" (
 )
 
 call :PRINT_TEXT "      </Driver>"
-call :PRINT_TEXT "   </Components>" 
-call :PRINT_TEXT "</Package>" 		
+call :PRINT_TEXT "   </Components>"
+call :PRINT_TEXT "</Package>"
 )
 exit /b 0
 
@@ -182,14 +182,14 @@ exit /b
 
 :FIND_TEXT
 set TESTLINE=%1
-set TESTLINE=!TESTLINE:%2 =!
+set TESTLINE=!TESTLINE:%2=!
 if %1 NEQ !TESTLINE! ( exit /b 1)
 exit /b 0
 
 :INIT_CONFIG
-set TOKENLIST=[SourceDisksFiles] [DestinationDirs] 
+set TOKENLIST=[SourceDisksFiles] [DestinationDirs]
 REM Add DirID and the corresponding location here for extending support for more DirIDs
-set DIRIDLIST= 10 11 12 24   
+set DIRIDLIST= 10 11 12 24
 
 set DIRID10LOC=$(runtime.windows)
 set DIRID11LOC=$(runtime.system32)

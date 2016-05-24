@@ -5,6 +5,6 @@
     <ID>*</ID>
   </DevicePlatformIDs>
   <CompressedPartitions>
-	<Name>MainOS</Name>
+    <Name>MainOS</Name>
   </CompressedPartitions>
 </OEMDevicePlatform>

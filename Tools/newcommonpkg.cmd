@@ -5,9 +5,9 @@
 goto START
 
 :Usage
-echo Usage: newcommonpkg CompName.SubCompName 
+echo Usage: newcommonpkg CompName.SubCompName
 echo    CompName.SubCompName....... Required, Component Name.SubComponent Name for the package
-echo    [/?]............ Displays this usage string. 
+echo    [/?]............ Displays this usage string.
 echo    Example:
 echo        newcommonpkg Registry.ConfigSettings
 echo Existing packages are
@@ -22,24 +22,24 @@ if [%1] == [/?] goto Usage
 if [%1] == [-?] goto Usage
 if [%1] == [] goto Usage
 
-for /f "tokens=1,2 delims=." %%i in ("%1") do ( 
+for /f "tokens=1,2 delims=." %%i in ("%1") do (
     set COMP_NAME=%%i
     set SUB_NAME=%%j
 )
 
 if NOT DEFINED COMMON_DIR (
-	echo Environment not defined. Call setenv
-	goto End
+    echo Environment not defined. Call setenv
+    goto End
 )
 SET NEWPKG_DIR=%COMMON_DIR%\Packages\%1
 
 :: Error Checks
 if /i EXIST %NEWPKG_DIR% (
-	echo Error : %1 already exists
+    echo Error : %1 already exists
     echo.
     echo Existing packages are
-    dir /b /AD %COMMON_DIR%\Packages    
-	goto End
+    dir /b /AD %COMMON_DIR%\Packages
+    goto End
 )
 
 :: Start processing command

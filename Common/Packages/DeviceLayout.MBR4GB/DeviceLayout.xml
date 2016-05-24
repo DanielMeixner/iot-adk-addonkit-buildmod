@@ -32,13 +32,13 @@
       <FileSystem>FAT32</FileSystem>
       <TotalSectors>1228800</TotalSectors>
     </Partition>
-   
+
     <!-- Data Partition  -->
 
     <Partition>
       <Name>Data</Name>
       <Type>0x07</Type>
-      <FileSystem>NTFS</FileSystem>      
+      <FileSystem>NTFS</FileSystem>
       <UseAllSpace>true</UseAllSpace>
       <ByteAlignment>0x800000</ByteAlignment>
       <ClusterSize>0x4000</ClusterSize>

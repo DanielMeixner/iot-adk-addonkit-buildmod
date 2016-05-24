@@ -2,11 +2,11 @@
 goto START
 
 :USAGE
-echo Usage: setenv arch 
-echo    arch....... Required, %SUPPORTED_ARCH% 
-echo    [/?]........Displays this usage string. 
+echo Usage: setenv arch
+echo    arch....... Required, %SUPPORTED_ARCH%
+echo    [/?]........Displays this usage string.
 echo    Example:
-echo        setenv arm 
+echo        setenv arm
 
 exit /b 1
 
@@ -18,10 +18,10 @@ if [%1] == [] goto USAGE
 
 set SUPPORTED_ARCH=arm x86 x64
 echo.%SUPPORTED_ARCH% | findstr /C:"%1" >nul && (
-	echo Configuring for %1 architecture
+    echo Configuring for %1 architecture
 ) || (
-	echo.Error: %1 not supported
-	goto USAGE 
+    echo.Error: %1 not supported
+    goto USAGE
 )
 
 REM Environment configurations

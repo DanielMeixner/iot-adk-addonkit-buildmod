@@ -10,17 +10,17 @@
     <OSComponent>
         <RegKeys>
             <RegKey KeyName="$(hklm.system)\ControlSet001\Control\SystemInformation">
-			<!-- System Information Registry settings -->
-                <RegValue 
+            <!-- System Information Registry settings -->
+                <RegValue
                     Name="SystemProductName"
                     Type="REG_SZ"
                     Value="$(PROD)"/>
-                <RegValue 
+                <RegValue
                     Name="SystemManufacturer"
                     Type="REG_SZ"
                     Value="$(OEMNAME)"/>
             </RegKey>
-         </RegKeys>	
+         </RegKeys>
     </OSComponent>
   </Components>
 </Package>

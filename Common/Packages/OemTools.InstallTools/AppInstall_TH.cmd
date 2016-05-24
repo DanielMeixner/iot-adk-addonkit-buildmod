@@ -6,9 +6,9 @@
 pushd %~dp0
 SETLOCAL
 
-if not exist %systemdrive%\windows\system32\mindeployappx.exe ( 
-	echo mindeployappx.exe not found. exiting. 
-	exit /b 1
+if not exist %systemdrive%\windows\system32\mindeployappx.exe (
+    echo mindeployappx.exe not found. exiting.
+    exit /b 1
 )
 
 call AppxConfig.cmd
@@ -39,49 +39,49 @@ REM Check if the AppxGuid is already installed, if so get full package name
 
 findstr /l "%AppxGuid%" .\logs\installed_packages.txt > .\logs\fullpackagename.txt
 if %errorlevel%==0 (
-	REM Appx is installed.
-	set /P CurrentAppxID=<.\logs\fullpackagename.txt
+    REM Appx is installed.
+    set /P CurrentAppxID=<.\logs\fullpackagename.txt
 )
 if defined CurrentAppxID (
-	REM Get CurrentAppxVer
-	for /f "tokens=2 delims=_" %%A in ("%CurrentAppxID%") do ( set "CurrentAppxVer=%%A" )
+    REM Get CurrentAppxVer
+    for /f "tokens=2 delims=_" %%A in ("%CurrentAppxID%") do ( set "CurrentAppxVer=%%A" )
 )
 if defined CurrentAppxVer (
-	echo Installed Appx Ver : %CurrentAppxVer%
-	REM If same version, then do nothing. 
+    echo Installed Appx Ver : %CurrentAppxVer%
+    REM If same version, then do nothing.
 
-	if /i "%AppxVer%" EQU "%CurrentAppxVer%" ( 
-		echo Same version already installed
-		goto :CLEANUP
-	)
-	REM If higher version already installed,  	
-	if /i "%AppxVer%" LSS "%CurrentAppxVer%" (
-		if %forceinstall%==1 (
-			REM downgrade requested, proceed with uninstall and then continue with install
-			echo Performing force install
-			set installtype=forceinstall
-			goto :SUB_DEPLOYAPPX
-		) else (
-			echo Higher version already installed
-			goto :CLEANUP
-		)
-	)
-	if /i "%AppxVer%" GTR "%CurrentAppxVer%" (
-		set installtype=Update
-	)
+    if /i "%AppxVer%" EQU "%CurrentAppxVer%" (
+        echo Same version already installed
+        goto :CLEANUP
+    )
+    REM If higher version already installed,
+    if /i "%AppxVer%" LSS "%CurrentAppxVer%" (
+        if %forceinstall%==1 (
+            REM downgrade requested, proceed with uninstall and then continue with install
+            echo Performing force install
+            set installtype=forceinstall
+            goto :SUB_DEPLOYAPPX
+        ) else (
+            echo Higher version already installed
+            goto :CLEANUP
+        )
+    )
+    if /i "%AppxVer%" GTR "%CurrentAppxVer%" (
+        set installtype=Update
+    )
 ) else (
-	:: No current version so install
-	set installtype=Add
-	echo No version found. Installing %AppxName%.
+    :: No current version so install
+    set installtype=Add
+    echo No version found. Installing %AppxName%.
 )
 
 :: -------------------------------------------------------------------------------
 ::
-:: SUB_DEPLOYAPPX 
+:: SUB_DEPLOYAPPX
 ::
-:: Installs certificate and deploys specified appx package.  Exits on failure 
+:: Installs certificate and deploys specified appx package.  Exits on failure
 ::
-:: ------------------------------------------------------------------------------- 
+:: -------------------------------------------------------------------------------
 :SUB_DEPLOYAPPX
 
 REM Add AllowAllTrustedApps Reg Key
@@ -104,7 +104,7 @@ for %%i in (%certslist%) do (
     certmgr.exe -add .\%%i.cer -r localMachine -s root > .logs\%%i_cer_result.txt
     if %errorlevel% == 0 (
         echo Successfuly installed %%i Certificate.
-    ) else ( 
+    ) else (
         echo Failed to install %%i Certificate.
         echo ErrorCode: %errorlevel%
         goto CLEANUP
@@ -172,7 +172,7 @@ echo.
 ::
 :: CLEANUP
 ::
-:: ------------------------------------------------------------------------------- 
+:: -------------------------------------------------------------------------------
 :CLEANUP
 echo Cleaning Up.
 schtasks /delete /f /tn %taskname% 2> nul:

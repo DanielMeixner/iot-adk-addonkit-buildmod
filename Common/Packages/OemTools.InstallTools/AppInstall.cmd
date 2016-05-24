@@ -7,15 +7,15 @@ pushd %~dp0
 SETLOCAL
 
 if exist %systemdrive%\windows\system32\mindeployappx.exe (
-	echo Mindeployappx.exe found. Using older install script
-	if exist AppInstall_TH.cmd (call AppInstall_TH.cmd )
-	exit /b %errorlevel%
+    echo Mindeployappx.exe found. Using older install script
+    if exist AppInstall_TH.cmd (call AppInstall_TH.cmd )
+    exit /b %errorlevel%
 )
 
 REM New Install Mechanism
-if not exist %systemdrive%\windows\system32\deployappx.exe ( 
-	echo Error: deployappx.exe not found. exiting. 
-	exit /b 1
+if not exist %systemdrive%\windows\system32\deployappx.exe (
+    echo Error: deployappx.exe not found. exiting.
+    exit /b 1
 )
 
 call AppxConfig.cmd
@@ -37,7 +37,7 @@ REM Add all dependency appx
 REM
 echo Installing dependency appx packages
 for %%d in (%dependencylist%) do (
-	echo Installing %%d.appx
+    echo Installing %%d.appx
     deployappx.exe install .\%%d.appx >> .\logs\dependency_result.txt
 )
 
@@ -54,7 +54,7 @@ deployappx.exe %INSTALL_PARAMS% > %temp%\%AppxName%_result.txt
 if "%ERRORLEVEL%"=="0" (
     call :LAUNCH_APP
 ) else (
-    echo. Error in installing %AppxName%.appx. 
+    echo. Error in installing %AppxName%.appx.
     echo. Result:%ERRORLEVEL%
 )
 
@@ -66,7 +66,7 @@ for /f "tokens=2,5 delims=:_" %%A in (.\logs\packageid.txt) do (
     set AppxID=%%A_%%B
 )
 set AppxID=%AppxID: =%
-echo Launching %AppxID% 
+echo Launching %AppxID%
 REM Trigger IoTStartup
 iotstartup.exe add headed %AppxID%
 exit /b
