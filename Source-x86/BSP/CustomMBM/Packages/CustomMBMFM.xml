@@ -13,7 +13,6 @@
      -->
      <!-- Mandatory device drivers : None -->
      <!-- Device specific customisations if any : None -->
-     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-MBM-Customization-Package.cab" />
   </BasePackages>
 
   <OEMDevicePlatformPackages>
@@ -40,7 +39,7 @@
           <FeatureID>MBM_GPIO_DRIVER</FeatureID>
         </FeatureIDs>
       </PackageFile>
-     <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Drivers.GPIO.cab">
+     <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.CustomMBM.GPIO.cab">
         <FeatureIDs>
           <FeatureID>CustomMBM_GPIO_DRIVER</FeatureID>
           <FeatureID>CustomMBM_Drivers</FeatureID>
