@@ -5,13 +5,13 @@
 ::
 pushd %~dp0
 SETLOCAL
-goto :START
+
 if exist %systemdrive%\windows\system32\mindeployappx.exe (
 	echo Mindeployappx.exe found. Using older install script
 	if exist AppInstall_TH.cmd (call AppInstall_TH.cmd )
 	exit /b %errorlevel%
 )
-:START
+
 REM New Install Mechanism
 if not exist %systemdrive%\windows\system32\deployappx.exe ( 
 	echo Error: deployappx.exe not found. exiting. 
