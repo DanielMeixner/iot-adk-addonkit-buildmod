@@ -9,7 +9,7 @@
      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="SV.PlatExtensions.UpdateOS.cab"/>
      <!-- MBR BCD Settings -->
      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-RPi2-BCD-Package.cab" />
-     <!-- Device Info/ Device Targeting Info : -->
+     <!-- Device Info/ Device Targeting Info -->
      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.Generic.DeviceInfo.cab"/>
      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.Generic.DeviceTargetingInfo.cab"/>
 

@@ -4,10 +4,8 @@
      <!-- System Information package for providing system details , required for DM enrollment etc -->
      <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Device.SystemInformation.cab"/>
      <!-- UEFI for the silicon packaged in Bootfirmware -->
-     <!--PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.ModelA.BootFirmware.cab"/-->
      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.BootFirmware.cab"/>
      <!-- Drivers required for boot/reading partitions for UpdateOS -->
-     <!--PackageFile Path="%PKGBLD_DIR%" Name="SV.PlatExtensions.UpdateOS.cab"/-->
      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="SV.PlatExtensions.UpdateOS.cab"/>
      <!-- MBR BCD Settings -->
      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-RPi2-BCD-Package.cab" />
@@ -28,16 +26,16 @@
 
   <DeviceLayoutPackages>
     <!-- MBR 4GB layout  -->
-    <PackageFile SOC="ModelA" Path="%PKGBLD_DIR%" Name="%OEM_NAME%.DeviceLayout.MBR4GB.cab"/>
+    <PackageFile SOC="RPi2" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-RPi2-DeviceLayoutProd-Package.cab"/>
     <!-- MBR 2GB layout - select this by specifying the SOC field in the OEMInput xml file -->
-    <PackageFile SOC="ModelA-Min" Path="%PKGBLD_DIR%" Name="%OEM_NAME%.DeviceLayout.MBR2GB.cab"/>
+    <PackageFile SOC="RPi2_2GB" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-RPi2-DeviceLayoutProd-Min2GB-Package.cab"/>
   </DeviceLayoutPackages>
 
   <OEMDevicePlatformPackages>
     <!-- MBR 4GB layout  -->
-    <PackageFile Device="ModelA" Path="%PKGBLD_DIR%" Name="%OEM_NAME%.DeviceLayout.MBR4GB.cab"/>
+    <PackageFile Device="RPi2" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.OEMDevicePlatform.cab"/>
     <!-- MBR 2GB layout - select this by specifying the SOC field in the OEMInput xml file -->
-    <PackageFile Device="ModelA-Min" Path="%PKGBLD_DIR%" Name="%OEM_NAME%.DeviceLayout.MBR2GB.cab"/>
+    <PackageFile Device="RPi2_2GB" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.OEMDevicePlatform_Min2GB.cab" FeatureIdentifierPackage="true"/>
   </OEMDevicePlatformPackages>
 
   <Features>
