@@ -39,8 +39,12 @@ if /I [%1] == [All] (
     dir /b /AD %SRC_DIR%\Products\*.* > %BLD_DIR%\%BSP_ARCH%products.txt
 
     for /f "delims=" %%i in (%BLD_DIR%\%BSP_ARCH%products.txt) do (
-      call :CALL_CREATEIMAGE %%i Test
-      call :CALL_CREATEIMAGE %%i Retail
+        if [%2] ==[] (
+            call :CALL_CREATEIMAGE %%i Test
+            call :CALL_CREATEIMAGE %%i Retail
+        ) else (
+            call :CALL_CREATEIMAGE %%i %2
+        )
     )
 
     del %BLD_DIR%\%BSP_ARCH%products.txt
