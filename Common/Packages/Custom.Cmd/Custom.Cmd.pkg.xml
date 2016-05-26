@@ -9,10 +9,10 @@
     <Components>
        <OSComponent>
          <Files>
-			<!-- 
-			Source : OEM Customisation command is product specific, so copied from the Product directory
-			Destination : C:\Windows\System32 which is the default. So destination not specified 
-			-->
+            <!--
+            Source : OEM Customisation command is product specific, so copied from the Product directory
+            Destination : C:\Windows\System32 which is the default. So destination not specified
+            -->
              <File Source="$(PRJDIR)\Products\$(PROD)\oemcustomization.cmd" />
         </Files>
        </OSComponent>

@@ -5,14 +5,14 @@
 goto START
 
 :Usage
-echo Usage: newpkg pkgtype comp-name sub-comp-name 
+echo Usage: newpkg pkgtype comp-name sub-comp-name
 echo    pkgtype......... Required, Type of the package created (pkgAppx/pkgDrv/pkgFile)
 echo    comp-name....... Required, Component Name for the package
-echo    sub-comp-name... Required, Sub-Component Name for the package 
-echo    [/?].............. Displays this usage string. 
+echo    sub-comp-name... Required, Sub-Component Name for the package
+echo    [/?].............. Displays this usage string.
 echo    Example:
 echo        newpkg pkgAppx Appx Blinky
-echo        newpkg pkgDrv Drivers SDIO 
+echo        newpkg pkgDrv Drivers SDIO
 echo Existing packages are
 dir /b /AD %SRC_DIR%\Packages
 
@@ -29,15 +29,15 @@ if [%2] == [] goto Usage
 if [%3] == [] goto Usage
 
 if NOT DEFINED SRC_DIR (
-	echo Environment not defined. Call setenv
-	goto End
+    echo Environment not defined. Call setenv
+    goto End
 )
 SET NEWPKG_DIR=%SRC_DIR%\Packages\%2.%3
 
 :: Error Checks
 if /i EXIST %NEWPKG_DIR% (
-	echo Error : %2.%3 already exists 
-	goto End
+    echo Error : %2.%3 already exists
+    goto End
 )
 
 :: Start processing command

@@ -19,7 +19,7 @@ REM SUB_PROCESSLIST <filename>
 REM
 REM Processes the file list, calls createpkg for each item in the list
 REM
-REM ------------------------------------------------------------------------------- 
+REM -------------------------------------------------------------------------------
 :SUB_PROCESSLIST
 
 for /f "delims=" %%i in (%1) do (
