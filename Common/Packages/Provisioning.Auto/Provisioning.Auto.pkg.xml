@@ -8,14 +8,14 @@
     SubComponent="Auto">
     <Components>
        <OSComponent>
-	   <Files>
-		<!--
-        Source : Provisioning is product specific, so copied from the Product directory		
-		Destination : Auto provisioning folder which is C:\Windows\Provisioning\Packages
-		-->
-		<File Source="$(PRJDIR)\Products\$(PROD)\prov\$(PROD)Prov.ppkg"
-			    DestinationDir="$(runtime.windows)\Provisioning\Packages" Name="ProvAuto.ppkg"/>
-		</Files>
+       <Files>
+        <!--
+        Source : Provisioning is product specific, so copied from the Product directory
+        Destination : Auto provisioning folder which is C:\Windows\Provisioning\Packages
+        -->
+        <File Source="$(PRJDIR)\Products\$(PROD)\prov\$(PROD)Prov.ppkg"
+                DestinationDir="$(runtime.windows)\Provisioning\Packages" Name="ProvAuto.ppkg"/>
+        </Files>
        </OSComponent>
     </Components>
  </Package>

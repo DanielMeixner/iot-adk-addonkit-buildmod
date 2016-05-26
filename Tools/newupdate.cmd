@@ -5,9 +5,9 @@ goto :START
 
 :Usage
 echo Usage: newupdate UpdateName Version
-echo    UpdateName....... Required, Name of the Update to be created. 
+echo    UpdateName....... Required, Name of the Update to be created.
 echo    Version.......... Version number (eg. x.y.z.a)
-echo    [/?]............. Displays this usage string. 
+echo    [/?]............. Displays this usage string.
 echo    Example:
 echo        newupdate Update2 10.0.2.0
 
@@ -24,17 +24,17 @@ if [%1] == [] goto Usage
 if [%2] == [] goto Usage
 
 if NOT DEFINED SRC_DIR (
-	echo Environment not defined. Call setenv
-	goto End
+    echo Environment not defined. Call setenv
+    goto End
 )
 :: Error Checks
 
 if /i EXIST %SRC_DIR%\Updates\%1 (
-	echo Error: %1 already exists
-	goto End
+    echo Error: %1 already exists
+    goto End
 )
 :: Start processing command
-echo Creating %1 
+echo Creating %1
 SET UPDATE=%1
 SET VERSION=%2
 

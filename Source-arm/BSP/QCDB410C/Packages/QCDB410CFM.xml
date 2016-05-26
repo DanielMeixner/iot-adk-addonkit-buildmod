@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FeatureManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+  <BasePackages>
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QCDB410C.SystemInformation.cab" FeatureIdentifierPackage="true"/>
+
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcUrsFilter.cab" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QHEE.cab" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QSEE.cab" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.RPM.cab" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.SBL1.cab" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.WINSECAPP.cab" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.TZAPPS.cab" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.DPP.cab" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="OEM.HalExtensions.UpdateOS.cab" />
+
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcEhciFilter.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.UsbFnFilter.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.hwnhaptics.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.hwnled.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.ABD.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.ADCM.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.AudioDeviceDriver.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.bam_dmux.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.BCryptCipher_KM.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.HalExtQCTimer.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.ipc_router.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.WifiNotifierSrvc.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.pil.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcadc.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcListenSoundModel.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcBattMiniclass.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcBattMngr.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcbluetooth.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qccdi.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QCCI.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcdxdriver.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcfmminiport.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcfmtransport.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcgnss.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcgpio.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qci2c.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcKmdBam.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcPmic.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcPmicApps.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcPmicGpio.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcspmi.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcVidEncmftH263.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcVidEncmftH264.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcVidEncMftMPEG4.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QC_PEP.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qmux.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qualcomm_uart.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.remotefs.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.RPEN.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.scm.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.smd.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.smmu.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.ssd.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.ssm.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.wlan.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.wlan_caps.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.WMRil.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QCSI.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.direct3dum11.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcdx11compiler.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcvidencum.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcspi.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.subsys.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.WCNSSPeriImage.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcimssink.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcimssrc.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcvss.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qccomposite.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.HalExtQCWdogTimer.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.PhoneRadioRevision_8916.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcPmic3P.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QSOCKET.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.TouchDetectionDriver.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.TrEE.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.wlan_ihv.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.QcLTECoexMgr.cab"  />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcdrvlog.cab"  />
+  </BasePackages>
+
+  <OEMDevicePlatformPackages>
+    <PackageFile  Device="8016sbc" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.OEMDevicePlatform.cab" FeatureIdentifierPackage="true"  />
+  </OEMDevicePlatformPackages>
+
+  <DeviceLayoutPackages>
+    <PackageFile  SOC="QC8016" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.DeviceLayout.cab" FeatureIdentifierPackage="true" />
+  </DeviceLayoutPackages>
+
+  <Features>
+    <Microsoft />
+    <MSFeatureGroups />
+
+    <OEM>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QCDB410C.DeviceInfo.cab" FeatureIdentifierPackage="true">
+        <FeatureIDs>
+          <FeatureID>QCDB410C_DEVICE_INFO</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QCDB410C.DeviceTargetingInfo.cab" FeatureIdentifierPackage="true">
+        <FeatureIDs>
+          <FeatureID>QCDB410C_DEVICE_TARGETINGINFO</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.UEFI_PRODUCTION.cab" FeatureIdentifierPackage="true">
+        <FeatureIDs>
+           <FeatureID>QC_UEFI_PRODUCTION</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.OEMAutobrightness.cab" FeatureIdentifierPackage="true">
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.smbios_cfg.cab" >
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.MemRes_ModemLite.cab" >
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916_SBC.ACSP.cab" >
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916_SBC.qcaud.cab" >
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.M8016SOC_SBC_ATHENS.acpi.cab" >
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcAccGyroMPU6050.cab" >
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcAlsCalibrationMTP.cab" >
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcAlsPrxAPDS9900.cab" >
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcMagAKM8963.cab" >
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcSynapticsTouch.cab" >
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcFocalTechTouch.cab" >
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8916.qcTouchScreenRegsitry1080p.cab" >
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Qualcomm.QC8016.AMSSPeriImage.cab" >
+        <FeatureIDs>
+          <FeatureID>SBC</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+    </OEM>
+   <OEMFeatureGroups />
+  </Features>
+</FeatureManifest>

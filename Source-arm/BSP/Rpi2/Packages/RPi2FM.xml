@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FeatureManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+  <BasePackages>
+     <!-- System Information package for providing system details , required for DM enrollment etc -->
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.SystemInformation.cab"/>
+     <!-- UEFI for the silicon packaged in Bootfirmware -->
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.BootFirmware.cab"/>
+     <!-- Drivers required for boot/reading partitions for UpdateOS -->
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="SV.PlatExtensions.UpdateOS.cab"/>
+     <!-- MBR BCD Settings -->
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-RPi2-BCD-Package.cab" />
+     <!-- Device Info/ Device Targeting Info : -->
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.DeviceInfo.cab"/>
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.DeviceTargetingInfo.cab"/>
+
+     <!-- Mandatory device drivers -->
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.bcm2836sdhc.cab"/>
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.dwcUsbOtg.cab"/>
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.LAN9500N630F.cab"/>
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.rpiq.cab"/>
+
+    <!-- Device specific customisations if any -->
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-RPi2-Customization-Package.cab" />
+
+  </BasePackages>
+
+  <DeviceLayoutPackages>
+    <!-- MBR 4GB layout  -->
+    <PackageFile SOC="RPi2" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-RPi2-DeviceLayoutProd-Package.cab"/>
+  </DeviceLayoutPackages>
+
+  <OEMDevicePlatformPackages>
+    <!-- MBR 4GB layout  -->
+    <PackageFile Device="RPi2" Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.OEMDevicePlatform.cab"/>
+  </OEMDevicePlatformPackages>
+
+  <Features>
+    <Microsoft />
+    <MSFeatureGroups />
+    <OEM>
+      <!-- Optional Device Drivers -->
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.bcm2836pwm.cab">
+        <FeatureIDs>
+          <FeatureID>RPI2_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.Audio.Wav.cab">
+        <FeatureIDs>
+          <FeatureID>RPI2_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.SerPL011.cab">
+        <FeatureIDs>
+          <FeatureID>RPI2_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.GPIO.cab">
+        <FeatureIDs>
+          <FeatureID>RPI2_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.I2C.cab">
+        <FeatureIDs>
+          <FeatureID>RPI2_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+       <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.SPI.cab">
+        <FeatureIDs>
+          <FeatureID>RPI2_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+       <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.USBWIFI.cab">
+        <FeatureIDs>
+          <FeatureID>RPI2_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="RASPBERRYPI.RPi2.RT.WLAN.cab">
+        <FeatureIDs>
+          <FeatureID>RPI2_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+   </OEM>
+   <OEMFeatureGroups />
+  </Features>
+</FeatureManifest>
