@@ -11,6 +11,7 @@
      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.DeviceTargetingInfo.cab" />
      <!-- Mandatory device drivers : None -->
      <!-- Device specific customisations if any : None -->
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-MBM-Customization-Package.cab" />      
   </BasePackages>
 
   <OEMDevicePlatformPackages>

@@ -6,11 +6,10 @@
      <!-- UEFI for the silicon packaged in Bootfirmware : None -->
      <!-- Drivers required for boot/reading partitions for UpdateOS: Not required -->
      <!-- GPT BCD Settings : Include IOT_EFIESP_BCD in OEMInput xml file-->
-     <!-- Device Info/ Device Targeting Info -->
-     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.GENERIC.DeviceInfo.cab"/>
-     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.GENERIC.DeviceTargetingInfo.cab" />
+     <!-- Device Info/ Device Targeting Info : Include IOT_GENERIC_POP in OEMInput xml-->
      <!-- Mandatory device drivers : None -->
      <!-- Device specific customisations if any : None -->
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-MBM-Customization-Package.cab" />      
   </BasePackages>
 
   <OEMDevicePlatformPackages>
