@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <OEMInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
   <Description>Contoso Windows 10 IoT Core Retail FFU with CustomRPi2 BSP</Description>
-  <SOC>RPi2</SOC>
+  <SOC>CustomRPi2</SOC>
   <SV>RASPBERRY PI</SV>
-  <Device>RPi2</Device>
+  <Device>CustomRPi2</Device>
   <ReleaseType>Production</ReleaseType>
   <BuildType>fre</BuildType>
   <SupportedLanguages>
@@ -33,17 +33,20 @@
   <Features>
     <Microsoft>
       <Feature>IOT_EFIESP</Feature>
+      <Feature>IOT_GENERIC_POP</Feature>
       <Feature>IOT_DMAP_DRIVER</Feature>
-      <!-- Feature>IOT_GENERIC_POP</Feature -->
       <!-- Following two required for Appx Installation -->
       <Feature>IOT_UAP_OOBE</Feature>
       <Feature>IOT_APP_TOOLKIT</Feature>
       <!-- for Connectivity -->
       <Feature>IOT_SSH</Feature>
+      <!-- RS1 Additions -->
+      <Feature>IOT_APPLICATIONS</Feature>
     </Microsoft>
     <OEM>
       <!-- Include BSP Features -->
       <Feature>RPi2_DRIVERS</Feature>
+      <Feature>RPi3_DRIVERS</Feature>
       <Feature>CustomRPi2_DRIVERS</Feature>
       <!-- Include OEM features
       <Feature>OEM_AppxMain</Feature>

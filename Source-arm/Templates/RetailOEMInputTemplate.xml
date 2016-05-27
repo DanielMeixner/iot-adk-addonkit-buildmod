@@ -42,6 +42,8 @@
       <Feature>IOT_APP_TOOLKIT</Feature>
       <!-- for Connectivity -->
       <Feature>IOT_SSH</Feature>
+      <!-- RS1 Additions -->
+      <Feature>IOT_APPLICATIONS</Feature>      
     </Microsoft>
     <OEM>
       <!-- Include BSP Features -->
