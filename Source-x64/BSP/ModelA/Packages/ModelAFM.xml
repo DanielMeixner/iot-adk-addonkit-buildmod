@@ -36,7 +36,7 @@
           <FeatureID>ModelA_DRIVERS</FeatureID>
         </FeatureIDs>
       </PackageFile>
-      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBM.UART.cab" >
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBMx64.UART.cab" >
         <FeatureIDs>
           <FeatureID>ModelA_DRIVERS</FeatureID>
         </FeatureIDs>
