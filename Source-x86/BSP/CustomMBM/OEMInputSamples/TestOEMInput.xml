@@ -29,7 +29,7 @@
     <AdditionalFM>%COMMON_DIR%\Packages\OEMCommonFM.xml</AdditionalFM>
     <AdditionalFM>%SRC_DIR%\Packages\OEMFM.xml</AdditionalFM>
     -->
-        <!-- Including the test features -->
+    <!-- Including the test features -->
     <AdditionalFM>%AKROOT%\FMFiles\x86\IoTUAPNonProductionPartnerShareFM.xml</AdditionalFM>
   </AdditionalFMs>
   <Features>

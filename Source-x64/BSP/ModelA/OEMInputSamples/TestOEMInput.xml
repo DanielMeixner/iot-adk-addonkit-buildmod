@@ -28,7 +28,7 @@
     <!-- Including OEM feature manifest -->
     <AdditionalFM>%COMMON_DIR%\Packages\OEMCommonFM.xml</AdditionalFM>
     <AdditionalFM>%SRC_DIR%\Packages\OEMFM.xml</AdditionalFM>
-        <!-- Including the test features -->
+    <!-- Including the test features -->
     <AdditionalFM>%AKROOT%\FMFiles\amd64\IoTUAPNonProductionPartnerShareFM.xml</AdditionalFM>
   </AdditionalFMs>
   <Features>
