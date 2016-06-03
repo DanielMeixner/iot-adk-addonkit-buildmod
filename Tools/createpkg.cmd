@@ -40,13 +40,13 @@ set EXTN=%INPUT:~-8%
 
 if [%EXTN%] == [.pkg.xml] (
     set INPUT_FILE=%~nx1
-    cd %~dp1
+    cd /D %~dp1
 ) else (
     set INPUT_FILE=%1.pkg.xml
     if exist "%SRC_DIR%\Packages\%1\%1.pkg.xml" (
-        cd "%SRC_DIR%\Packages\%1"
+        cd /D "%SRC_DIR%\Packages\%1"
     ) else if exist "%COMMON_DIR%\Packages\%1\%1.pkg.xml" (
-        cd "%COMMON_DIR%\Packages\%1"
+        cd /D "%COMMON_DIR%\Packages\%1"
     ) else (
         echo Error : %1 is not a valid input.
         goto Usage
