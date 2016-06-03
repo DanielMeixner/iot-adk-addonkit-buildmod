@@ -162,7 +162,7 @@ if exist "%OUTPUT_PATH%\inf_filelist.txt" (
         echo.   Placing %%A in !LOCATION!
         call :PRINT_TEXT "           <File Source="%%A" "
         echo                  DestinationDir="!LOCATION!" >> "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml"
-        call :PRINT_TEXT "                 Name="%%A" />"
+        call :PRINT_TEXT "                 Name="%%A" EmbeddedSigningCategory="" />"
     )
     call :PRINT_TEXT "         </Files>"
 ) else (
