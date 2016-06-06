@@ -10,7 +10,7 @@
         <Driver InfSource="iaiogpio.inf">
             <Reference Source="iaiogpio.sys" />
             <Files>
-                <File Source="iaiogpio.sys" DestinationDir="$(runtime.drivers)" />
+                <File Source="iaiogpio.sys" DestinationDir="$(runtime.drivers)" EmbeddedSigningCategory="-oem" />
             </Files>
         </Driver>
     </Components>

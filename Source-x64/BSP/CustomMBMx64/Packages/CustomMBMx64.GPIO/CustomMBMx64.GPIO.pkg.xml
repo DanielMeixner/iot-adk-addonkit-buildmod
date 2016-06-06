@@ -6,12 +6,12 @@
          Platform="amd64"
          Component="CustomMBMx64"
          SubComponent="GPIO">
-	<Components>
-		<Driver InfSource="iaiogpio.inf">
-			<Reference Source="iaiogpio.sys" />
-			<Files>
-				<File Source="iaiogpio.sys" DestinationDir="$(runtime.drivers)" />
-			</Files>
-		</Driver>
-	</Components>
-</Package> 
+    <Components>
+        <Driver InfSource="iaiogpio.inf">
+            <Reference Source="iaiogpio.sys" />
+            <Files>
+                <File Source="iaiogpio.sys" DestinationDir="$(runtime.drivers)" EmbeddedSigningCategory="-oem" />
+            </Files>
+        </Driver>
+    </Components>
+</Package>
