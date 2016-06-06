@@ -8,7 +8,7 @@
 	  <PackageFile>%BLD_DIR%\Update2\%OEM_NAME%.Registry.Version.cab</PackageFile>   
       <!-- including the Update1 also here as a cumulative update for demonstration -->
 	  <PackageFile>%BLD_DIR%\Update1\%OEM_NAME%.Appx.Main.cab</PackageFile>
-      <PackageFile>%BLD_DIR%\Update2\%OEM_NAME%.Drivers.GPIO.cab</PackageFile>
+      <PackageFile>%BLD_DIR%\Update2\%OEM_NAME%.CustomMBM.GPIO.cab</PackageFile>
 	  <!-- Custom.cmd package not included as the FFU already has this file and need not be updated -->
    </PackageFiles>
 </UpdateOSInput>
