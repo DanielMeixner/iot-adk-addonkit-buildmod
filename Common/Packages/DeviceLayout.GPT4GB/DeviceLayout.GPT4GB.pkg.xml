@@ -5,7 +5,7 @@
   SubComponent="GPT4GB"
   OwnerType="OEM"
   ReleaseType="Production"
-  Platform="Common" xmlns="urn:Microsoft.WindowsPhone/PackageSchema.v8.00">
+  Platform="$(BSPARCH)" xmlns="urn:Microsoft.WindowsPhone/PackageSchema.v8.00">
   <Components>
     <OSComponent>
       <Files>
