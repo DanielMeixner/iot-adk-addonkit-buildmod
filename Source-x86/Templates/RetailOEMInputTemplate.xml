@@ -38,13 +38,14 @@
       <Feature>IOT_CP210x_MAKERDRIVER</Feature>
       <Feature>IOT_FTSER2K_MAKERDRIVER</Feature>
       <!-- Feature>IOT_GENERIC_POP</Feature -->
-      <Feature>IOT_POWER_SETIINGS</Feature>
-      <Feature>IOT_POWER_SETTINGS</Feature> <!-- Correct spelling in RS. Keeping old value for backward compatibility -->
+      <Feature>IOT_POWER_SETTINGS</Feature>
       <!-- Following two required for Appx Installation -->
       <Feature>IOT_UAP_OOBE</Feature>
       <Feature>IOT_APP_TOOLKIT</Feature>
       <!-- for Connectivity -->
       <Feature>IOT_SSH</Feature>
+      <!-- RS1 Additions -->
+      <Feature>IOT_APPLICATIONS</Feature>      
     </Microsoft>
     <OEM>
       <!-- Include BSP Features -->

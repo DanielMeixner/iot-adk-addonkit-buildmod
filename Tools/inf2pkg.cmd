@@ -16,6 +16,7 @@ exit /b 1
 :START
 
 setlocal ENABLEDELAYEDEXPANSION
+pushd
 
 if [%1] == [/?] goto Usage
 if [%1] == [-?] goto Usage
@@ -24,7 +25,8 @@ if not [%~x1] == [.inf] goto Usage
 
 set FILE_NAME=%~n1
 set FILE_PATH=%~dp1
-set "OUTPUT_PATH=%FILE_PATH%"
+if not defined OUTPUT_PATH ( set "OUTPUT_PATH=%FILE_PATH%" )
+
 if [%2] == [] (
     set COMP_NAME=Drivers
     set SUB_NAME=%FILE_NAME%
@@ -45,17 +47,19 @@ if exist "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml" (del "%OUTPUT_PATH%\%COM
 call :CREATE_PKGFILE
 if exist "%OUTPUT_PATH%\inf_filelist.txt" (
     REM check for dependency files in the same folder and flag error if missing
-    for /f "useback delims=" %%i in ("%OUTPUT_PATH%\inf_filelist.txt") do (
-        if not exist "%FILE_PATH%%%i" (
-            echo.   Warning : %FILE_PATH%%%i not found, package creation will fail.
+    cd /D "%FILE_PATH%"
+    for /f "useback tokens=1,* delims=@" %%i in ("%OUTPUT_PATH%\inf_filelist.txt") do (
+        if not exist "%%j" (
+            echo.   Warning : %%j not found, package creation will fail.
         )
     )
 )
 
 REM Cleanup temp files
-del "%FILE_PATH%\input.inf"
-REM del "%FILE_PATH%\inf_filelist.txt"
+del "%OUTPUT_PATH%\input.inf"
+REM del "%OUTPUT_PATH%\inf_filelist.txt"
 
+popd
 endlocal
 exit /b 0
 
@@ -80,8 +84,20 @@ for /f "useback delims=" %%i in ("%OUTPUT_PATH%\input.inf") do (
         ) else (
             if "!TOKEN!" EQU "[SourceDisksFiles]" (
                 REM Parsing SourceDisksFiles section
-                for /f "tokens=1,* delims= " %%A in ("%%i") do (
-                    echo.%%A>> "%OUTPUT_PATH%\inf_filelist.txt"
+                for /f "tokens=1,3 delims==, " %%A in ("%%i") do (
+                    if "%%B" EQU "" (
+                        echo.%%A@.\%%A>> "%OUTPUT_PATH%\inf_filelist.txt"
+                    ) else (
+                        echo.%%A@%%B\%%A>> "%OUTPUT_PATH%\inf_filelist.txt"
+                    )
+                )
+            ) else if "!TOKEN!" EQU "[SourceDisksFiles.%BSP_ARCH%]" (
+                for /f "tokens=1,3 delims==, " %%A in ("%%i") do (
+                    if "%%B" EQU "" (
+                        echo.%%A@.\%%A>> "%OUTPUT_PATH%\inf_filelist.txt"
+                    ) else (
+                        echo.%%A@%%B\%%A>> "%OUTPUT_PATH%\inf_filelist.txt"
+                    )
                 )
             ) else if "!TOKEN!" EQU "[DestinationDirs]" (
                 REM Parsing DestinationDirs section, sub folder parsing not yet done.
@@ -145,12 +161,12 @@ call :PRINT_TEXT "   <Components>"
 call :PRINT_TEXT "      <Driver InfSource="%FILE_NAME%.inf">"
 if exist "%OUTPUT_PATH%\inf_filelist.txt" (
     REM Printing references
-    for /f "useback delims=" %%A in ("%OUTPUT_PATH%\inf_filelist.txt") do (
-        call :PRINT_TEXT "         <Reference Source="%%A" />"
+    for /f "useback tokens=1,* delims=@" %%A in ("%OUTPUT_PATH%\inf_filelist.txt") do (
+        call :PRINT_TEXT "         <Reference Source="%%B" />"
     )
     call :PRINT_TEXT "         <Files>"
     REM Printing file sources
-    for /f "useback delims=" %%A in ("%OUTPUT_PATH%\inf_filelist.txt") do (
+    for /f "useback tokens=1,* delims=@" %%A in ("%OUTPUT_PATH%\inf_filelist.txt") do (
         set "LOCATION=%DEFAULTLOC%"
         REM Check if the file name is in any DIRID list and set dir location accordingly
         for %%d in (%DIRIDLIST%) do (
@@ -160,9 +176,9 @@ if exist "%OUTPUT_PATH%\inf_filelist.txt" (
             )
         )
         echo.   Placing %%A in !LOCATION!
-        call :PRINT_TEXT "           <File Source="%%A" "
+        call :PRINT_TEXT "           <File Source="%%B" "
         echo                  DestinationDir="!LOCATION!" >> "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml"
-        call :PRINT_TEXT "                 Name="%%A" />"
+        call :PRINT_TEXT "                 Name="%%A" EmbeddedSigningCategory="-oem" />"
     )
     call :PRINT_TEXT "         </Files>"
 ) else (
@@ -187,7 +203,7 @@ if %1 NEQ !TESTLINE! ( exit /b 1)
 exit /b 0
 
 :INIT_CONFIG
-set TOKENLIST=[SourceDisksFiles] [DestinationDirs]
+set TOKENLIST=[SourceDisksFiles] [SourceDisksFiles.%BSP_ARCH%] [DestinationDirs]
 REM Add DirID and the corresponding location here for extending support for more DirIDs
 set DIRIDLIST= 10 11 12 24
 

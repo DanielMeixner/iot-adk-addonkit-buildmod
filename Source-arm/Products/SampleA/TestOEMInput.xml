@@ -50,9 +50,13 @@
       <Feature>IOT_DISABLE_UMCI</Feature>
       <Feature>IOT_ENABLE_TESTSIGNING</Feature>
       <Feature>IOT_TOOLKIT</Feature>
+      <!-- RS1 Additions -->
+      <Feature>IOT_NANORDPSERVER</Feature>
+      <Feature>IOT_SHELL_HOTKEY_SUPPORT</Feature>
+      <Feature>IOT_APPLICATIONS</Feature>      
     </Microsoft>
     <OEM>
-      <!-- Inclide BSP Features -->
+      <!-- Include BSP Features -->
       <Feature>RPI2_DRIVERS</Feature>
       <!-- Include OEM features -->
       <Feature>OEM_AppxMain</Feature>

@@ -25,9 +25,10 @@
   <AdditionalFMs>
     <!-- Including BSP feature manifest -->
     <AdditionalFM>%BSPSRC_DIR%\RPi2\Packages\RPi2FM.xml</AdditionalFM>
-    <!-- Including OEM feature manifest -->
+    <!-- Including OEM feature manifest
     <AdditionalFM>%COMMON_DIR%\Packages\OEMCommonFM.xml</AdditionalFM>
     <AdditionalFM>%SRC_DIR%\Packages\OEMFM.xml</AdditionalFM>
+    -->
     <!-- Including the test features -->
     <AdditionalFM>%AKROOT%\FMFiles\arm\IoTUAPNonProductionPartnerShareFM.xml</AdditionalFM>
   </AdditionalFMs>
@@ -57,14 +58,18 @@
       <Feature>IOT_CRT140</Feature>
       <Feature>IOT_DIRECTX_TOOLS</Feature>
       <Feature>PRODUCTION_CORE</Feature>
-
       <!-- Sample Apps, remove this when you introduce OEM Apps -->
       <Feature>IOT_BERTHA</Feature>
       <Feature>IOT_ALLJOYN_APP</Feature>
+      <!-- RS1 Additions -->
+      <Feature>IOT_NANORDPSERVER</Feature>
+      <Feature>IOT_SHELL_HOTKEY_SUPPORT</Feature>
+      <Feature>IOT_APPLICATIONS</Feature>
    </Microsoft>
    <OEM>
       <!-- Include BSP Features -->
-          <Feature>RPI2_DRIVERS</Feature>
+      <Feature>RPI2_DRIVERS</Feature>
+      <Feature>RPI3_DRIVERS</Feature>
       <!-- Include OEM features
       <Feature>OEM_AppxMain</Feature>
       <Feature>OEM_CustomCmd</Feature>

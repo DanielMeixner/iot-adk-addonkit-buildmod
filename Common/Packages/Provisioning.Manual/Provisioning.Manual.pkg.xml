@@ -3,7 +3,7 @@
     Owner="$(OEMNAME)"
     OwnerType="OEM"
     ReleaseType="Production"
-    Platform="Common"
+    Platform="$(BSPARCH)"
     Component="Provisioning"
     SubComponent="Manual">
     <Components>

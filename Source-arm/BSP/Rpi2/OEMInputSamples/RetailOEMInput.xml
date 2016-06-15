@@ -40,10 +40,13 @@
       <Feature>IOT_APP_TOOLKIT</Feature>
       <!-- for Connectivity -->
       <Feature>IOT_SSH</Feature>
+      <!-- RS1 Additions -->
+      <Feature>IOT_APPLICATIONS</Feature>
     </Microsoft>
     <OEM>
       <!-- Include BSP Features -->
       <Feature>RPi2_DRIVERS</Feature>
+      <Feature>RPi3_DRIVERS</Feature>
       <!-- Include OEM features
       <Feature>OEM_AppxMain</Feature>
       <Feature>OEM_CustomCmd</Feature>

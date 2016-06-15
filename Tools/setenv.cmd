@@ -54,9 +54,6 @@ set TOOLS_DIR=%IOTADK_ROOT%\Tools
 
 call setversion.cmd
 
-set PROMPT=IoTCore %BSP_ARCH% %BSP_VERSION%$_$P$G
-TITLE IoTCoreShell %BSP_ARCH% %BSP_VERSION%
-
 echo BSP_ARCH    : %BSP_ARCH%
 echo BSP_VERSION : %BSP_VERSION%
 echo.
