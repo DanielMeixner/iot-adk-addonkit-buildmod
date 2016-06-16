@@ -6,7 +6,7 @@ REM Getting rid of the \Tools\ at the end
 set IOTADK_ROOT=%IOTADK_ROOT:~0,-7%
 
 REM Get the Kits Root path from registry
-for /F "skip=2 tokens=2,*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows Kits\Installed Roots" /v KitsRoot10') do (
+for /F "skip=2 tokens=2,*" %%A in ('reg query "HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows Kits\Installed Roots" /v KitsRoot10') do (
     set KITPATH=%%BAssessment and Deployment Kit\Deployment Tools
 )
 REM Check for ADK Presence and Launch
@@ -63,14 +63,21 @@ echo WDK_VERSION : %WDK_VERSION%
 echo COREKIT_VER : %COREKIT_VER%
 echo OEM_NAME    : %OEM_NAME%
 echo.
-echo Set Environment for Architecture
-choice /C 123 /N /M "Choose 1 for ARM, 2 for x86 and 3 for x64 :"
-echo.
-if errorlevel 3 (
-    call setenv x64
-)else if errorlevel 2 (
-    call setenv x86
-)else if errorlevel 1 (
-    call setenv arm
+
+if [%1] == [] (
+    echo Set Environment for Architecture
+    choice /C 123 /N /M "Choose 1 for ARM, 2 for x86 and 3 for x64 :"
+    echo.
+    if errorlevel 3 (
+        call setenv x64
+    ) else if errorlevel 2 (
+        call setenv x86
+    ) else if errorlevel 1 (
+        call setenv arm
+    )
+) else (
+    echo Setting Environment for Architecture %1
+    call setenv %1
 )
+
 

@@ -21,7 +21,7 @@ pushd
 if [%1] == [/?] goto Usage
 if [%1] == [-?] goto Usage
 if [%1] == [] goto Usage
-if not [%~x1] == [.inf] goto Usage
+if /I not [%~x1] == [.inf] goto Usage
 
 set FILE_NAME=%~n1
 set FILE_PATH=%~dp1

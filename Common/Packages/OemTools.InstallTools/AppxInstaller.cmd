@@ -6,23 +6,24 @@
 pushd %~dp0
 SETLOCAL
 
-if exist %systemdrive%\windows\system32\mindeployappx.exe (
-    echo Mindeployappx.exe found. Using older install script
-    if exist AppInstall_TH.cmd (call AppInstall_TH.cmd )
-    exit /b %errorlevel%
+if [%1] == [] (
+    set APP_DIR=C:\AppInstall\
+) else (
+    set APP_DIR=%1
 )
 
-REM New Install Mechanism
 if not exist %systemdrive%\windows\system32\deployappx.exe (
     echo Error: deployappx.exe not found. exiting.
     exit /b 1
 )
 
+cd /D "%APP_DIR%"
 call AppxConfig.cmd
 
 echo Appx Name :%AppxName%
 
 if not defined forceinstall ( set forceinstall=0 )
+in not defined launchapp ( set launchapp=0)
 if not exist .\logs ( mkdir logs ) else ( del /Q .\logs\*.* )
 
 REM
@@ -52,7 +53,9 @@ if %forceinstall% == 1 (
 echo Installing %AppxName%.appx with %INSTALL_PARAMS%
 deployappx.exe %INSTALL_PARAMS% > %temp%\%AppxName%_result.txt
 if "%ERRORLEVEL%"=="0" (
-    call :LAUNCH_APP
+    if %launchapp% == 1 (
+        call :LAUNCH_APP
+    )
 ) else (
     echo. Error in installing %AppxName%.appx.
     echo. Result:%ERRORLEVEL%
