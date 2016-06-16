@@ -29,7 +29,7 @@ set FILE_NAME=%~n1
 set FILE_PATH=%~dp1
 
 
-if [%FILE_TYPE%] == [.inf] (
+if /I [%FILE_TYPE%] == [.inf] (
     set COMP_NAME=Drivers
     set SUB_NAME=%FILE_NAME%
 ) else (
@@ -60,7 +60,7 @@ echo Creating %COMP_NAME%.%SUB_NAME% package
 
 mkdir "%NEWPKG_DIR%"
 
-if [%FILE_TYPE%] == [.inf] (
+if /I [%FILE_TYPE%] == [.inf] (
     REM Create Pkgxml from inf file
     echo. Creating package xml file
     call inf2pkg.cmd %1 %COMP_NAME%.%SUB_NAME%
