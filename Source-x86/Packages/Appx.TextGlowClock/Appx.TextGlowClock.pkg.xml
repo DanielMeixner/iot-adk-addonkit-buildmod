@@ -8,15 +8,9 @@
             <File Source="AppInstall\AppInstall.cmd"  
                   DestinationDir="$(runtime.root)\AppInstall"  
                   Name="AppInstall.cmd" /> 
-            <File Source="AppInstall\AppInstall_TH.cmd"  
-                  DestinationDir="$(runtime.root)\AppInstall"  
-                  Name="AppInstall_TH.cmd" /> 
             <File Source="AppInstall\AppxConfig.cmd"  
                   DestinationDir="$(runtime.root)\AppInstall"  
                   Name="AppxConfig.cmd" /> 
-            <File Source="AppInstall\DeployTask.cmd"  
-                  DestinationDir="$(runtime.root)\AppInstall"  
-                  Name="DeployTask.cmd" /> 
             <File Source="AppInstall\TextGlowClock_1.0.0.0_x86.appx"  
                   DestinationDir="$(runtime.root)\AppInstall"  
                   Name="TextGlowClock_1.0.0.0_x86.appx" /> 
