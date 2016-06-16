@@ -86,17 +86,17 @@ for /f "useback delims=" %%i in ("%OUTPUT_PATH%\input.inf") do (
                 REM Parsing SourceDisksFiles section
                 for /f "tokens=1,3 delims==, " %%A in ("%%i") do (
                     if "%%B" EQU "" (
-                        echo.%%A@.\%%A>> "%OUTPUT_PATH%\inf_filelist.txt"
+                        echo.%%A@.>> "%OUTPUT_PATH%\inf_filelist.txt"
                     ) else (
-                        echo.%%A@%%B\%%A>> "%OUTPUT_PATH%\inf_filelist.txt"
+                        echo.%%A@%%B>> "%OUTPUT_PATH%\inf_filelist.txt"
                     )
                 )
             ) else if "!TOKEN!" EQU "[SourceDisksFiles.%BSP_ARCH%]" (
                 for /f "tokens=1,3 delims==, " %%A in ("%%i") do (
                     if "%%B" EQU "" (
-                        echo.%%A@.\%%A>> "%OUTPUT_PATH%\inf_filelist.txt"
+                        echo.%%A@.>> "%OUTPUT_PATH%\inf_filelist.txt"
                     ) else (
-                        echo.%%A@%%B\%%A>> "%OUTPUT_PATH%\inf_filelist.txt"
+                        echo.%%A@%%B>> "%OUTPUT_PATH%\inf_filelist.txt"
                     )
                 )
             ) else if "!TOKEN!" EQU "[DestinationDirs]" (
@@ -162,7 +162,7 @@ call :PRINT_TEXT "      <Driver InfSource="%FILE_NAME%.inf">"
 if exist "%OUTPUT_PATH%\inf_filelist.txt" (
     REM Printing references
     for /f "useback tokens=1,* delims=@" %%A in ("%OUTPUT_PATH%\inf_filelist.txt") do (
-        call :PRINT_TEXT "         <Reference Source="%%B" />"
+        call :PRINT_TEXT "         <Reference Source="%%B\%%A" />"
     )
     call :PRINT_TEXT "         <Files>"
     REM Printing file sources
@@ -176,7 +176,7 @@ if exist "%OUTPUT_PATH%\inf_filelist.txt" (
             )
         )
         echo.   Placing %%A in !LOCATION!
-        call :PRINT_TEXT "           <File Source="%%B" "
+        call :PRINT_TEXT "           <File Source="%%B\%%A" "
         echo                  DestinationDir="!LOCATION!" >> "%OUTPUT_PATH%\%COMP_NAME%.%SUB_NAME%.pkg.xml"
         call :PRINT_TEXT "                 Name="%%A" EmbeddedSigningCategory="-oem" />"
     )
