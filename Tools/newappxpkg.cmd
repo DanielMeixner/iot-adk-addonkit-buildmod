@@ -86,6 +86,7 @@ if [%FILE_TYPE%] == [.appx] (
         set dependencylist=!dependencylist!%%~ni
     )
     echo set dependencylist=!dependencylist! >> %NEWPKG_DIR%\AppInstall\AppxConfig.cmd
+	echo set launchapp=1 >> %NEWPKG_DIR%\AppInstall\AppxConfig.cmd
     del "%FILE_PATH%\appx_cerlist.txt"
     del "%FILE_PATH%\appx_deplist.txt"
 )
