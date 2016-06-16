@@ -35,6 +35,9 @@
       <Feature>IOT_EFIESP</Feature>
       <Feature>IOT_EFIESP_BCD</Feature>
       <Feature>IOT_DMAP_DRIVER</Feature>
+      <Feature>IOT_CP210x_MAKERDRIVER</Feature>
+      <Feature>IOT_FTSER2K_MAKERDRIVER</Feature>
+      <!-- Feature>IOT_GENERIC_POP</Feature -->
       <Feature>IOT_POWER_SETTINGS</Feature>
       <!-- Following two required for Appx Installation -->
       <Feature>IOT_UAP_OOBE</Feature>
@@ -42,7 +45,7 @@
       <!-- for Connectivity -->
       <Feature>IOT_SSH</Feature>
       <!-- RS1 Additions -->
-      <Feature>IOT_APPLICATIONS</Feature>
+      <Feature>IOT_APPLICATIONS</Feature>      
     </Microsoft>
     <OEM>
       <!-- Include BSP Features -->
