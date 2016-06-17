@@ -162,7 +162,7 @@ call :PRINT_TEXT "      <Driver InfSource="%FILE_NAME%.inf">"
 if exist "%OUTPUT_PATH%\inf_filelist.txt" (
     REM Printing references
     for /f "useback tokens=1,* delims=@" %%A in ("%OUTPUT_PATH%\inf_filelist.txt") do (
-        call :PRINT_TEXT "         <Reference Source="%%B\%%A" />"
+        call :PRINT_TEXT "         <Reference Source="%%B\%%A" StagingSubDir="%%B" />"
     )
     call :PRINT_TEXT "         <Files>"
     REM Printing file sources
