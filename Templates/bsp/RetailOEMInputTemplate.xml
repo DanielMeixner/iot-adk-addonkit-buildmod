@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <OEMInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
   <Description>Contoso Windows 10 IoT Core Retail FFU with {BSP} BSP</Description>
-  <SOC>{BSP}</SOC>
-  <SV>Intel</SV>
-  <Device>{BSP}</Device>
+  <SOC>{BSP}_Soc</SOC>
+  <SV>SiliconVendor</SV> <!-- Change the SiliconVendor : Intel/Qualcomm/Rasberry Pi/.. -->
+  <Device>{BSP}_Device</Device>
   <ReleaseType>Production</ReleaseType>
   <BuildType>fre</BuildType>
   <SupportedLanguages>
@@ -33,24 +33,15 @@
   <Features>
     <Microsoft>
       <Feature>IOT_EFIESP</Feature>
-      <Feature>IOT_EFIESP_BCD</Feature>
       <Feature>IOT_DMAP_DRIVER</Feature>
-      <Feature>IOT_CP210x_MAKERDRIVER</Feature>
-      <Feature>IOT_FTSER2K_MAKERDRIVER</Feature>
-      <!-- Feature>IOT_GENERIC_POP</Feature -->
-      <Feature>IOT_POWER_SETIINGS</Feature>
-      <Feature>IOT_POWER_SETTINGS</Feature> <!-- Correct spelling in RS. Keeping old value for backward compatibility -->
-      <!-- Following two required for Appx Installation -->
-      <Feature>IOT_UAP_OOBE</Feature>
-      <Feature>IOT_APP_TOOLKIT</Feature>
-      <!-- for Connectivity -->
-      <Feature>IOT_SSH</Feature>
+      <!-- Microsoft Features -->
+
     </Microsoft>
     <OEM>
       <!-- Include BSP Features -->
-      <Feature>{BSP}_DRIVERS</Feature>
+
       <!-- Include OEM features
-      <Feature>OEM_AppxMain</Feature>
+      <Feature>OEM_AppxTextGlowClock</Feature>
       <Feature>OEM_CustomCmd</Feature>
       <Feature>OEM_ProvAuto</Feature>
       -->

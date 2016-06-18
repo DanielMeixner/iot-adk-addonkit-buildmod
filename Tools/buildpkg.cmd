@@ -73,7 +73,7 @@ if /I [%1] == [All] (
             dir "%1\*.pkg.xml" /S /b > %PKGLOG_DIR%\packagelist.txt
         ) else (
             REM Check if its in BSP path
-            cd "%BSPSRC_DIR%"
+            cd /D "%BSPSRC_DIR%"
             dir "%1" /S /B > %PKGLOG_DIR%\packagedir.txt 2>nul
             set /P RESULT=<%PKGLOG_DIR%\packagedir.txt
             if not defined RESULT (

@@ -37,7 +37,7 @@ if [%2] == [] (
         set SUB_NAME=%%j
     )
 )
-cd "%FILE_PATH%"
+cd /D "%FILE_PATH%"
 call inf2pkg.cmd %FILE_NAME%.inf %COMP_NAME%.%SUB_NAME%
 
 echo. Processing %COMP_NAME%.%SUB_NAME%.pkg.xml
