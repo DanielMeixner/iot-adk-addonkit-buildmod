@@ -52,7 +52,7 @@
       <!-- Include BSP Features -->
       <Feature>ModelA_DRIVERS</Feature>
       <!-- Include OEM features -->
-      <Feature>OEM_AppxMain</Feature>
+      <Feature>OEM_AppxTextGlowClock</Feature>
       <Feature>OEM_CustomCmd</Feature>
     </OEM>
   </Features>
