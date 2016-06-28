@@ -20,6 +20,14 @@
         </FeatureIDs>
       </PackageFile>
 
+      <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Settings.HotKey.cab">
+        <FeatureIDs>
+          <!-- This feature id sets the HotKey for "Home" -->
+          <FeatureID>OEMCommon_HotKey</FeatureID>
+          <FeatureID>OEMCommon_ALL</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
+
       <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.ImageSettings.CrashControl.cab">
         <FeatureIDs>
           <!-- This feature id sets the Crashdump settings -->
