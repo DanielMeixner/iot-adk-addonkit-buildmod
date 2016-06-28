@@ -57,8 +57,8 @@ if /i not exist %SRC_DIR%\BSP\%BSPNAME% (
 
 :: Start processing command
 echo Creating %1 Product with BSP %BSPNAME%
-SET PRODUCT=%1
-SET PRODSRC_DIR=%SRC_DIR%\Products\%PRODUCT%
+set PRODUCT=%1
+set PRODSRC_DIR=%SRC_DIR%\Products\%PRODUCT%
 
 mkdir "%PRODSRC_DIR%"
 mkdir "%PRODSRC_DIR%\prov"
@@ -68,7 +68,7 @@ copy %BSPSRC_DIR%\%BSPNAME%\OEMInputSamples\TestOEMInput.xml %PRODSRC_DIR%\TestO
 
 copy "%IOTADK_ROOT%\Templates\oemcustomization.cmd" %PRODSRC_DIR%\oemcustomization.cmd >nul
 REM Get a new GUID for the Provisioning config file
-call "%KITSROOT%bin\x64\uuidgen.exe" > %PRODSRC_DIR%\uuid.txt
+powershell -Command "[System.Guid]::NewGuid().toString() | Out-File %PRODSRC_DIR%\uuid.txt -Encoding ascii"
 set /p NEWGUID=<%PRODSRC_DIR%\uuid.txt
 del %PRODSRC_DIR%\uuid.txt
 

@@ -28,9 +28,9 @@ if not defined SRC_DIR (
     goto End
 )
 :: Error Checks
-SET NEWBSP=%1
-SET NEWBSP_DIR=%BSPSRC_DIR%\%NEWBSP%
-
+set NEWBSP=%1
+set NEWBSP_DIR=%BSPSRC_DIR%\%NEWBSP%
+set TEMPLATE_DIR=%IOTADK_ROOT%\Templates\BSP
 if /i exist %NEWBSP_DIR% (
     echo Error : %1 already exists
     goto Usage
@@ -43,9 +43,9 @@ mkdir "%NEWBSP_DIR%"
 mkdir "%NEWBSP_DIR%\Packages"
 mkdir "%NEWBSP_DIR%\OEMInputSamples"
 
-powershell -Command "(gc %SRC_DIR%\Templates\RetailOEMInputTemplate.xml) -replace '{BSP}', '%NEWBSP%' -replace '{arch}', '%BSP_ARCH%' | Out-File %NEWBSP_DIR%\OEMInputSamples\RetailOEMInput.xml -Encoding utf8"
-powershell -Command "(gc %SRC_DIR%\Templates\TestOEMInputTemplate.xml) -replace '{BSP}', '%NEWBSP%' -replace '{arch}', '%BSP_ARCH%' | Out-File %NEWBSP_DIR%\OEMInputSamples\TestOEMInput.xml -Encoding utf8"
-powershell -Command "(gc %SRC_DIR%\Templates\SampleFM.xml) -replace '{BSP}', '%NEWBSP%' -replace '{arch}', '%BSP_ARCH%' | Out-File %NEWBSP_DIR%\Packages\%NEWBSP%FM.xml -Encoding utf8"
+powershell -Command "(gc %TEMPLATE_DIR%\RetailOEMInputTemplate.xml) -replace '{BSP}', '%NEWBSP%' -replace '{arch}', '%BSP_ARCH%' | Out-File %NEWBSP_DIR%\OEMInputSamples\RetailOEMInput.xml -Encoding utf8"
+powershell -Command "(gc %TEMPLATE_DIR%\TestOEMInputTemplate.xml) -replace '{BSP}', '%NEWBSP%' -replace '{arch}', '%BSP_ARCH%' | Out-File %NEWBSP_DIR%\OEMInputSamples\TestOEMInput.xml -Encoding utf8"
+powershell -Command "(gc %TEMPLATE_DIR%\BSPFMTemplate.xml) -replace '{BSP}', '%NEWBSP%' -replace '{arch}', '%BSP_ARCH%' | Out-File %NEWBSP_DIR%\Packages\%NEWBSP%FM.xml -Encoding utf8"
 
 echo %1 BSP directories ready
 goto End
