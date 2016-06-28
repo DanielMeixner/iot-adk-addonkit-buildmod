@@ -57,7 +57,7 @@ powershell -Command "(gc %IOTADK_ROOT%\Templates\DrvTemplate.pkg.xml) -replace '
 )
 if [%1] ==[pkgFile] (
 :: Create File/Registry package using template files
-powershell -Command "(gc %IOTADK_ROOT%\Templates\FileTemplate.pkg.xml) -replace 'COMPNAME', '%2' -replace 'SUBNAME', '%3' -replace 'PLFNAME', '%BSP_ARCH%' | Out-File %NEWPKG_DIR%\%2.%3.pkg.xml -Encoding utf8"
+powershell -Command "(gc %IOTADK_ROOT%\Templates\FileTemplate.pkg.xml) -replace 'COMPNAME', '%2' -replace 'SUBNAME', '%3' | Out-File %NEWPKG_DIR%\%2.%3.pkg.xml -Encoding utf8"
 )
 
 echo %NEWPKG_DIR% ready

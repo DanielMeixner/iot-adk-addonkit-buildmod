@@ -22,7 +22,9 @@ call AppxConfig.cmd
 
 echo Appx Name :%AppxName%
 
+REM Set defaults for optional parameters
 if not defined forceinstall ( set forceinstall=0 )
+if not defined launchapp ( set launchapp=1 )
 if not exist .\logs ( mkdir logs ) else ( del /Q .\logs\*.* )
 
 REM
@@ -37,7 +39,7 @@ REM Add all dependency appx
 REM
 echo Installing dependency appx packages
 for %%d in (%dependencylist%) do (
-	echo Installing %%d.appx
+    echo Installing %%d.appx
     deployappx.exe install .\%%d.appx >> .\logs\dependency_result.txt
 )
 
@@ -52,9 +54,11 @@ if %forceinstall% == 1 (
 echo Installing %AppxName%.appx with %INSTALL_PARAMS%
 deployappx.exe %INSTALL_PARAMS% > %temp%\%AppxName%_result.txt
 if "%ERRORLEVEL%"=="0" (
-    call :LAUNCH_APP
+    if %launchapp% == 1 (
+        call :LAUNCH_APP
+    )
 ) else (
-    echo. Error in installing %AppxName%.appx. 
+    echo. Error in installing %AppxName%.appx.
     echo. Result:%ERRORLEVEL%
 )
 
@@ -66,9 +70,10 @@ for /f "tokens=2,5 delims=:_" %%A in (.\logs\packageid.txt) do (
     set AppxID=%%A_%%B
 )
 set AppxID=%AppxID: =%
-echo Launching %AppxID% 
+echo Launching %AppxID%
 REM Trigger IoTStartup
 iotstartup.exe add headed %AppxID%
+
 exit /b
 
 :SUB_CHECKERROR
