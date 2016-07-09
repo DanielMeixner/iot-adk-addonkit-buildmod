@@ -62,10 +62,11 @@
       <!-- Sample Apps, remove this when you introduce OEM Apps -->
       <Feature>IOT_BERTHA</Feature>
       <Feature>IOT_ALLJOYN_APP</Feature>
-      <!-- RS1 Additions -->
+      
       <Feature>IOT_NANORDPSERVER</Feature>
       <Feature>IOT_SHELL_HOTKEY_SUPPORT</Feature>
       <Feature>IOT_APPLICATIONS</Feature>
+	  <Feature>IOT_ENABLE_ADMIN</Feature>
    </Microsoft>
    <OEM>
       <!-- Include BSP Features -->

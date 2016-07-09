@@ -2,10 +2,6 @@
 REM OEM Customization Script file
 REM This script if included in the image, is called everytime the system boots.
 
-
-REM Enable Administrator User
-net user Administrator p@ssw0rd /active:yes
-
 if exist C:\AppInstall\AppInstall.cmd (
     REM Enable Application Installation for onetime only, after this the files are deleted.
     call C:\Appinstall\AppInstall.cmd > %temp%\AppInstallLog.txt

@@ -37,8 +37,7 @@
       <Feature>IOT_EFIESP_BCD</Feature> 
       <Feature>IOT_DMAP_DRIVER</Feature>
       <Feature>IOT_GENERIC_POP</Feature>      
-      <Feature>IOT_POWER_SETIINGS</Feature>
-      <Feature>IOT_POWER_SETTINGS</Feature> <!-- Correct spelling in RS. Keeping old value for backward compatibility -->
+      <Feature>IOT_POWER_SETTINGS</Feature>
 	  <!-- Following two required for Appx Installation -->
 	  <Feature>IOT_UAP_OOBE</Feature> 
 	  <Feature>IOT_APP_TOOLKIT</Feature> 
@@ -58,6 +57,7 @@
       <Feature>IOT_NANORDPSERVER</Feature>
       <Feature>IOT_SHELL_HOTKEY_SUPPORT</Feature>
       <Feature>IOT_APPLICATIONS</Feature>
+	  <!-- <Feature>IOT_ENABLE_ADMIN</Feature> Enabling this in OEMCustomization Command -->
    </Microsoft> 
    <OEM> 
 	  <!-- Include BSP Features -->

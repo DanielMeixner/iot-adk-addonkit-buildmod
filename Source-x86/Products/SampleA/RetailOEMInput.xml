@@ -41,8 +41,9 @@
       <!-- for Connectivity -->
       <Feature>IOT_SSH</Feature>
       <Feature>IOT_SIREP</Feature>
-      <!-- RS1 Additions -->
+      
       <Feature>IOT_APPLICATIONS</Feature>
+	  <Feature>IOT_ENABLE_ADMIN</Feature>
     </Microsoft>
     <OEM>
       <!-- Inclide BSP Features -->

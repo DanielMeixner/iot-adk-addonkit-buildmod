@@ -43,6 +43,7 @@
       <Feature>IOT_APP_TOOLKIT</Feature>
       <!-- for Connectivity -->
       <Feature>IOT_SSH</Feature>
+	  <Feature>IOT_ENABLE_ADMIN</Feature>
     </Microsoft>
     <OEM>
       <!-- Include BSP Features -->
