@@ -32,7 +32,7 @@ set PRODSRC_DIR=%SRC_DIR%\Products\%PRODUCT%
 set PRODBLD_DIR=%BLD_DIR%\%1\%2
 if not defined MSPACKAGE ( set "MSPACKAGE=%KITSROOT%MSPackages" )
 
-if NOT exist %SRC_DIR%\Products\%PRODUCT% (
+if not exist %SRC_DIR%\Products\%PRODUCT% (
    echo %PRODUCT% not found. Available products listed below
    dir /b /AD %SRC_DIR%\Products
    goto Usage
@@ -42,13 +42,17 @@ echo Creating %1 %2 Image
 echo Build Start Time : %TIME%
 
 echo Building Packages with product specific contents
-call buildpkg.cmd Custom.Cmd
-
-if NOT exist %PRODSRC_DIR%\prov\%PRODUCT%Prov.ppkg (
- REM Create the provisioning ppkg
- call createprovpkg.cmd %PRODSRC_DIR%\prov\customizations.xml %PRODSRC_DIR%\prov\%PRODUCT%Prov.ppkg
+if exist %PRODSRC_DIR%\oemcustomization.cmd (
+    call buildpkg.cmd Custom.Cmd
 )
-call buildpkg.cmd Provisioning.Auto
+
+if exist %PRODSRC_DIR%\prov\customizations.xml (
+    if NOT exist %PRODSRC_DIR%\prov\%PRODUCT%Prov.ppkg (
+    REM Create the provisioning ppkg
+        call createprovpkg.cmd %PRODSRC_DIR%\prov\customizations.xml %PRODSRC_DIR%\prov\%PRODUCT%Prov.ppkg
+    )
+	call buildpkg.cmd Provisioning.Auto
+)
 
 echo Creating Image...
 call imggen.cmd "%PRODBLD_DIR%\Flash.FFU" "%PRODSRC_DIR%\%2OEMInput.xml" "%MSPACKAGE%" %BSP_ARCH%
