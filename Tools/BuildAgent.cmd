@@ -1,3 +1,4 @@
+:: This script builds FFUs for all OEMInputSamples under the Addon Kit directory
 @echo off
 
 call %~dp0\LaunchTool.cmd arm
