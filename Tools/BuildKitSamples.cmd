@@ -31,6 +31,6 @@ echo. Copying %1 OEMInputSamples to %PRODUCT_DIR%
 copy "%KITSROOT%OEMInputSamples\%BSP_ARCH%\%1\RetailOemInput.xml" "%PRODUCT_DIR%\RetailOemInput.xml" >nul
 copy "%KITSROOT%OEMInputSamples\%BSP_ARCH%\%1\ProductionOemInput.xml" "%PRODUCT_DIR%\TestOemInput.xml" >nul
 echo. Building %1FFU
-REM call buildimage %1FFU
+call buildimage %1FFU
 exit /b 0
 
