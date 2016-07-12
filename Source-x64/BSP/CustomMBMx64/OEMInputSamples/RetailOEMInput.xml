@@ -42,7 +42,8 @@
       <Feature>IOT_APP_TOOLKIT</Feature>
       <!-- for Connectivity -->
       <Feature>IOT_SSH</Feature>
-      <!-- RS1 Additions -->
+      <Feature>IOT_ENABLE_ADMIN</Feature>
+	  
       <Feature>IOT_APPLICATIONS</Feature>
     </Microsoft>
     <OEM>

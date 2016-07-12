@@ -9,7 +9,7 @@
      <!-- Device Info/ Device Targeting Info : Include IOT_GENERIC_POP in OEMInput xml-->
      <!-- Mandatory device drivers : None -->
      <!-- Device specific customisations if any : None -->
-     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-IoTUAP-MBM-Customization-Package.cab" />      
+     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBMx64.Customization.cab" />      
   </BasePackages>
   
   <OEMDevicePlatformPackages>

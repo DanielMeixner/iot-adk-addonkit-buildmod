@@ -22,6 +22,10 @@ if [%1] == [/?] goto Usage
 if [%1] == [-?] goto Usage
 if [%1] == [] goto Usage
 if /I not [%~x1] == [.inf] goto Usage
+if not defined BSP_ARCH (
+    echo. BSP_ARCH not set. Setting to x86
+    set BSP_ARCH=x86
+)
 
 set FILE_NAME=%~n1
 set FILE_PATH=%~dp1

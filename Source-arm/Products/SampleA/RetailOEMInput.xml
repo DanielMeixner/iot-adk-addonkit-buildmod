@@ -44,7 +44,8 @@
       <Feature>IOT_NETCMD</Feature>
       <Feature>IOT_SSH</Feature>
       <Feature>IOT_SIREP</Feature>
-      <!-- RS1 Additions -->
+      <Feature>IOT_ENABLE_ADMIN</Feature>
+	  
       <Feature>IOT_APPLICATIONS</Feature>
     </Microsoft>
     <OEM>
