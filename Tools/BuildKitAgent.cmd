@@ -1,4 +1,4 @@
-:: This script builds FFUs for all OEMInputSamples in Core Kit package
+REM This script builds FFUs for all OEMInputSamples in Core Kit package
 
 @echo off
 

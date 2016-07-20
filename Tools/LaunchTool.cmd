@@ -5,10 +5,35 @@ set IOTADK_ROOT=%~dp0
 REM Getting rid of the \Tools\ at the end
 set IOTADK_ROOT=%IOTADK_ROOT:~0,-7%
 
-REM Get the Kits Root path from registry
-for /F "skip=2 tokens=2,*" %%A in ('reg query "HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows Kits\Installed Roots" /v KitsRoot10') do (
-    set KITPATH=%%BAssessment and Deployment Kit\Deployment Tools
+REM
+REM Query the 32-bit and 64-bit Registry hive for KitsRoot
+REM
+
+set regKeyPathFound=1
+set wowRegKeyPathFound=1
+set KitsRootRegValueName=KitsRoot10
+
+REG QUERY "HKLM\Software\Wow6432Node\Microsoft\Windows Kits\Installed Roots" /v %KitsRootRegValueName% 1>NUL 2>NUL || set wowRegKeyPathFound=0
+REG QUERY "HKLM\Software\Microsoft\Windows Kits\Installed Roots" /v %KitsRootRegValueName% 1>NUL 2>NUL || set regKeyPathFound=0
+
+if %wowRegKeyPathFound% EQU 0 (
+  if %regKeyPathFound% EQU 0 (
+    echo KitsRoot not found, can't set common path for Deployment Tools
+    pause
+    exit /b 
+  ) else (
+    set regKeyPath=HKLM\Software\Microsoft\Windows Kits\Installed Roots
+  )
+) else (
+    set regKeyPath=HKLM\Software\Wow6432Node\Microsoft\Windows Kits\Installed Roots
 )
+  
+for /F "skip=2 tokens=2*" %%i in ('REG QUERY "%regKeyPath%" /v %KitsRootRegValueName%') do (SET KITPATH=%%jAssessment and Deployment Kit\Deployment Tools)
+REM Cleanup local variables
+set regKeyPathFound=
+set wowRegKeyPathFound=
+set KitsRootRegValueName=
+
 REM Check for ADK Presence and Launch
 if exist "%KITPATH%\DandISetEnv.bat" (
     call "%KITPATH%\DandISetEnv.bat"
