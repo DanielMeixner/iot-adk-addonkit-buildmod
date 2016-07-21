@@ -5,10 +5,35 @@ set IOTADK_ROOT=%~dp0
 REM Getting rid of the \Tools\ at the end
 set IOTADK_ROOT=%IOTADK_ROOT:~0,-7%
 
-REM Get the Kits Root path from registry
-for /F "skip=2 tokens=2,*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows Kits\Installed Roots" /v KitsRoot10') do (
-    set KITPATH=%%BAssessment and Deployment Kit\Deployment Tools
+REM
+REM Query the 32-bit and 64-bit Registry hive for KitsRoot
+REM
+
+set regKeyPathFound=1
+set wowRegKeyPathFound=1
+set KitsRootRegValueName=KitsRoot10
+
+REG QUERY "HKLM\Software\Wow6432Node\Microsoft\Windows Kits\Installed Roots" /v %KitsRootRegValueName% 1>NUL 2>NUL || set wowRegKeyPathFound=0
+REG QUERY "HKLM\Software\Microsoft\Windows Kits\Installed Roots" /v %KitsRootRegValueName% 1>NUL 2>NUL || set regKeyPathFound=0
+
+if %wowRegKeyPathFound% EQU 0 (
+  if %regKeyPathFound% EQU 0 (
+    echo KitsRoot not found, can't set common path for Deployment Tools
+    pause
+    exit /b
+  ) else (
+    set regKeyPath=HKLM\Software\Microsoft\Windows Kits\Installed Roots
+  )
+) else (
+    set regKeyPath=HKLM\Software\Wow6432Node\Microsoft\Windows Kits\Installed Roots
 )
+  
+for /F "skip=2 tokens=2*" %%i in ('REG QUERY "%regKeyPath%" /v %KitsRootRegValueName%') do (SET KITPATH=%%jAssessment and Deployment Kit\Deployment Tools)
+REM Cleanup local variables
+set regKeyPathFound=
+set wowRegKeyPathFound=
+set KitsRootRegValueName=
+
 REM Check for ADK Presence and Launch
 if exist "%KITPATH%\DandISetEnv.bat" (
     call "%KITPATH%\DandISetEnv.bat"
@@ -38,7 +63,7 @@ if exist "%KITSROOT%\MSPackages" (
     reg query "HKEY_CLASSES_ROOT\Installer\Dependencies\Microsoft.Windows.Windows_10_IoT_Core_x86_Packages.x86.10" /v Version > %IOTADK_ROOT%\corekitversion.txt 2>nul
     if errorlevel 1 (
         REM MSPackages present without this registry key - Assuming older version of packages.
-        set COREKIT_VER=10586.0
+        set COREKIT_VER=10586
     ) else (
         for /F "skip=2 tokens=3" %%r in (%IOTADK_ROOT%\corekitversion.txt) do ( set KIT_VERSION=%%r )
     )
@@ -63,13 +88,16 @@ echo WDK_VERSION : %WDK_VERSION%
 echo COREKIT_VER : %COREKIT_VER%
 echo OEM_NAME    : %OEM_NAME%
 echo.
-echo Set Environment for Architecture
-choice /C 12 /N /M "Choose 1 for ARM and 2 for x86"
-echo.
-if errorlevel 2 (
-    call setenv x86
-) else if errorlevel 1 (
-    call setenv arm
+if [%1] == [] (
+    echo Set Environment for Architecture
+    choice /C 12 /N /M "Choose 1 for ARM, 2 for x86:"
+    echo.
+    if errorlevel 2 (
+        call setenv x86
+    ) else if errorlevel 1 (
+        call setenv arm
+    )
+) else (
+    echo Setting Environment for Architecture %1
+    call setenv %1
 )
-
-

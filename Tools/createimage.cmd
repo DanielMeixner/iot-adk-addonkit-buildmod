@@ -42,13 +42,17 @@ echo Creating %1 %2 Image
 echo Build Start Time : %TIME%
 
 echo Building Packages with product specific contents
-call buildpkg.cmd Custom.Cmd
-
-if NOT exist %PRODSRC_DIR%\prov\%PRODUCT%Prov.ppkg (
- REM Create the provisioning ppkg
- call createprovpkg.cmd %PRODSRC_DIR%\prov\customizations.xml %PRODSRC_DIR%\prov\%PRODUCT%Prov.ppkg
+if exist %PRODSRC_DIR%\oemcustomization.cmd (
+    call buildpkg.cmd Custom.Cmd
 )
-call buildpkg.cmd Provisioning.Auto
+
+if exist %PRODSRC_DIR%\prov\customizations.xml (
+    if NOT exist %PRODSRC_DIR%\prov\%PRODUCT%Prov.ppkg (
+    REM Create the provisioning ppkg
+        call createprovpkg.cmd %PRODSRC_DIR%\prov\customizations.xml %PRODSRC_DIR%\prov\%PRODUCT%Prov.ppkg
+    )
+	call buildpkg.cmd Provisioning.Auto
+)
 
 echo Creating Image...
 call imggen.cmd "%PRODBLD_DIR%\Flash.FFU" "%PRODSRC_DIR%\%2OEMInput.xml" "%MSPACKAGE%" %BSP_ARCH%
