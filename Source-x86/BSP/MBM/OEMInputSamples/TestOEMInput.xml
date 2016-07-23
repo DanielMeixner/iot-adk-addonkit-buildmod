@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<OEMInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+<OEMInput 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
   <Description>Contoso Windows 10 IoT Core Test FFU with MBM BSP</Description>
   <SOC>MBM</SOC>
   <SV>Intel</SV>
@@ -26,14 +29,13 @@
     <!-- Including BSP feature manifest -->
     <AdditionalFM>%BSPSRC_DIR%\MBM\Packages\MBMFM.xml</AdditionalFM>
     <!-- Including OEM feature manifest
-    <AdditionalFM>%COMMON_DIR%\Packages\OEMCommonFM.xml</AdditionalFM>
-    <AdditionalFM>%SRC_DIR%\Packages\OEMFM.xml</AdditionalFM>
+    <AdditionalFM>%COMMON_DIR%\Packages\OEMCommonFM.xml</AdditionalFM><AdditionalFM>%SRC_DIR%\Packages\OEMFM.xml</AdditionalFM>
     -->
     <!-- Including the test features -->
     <AdditionalFM>%AKROOT%\FMFiles\x86\IoTUAPNonProductionPartnerShareFM.xml</AdditionalFM>
   </AdditionalFMs>
   <Features>
-   <Microsoft>
+    <Microsoft>
       <Feature>IOT_EFIESP</Feature>
       <Feature>IOT_EFIESP_BCD</Feature>
       <Feature>IOT_DMAP_DRIVER</Feature>
@@ -65,7 +67,6 @@
       <!-- Sample Apps, remove this when you introduce OEM Apps -->
       <Feature>IOT_BERTHA</Feature>
       <Feature>IOT_ALLJOYN_APP</Feature>
-
       <Feature>IOT_NANORDPSERVER</Feature>
       <Feature>IOT_SHELL_HOTKEY_SUPPORT</Feature>
       <Feature>IOT_APPLICATIONS</Feature>
@@ -75,11 +76,9 @@
       <!-- Include BSP Features -->
       <Feature>MBM_DRIVERS</Feature>
       <!-- Include OEM features
-      <Feature>OEM_AppxMain</Feature>
-      <Feature>OEM_CustomCmd</Feature>
-      <Feature>OEM_ProvAuto</Feature>
+      <Feature>OEM_AppxMain</Feature><Feature>OEM_CustomCmd</Feature><Feature>OEM_ProvAuto</Feature>
         -->
-   </OEM>
+    </OEM>
   </Features>
- <Product>Windows 10 IoT Core</Product>
+  <Product>Windows 10 IoT Core</Product>
 </OEMInput>
