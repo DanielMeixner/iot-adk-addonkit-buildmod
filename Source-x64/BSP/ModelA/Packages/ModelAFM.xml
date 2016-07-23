@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FeatureManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+<FeatureManifest 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
   <BasePackages>
-     <!-- System Information package for providing system details , required for DM enrollment etc -->
-     <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Device.SystemInformation.cab"/>
-     <!-- UEFI for the silicon packaged in Bootfirmware : None -->
-     <!-- Drivers required for boot/reading partitions for UpdateOS: Not required -->
-     <!-- GPT BCD Settings : Include IOT_EFIESP_BCD in OEMInput xml file-->
-     <!-- Device Info/ Device Targeting Info : Include IOT_GENERIC_POP in OEMInput xml-->
-     <!-- Mandatory device drivers : None -->
-     <!-- Device specific customisations if any : None -->
-     <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBMx64.Customization.cab" />      
+    <!-- System Information package for providing system details , required for DM enrollment etc -->
+    <PackageFile Path="%PKGBLD_DIR%" Name="%OEM_NAME%.Device.SystemInformation.cab"/>
+    <!-- UEFI for the silicon packaged in Bootfirmware : None -->
+    <!-- Drivers required for boot/reading partitions for UpdateOS: Not required -->
+    <!-- GPT BCD Settings : Include IOT_EFIESP_BCD in OEMInput xml file-->
+    <!-- Device Info/ Device Targeting Info : Include IOT_GENERIC_POP in OEMInput xml-->
+    <!-- Mandatory device drivers : None -->
+    <!-- Device specific customisations if any : None -->
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBMx64.Customization.cab" />
   </BasePackages>
-  
   <OEMDevicePlatformPackages>
     <!-- GPT 4GB layout  -->
     <PackageFile Device="ModelA" Path="%PKGBLD_DIR%" Name="%OEM_NAME%.DeviceLayout.GPT4GB.cab"/>
     <!-- GPT 2GB layout - select this by specifying the SOC field in the OEMInput xml file -->
     <PackageFile Device="ModelA-Min" Path="%PKGBLD_DIR%" Name="%OEM_NAME%.DeviceLayout.GPT2GB.cab"/>
   </OEMDevicePlatformPackages>
-
   <DeviceLayoutPackages>
     <!-- GPT 4GB layout  -->
     <PackageFile SOC="ModelA" Path="%PKGBLD_DIR%" Name="%OEM_NAME%.DeviceLayout.GPT4GB.cab"/>
     <!-- GPT 2GB layout - select this by specifying the SOC field in the OEMInput xml file -->
     <PackageFile SOC="ModelA-Min" Path="%PKGBLD_DIR%" Name="%OEM_NAME%.DeviceLayout.GPT2GB.cab"/>
   </DeviceLayoutPackages>
-
   <Features>
     <Microsoft />
     <MSFeatureGroups />
@@ -36,22 +36,22 @@
           <FeatureID>ModelA_DRIVERS</FeatureID>
         </FeatureIDs>
       </PackageFile>
-      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBMx64.UART.cab" >
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBMx64.UART.cab">
         <FeatureIDs>
           <FeatureID>ModelA_DRIVERS</FeatureID>
         </FeatureIDs>
       </PackageFile>
-      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBMx64.I2C.cab" >
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBMx64.I2C.cab">
         <FeatureIDs>
           <FeatureID>ModelA_DRIVERS</FeatureID>
         </FeatureIDs>
       </PackageFile>
-      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBMx64.SPI.cab" >
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBMx64.SPI.cab">
         <FeatureIDs>
           <FeatureID>ModelA_DRIVERS</FeatureID>
         </FeatureIDs>
       </PackageFile>
-      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBMx64.GRFX.cab" >
+      <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Intel.MBMx64.GRFX.cab">
         <FeatureIDs>
           <FeatureID>ModelA_DRIVERS</FeatureID>
         </FeatureIDs>
