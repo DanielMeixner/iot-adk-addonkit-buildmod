@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<OEMInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+<OEMInput 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
   <Description>Contoso Windows 10 IoT Core Production FFU with ModelA BSP </Description>
   <SOC>ModelA</SOC>
   <SV>RASPBERRY PI</SV>
@@ -55,7 +58,7 @@
       <Feature>IOT_NANORDPSERVER</Feature>
       <Feature>IOT_SHELL_HOTKEY_SUPPORT</Feature>
       <Feature>IOT_APPLICATIONS</Feature>
-	  <!-- <Feature>IOT_ENABLE_ADMIN</Feature> Enabling this in OEMCustomization Command -->      
+      <!-- <Feature>IOT_ENABLE_ADMIN</Feature> Enabling this in OEMCustomization Command -->
     </Microsoft>
     <OEM>
       <!-- Include BSP Features -->

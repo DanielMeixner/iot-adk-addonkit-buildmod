@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<OEMInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+<OEMInput 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
   <Description>Contoso Windows 10 IoT Core Retail FFU with APL BSP</Description>
   <SOC>CustomMBMx64</SOC>
   <SV>Intel</SV>
@@ -26,8 +29,7 @@
     <!-- Including BSP feature manifest -->
     <AdditionalFM>%BSPSRC_DIR%\CustomMBMx64\Packages\CustomMBMx64FM.xml</AdditionalFM>
     <!-- Including OEM feature manifest 
-    <AdditionalFM>%COMMON_DIR%\Packages\OEMCommonFM.xml</AdditionalFM>
-    <AdditionalFM>%SRC_DIR%\Packages\OEMFM.xml</AdditionalFM>
+    <AdditionalFM>%COMMON_DIR%\Packages\OEMCommonFM.xml</AdditionalFM><AdditionalFM>%SRC_DIR%\Packages\OEMFM.xml</AdditionalFM>
     -->
   </AdditionalFMs>
   <Features>
@@ -43,16 +45,13 @@
       <!-- for Connectivity -->
       <Feature>IOT_SSH</Feature>
       <Feature>IOT_ENABLE_ADMIN</Feature>
-	  
       <Feature>IOT_APPLICATIONS</Feature>
     </Microsoft>
     <OEM>
       <!-- Include BSP Features -->
-      <Feature>CustomMBMx64_DRIVERS</Feature> 
+      <Feature>CustomMBMx64_DRIVERS</Feature>
       <!-- Include OEM features 
-      <Feature>OEM_AppxMain</Feature>
-      <Feature>OEM_CustomCmd</Feature>
-      <Feature>OEM_ProvAuto</Feature> 
+      <Feature>OEM_AppxMain</Feature><Feature>OEM_CustomCmd</Feature><Feature>OEM_ProvAuto</Feature> 
       -->
     </OEM>
   </Features>
