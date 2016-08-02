@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UpdateOSInput 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+      xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+      <Description>Add Update2 packages</Description>
+      <PackageFiles>
+            <!-- Always include the version package -->
+            <PackageFile>%BLD_DIR%\Update2\%OEM_NAME%.Registry.Version.cab</PackageFile>
+            <!-- including the Update1 also here as a cumulative update for demonstration -->
+            <PackageFile>%BLD_DIR%\Update1\%OEM_NAME%.Appx.Main.cab</PackageFile>
+            <PackageFile>%BLD_DIR%\Update2\%OEM_NAME%.CustomMBM.GPIO.cab</PackageFile>
+            <!-- Custom.cmd package not included as the FFU already has this file and need not be updated -->
+      </PackageFiles>
+</UpdateOSInput>

@@ -22,6 +22,10 @@ if [%1] == [/?] goto Usage
 if [%1] == [-?] goto Usage
 if [%1] == [] goto Usage
 if /I not [%~x1] == [.inf] goto Usage
+if not defined BSP_ARCH (
+    echo. BSP_ARCH not set. Setting to x86
+    set BSP_ARCH=x86
+)
 
 set FILE_NAME=%~n1
 set FILE_PATH=%~dp1
@@ -162,7 +166,7 @@ call :PRINT_TEXT "      <Driver InfSource="%FILE_NAME%.inf">"
 if exist "%OUTPUT_PATH%\inf_filelist.txt" (
     REM Printing references
     for /f "useback tokens=1,* delims=@" %%A in ("%OUTPUT_PATH%\inf_filelist.txt") do (
-        call :PRINT_TEXT "         <Reference Source="%%B\%%A" />"
+        call :PRINT_TEXT "         <Reference Source="%%B\%%A" StagingSubDir="%%B" />"
     )
     call :PRINT_TEXT "         <Files>"
     REM Printing file sources

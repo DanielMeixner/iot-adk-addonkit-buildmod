@@ -32,7 +32,7 @@ set PRODSRC_DIR=%SRC_DIR%\Products\%PRODUCT%
 set PRODBLD_DIR=%BLD_DIR%\%1\%2
 if not defined MSPACKAGE ( set "MSPACKAGE=%KITSROOT%MSPackages" )
 
-if NOT exist %SRC_DIR%\Products\%PRODUCT% (
+if not exist %SRC_DIR%\Products\%PRODUCT% (
    echo %PRODUCT% not found. Available products listed below
    dir /b /AD %SRC_DIR%\Products
    goto Usage

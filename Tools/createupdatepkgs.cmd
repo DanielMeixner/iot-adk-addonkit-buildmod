@@ -45,7 +45,7 @@ del updatepackagelist.txt
 
 REM always rebuild the version packages
 call createpkg.cmd %COMMON_DIR%\Packages\Registry.Version\Registry.Version.pkg.xml %PKG_VER%
-copy "%IOTADK_ROOT%\Templates\installupdates.cmd" "%PKGBLD_DIR%\installupdates.cmd"
+copy "%IOTADK_ROOT%\Templates\installupdates.cmd" "%PKGBLD_DIR%\installupdates.cmd" >nul
 
 
 :END

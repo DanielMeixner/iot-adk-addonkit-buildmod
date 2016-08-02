@@ -13,7 +13,3 @@ This branch contains the active development contents, mostly addressing the upco
 
 ##10586 Branch
 This branch supports the Windows IoT Core Release 1511.
-
-
-
-

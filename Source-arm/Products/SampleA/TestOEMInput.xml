@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<OEMInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+<OEMInput 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
   <Description>Contoso Windows 10 IoT Core RPi2 Test FFU with RPi2 BSP </Description>
   <SOC>RPi2</SOC>
   <SV>RASPBERRY PI</SV>
@@ -50,9 +53,13 @@
       <Feature>IOT_DISABLE_UMCI</Feature>
       <Feature>IOT_ENABLE_TESTSIGNING</Feature>
       <Feature>IOT_TOOLKIT</Feature>
+      <Feature>IOT_NANORDPSERVER</Feature>
+      <Feature>IOT_SHELL_HOTKEY_SUPPORT</Feature>
+      <Feature>IOT_APPLICATIONS</Feature>
+      <Feature>IOT_ENABLE_ADMIN</Feature>
     </Microsoft>
     <OEM>
-      <!-- Inclide BSP Features -->
+      <!-- Include BSP Features -->
       <Feature>RPI2_DRIVERS</Feature>
       <!-- Include OEM features -->
       <Feature>OEM_AppxMain</Feature>
