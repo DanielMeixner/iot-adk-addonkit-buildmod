@@ -20,7 +20,7 @@ if %wowRegKeyPathFound% EQU 0 (
   if %regKeyPathFound% EQU 0 (
     echo KitsRoot not found, can't set common path for Deployment Tools
     pause
-    exit /b
+    exit /b 
   ) else (
     set regKeyPath=HKLM\Software\Microsoft\Windows Kits\Installed Roots
   )
@@ -63,7 +63,7 @@ if exist "%KITSROOT%\MSPackages" (
     reg query "HKEY_CLASSES_ROOT\Installer\Dependencies\Microsoft.Windows.Windows_10_IoT_Core_x86_Packages.x86.10" /v Version > %IOTADK_ROOT%\corekitversion.txt 2>nul
     if errorlevel 1 (
         REM MSPackages present without this registry key - Assuming older version of packages.
-        set COREKIT_VER=10586
+        set COREKIT_VER=10586.0
     ) else (
         for /F "skip=2 tokens=3" %%r in (%IOTADK_ROOT%\corekitversion.txt) do ( set KIT_VERSION=%%r )
     )
@@ -88,11 +88,14 @@ echo WDK_VERSION : %WDK_VERSION%
 echo COREKIT_VER : %COREKIT_VER%
 echo OEM_NAME    : %OEM_NAME%
 echo.
+
 if [%1] == [] (
     echo Set Environment for Architecture
-    choice /C 12 /N /M "Choose 1 for ARM, 2 for x86:"
+    choice /C 123 /N /M "Choose 1 for ARM, 2 for x86 and 3 for x64 :"
     echo.
-    if errorlevel 2 (
+    if errorlevel 3 (
+        call setenv x64
+    ) else if errorlevel 2 (
         call setenv x86
     ) else if errorlevel 1 (
         call setenv arm
@@ -101,3 +104,5 @@ if [%1] == [] (
     echo Setting Environment for Architecture %1
     call setenv %1
 )
+
+

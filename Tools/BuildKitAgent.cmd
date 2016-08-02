@@ -14,4 +14,9 @@ echo Building x86 sample FFUs
 call BuildKitSamples.cmd Test
 call BuildKitSamples.cmd Retail
 
+call setenv x64
+echo Building x64 sample FFUs
+call BuildKitSamples.cmd Test
+call BuildKitSamples.cmd Retail
+
 exit /b 0

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<OEMInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+<OEMInput 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
   <Description>Contoso Windows 10 IoT Core Test FFU with MBM BSP</Description>
   <SOC>MBM</SOC>
   <SV>Intel</SV>
@@ -28,30 +31,29 @@
     <!-- Including OEM feature manifest -->
     <AdditionalFM>%COMMON_DIR%\Packages\OEMCommonFM.xml</AdditionalFM>
     <AdditionalFM>%SRC_DIR%\Packages\OEMFM.xml</AdditionalFM>
-        <!-- Including the test features -->
+    <!-- Including the test features -->
     <AdditionalFM>%AKROOT%\FMFiles\x86\IoTUAPNonProductionPartnerShareFM.xml</AdditionalFM>
   </AdditionalFMs>
   <Features>
-   <Microsoft> 
-      <Feature>IOT_EFIESP</Feature> 
-      <Feature>IOT_EFIESP_BCD</Feature> 
+    <Microsoft>
+      <Feature>IOT_EFIESP</Feature>
+      <Feature>IOT_EFIESP_BCD</Feature>
       <Feature>IOT_DMAP_DRIVER</Feature>
       <Feature>IOT_CP210x_MAKERDRIVER</Feature>
       <Feature>IOT_FTSER2K_MAKERDRIVER</Feature>
-      <Feature>IOT_POWER_SETIINGS</Feature>
-      <Feature>IOT_POWER_SETTINGS</Feature> <!-- Correct spelling in RS. Keeping old value for backward compatibility -->
+      <Feature>IOT_POWER_SETTINGS</Feature>
       <!-- Following two required for Appx Installation -->
-      <Feature>IOT_UAP_OOBE</Feature> 
-      <Feature>IOT_APP_TOOLKIT</Feature> 
+      <Feature>IOT_UAP_OOBE</Feature>
+      <Feature>IOT_APP_TOOLKIT</Feature>
       <!-- for Connectivity -->
       <Feature>IOT_WEBB_EXTN</Feature>
       <Feature>IOT_POWERSHELL</Feature>
-      <Feature>IOT_NETCMD</Feature>       
-      <Feature>IOT_SSH</Feature> 
+      <Feature>IOT_NETCMD</Feature>
+      <Feature>IOT_SSH</Feature>
       <Feature>IOT_SIREP</Feature>
       <!-- Enabling Test images -->
-      <Feature>IOT_DISABLE_UMCI</Feature> 
-      <Feature>IOT_ENABLE_TESTSIGNING</Feature>       
+      <Feature>IOT_DISABLE_UMCI</Feature>
+      <Feature>IOT_ENABLE_TESTSIGNING</Feature>
       <Feature>IOT_TOOLKIT</Feature>
       <!-- Debug Features -->
       <Feature>IOT_KDSERIAL_SETTINGS</Feature>
@@ -59,16 +61,20 @@
       <Feature>IOT_WDTF</Feature>
       <Feature>IOT_CRT140</Feature>
       <Feature>IOT_DIRECTX_TOOLS</Feature>
-      <Feature>PRODUCTION_CORE</Feature>      
+      <Feature>PRODUCTION_CORE</Feature>
+      <Feature>IOT_NANORDPSERVER</Feature>
+      <Feature>IOT_SHELL_HOTKEY_SUPPORT</Feature>
+      <Feature>IOT_APPLICATIONS</Feature>
+      <Feature>IOT_ENABLE_ADMIN</Feature>
     </Microsoft>
     <OEM>
       <!-- Inclide BSP Features -->
-      <Feature>MBM_DRIVERS</Feature> 
+      <Feature>MBM_DRIVERS</Feature>
       <!-- Include OEM features -->
       <Feature>OEM_AppxMain</Feature>
       <Feature>OEM_CustomCmd</Feature>
-      <Feature>OEM_ProvAuto</Feature> 
-   </OEM> 
+      <Feature>OEM_ProvAuto</Feature>
+    </OEM>
   </Features>
- <Product>Windows 10 IoT Core</Product>
+  <Product>Windows 10 IoT Core</Product>
 </OEMInput>

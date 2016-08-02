@@ -5,14 +5,12 @@
     <Components>
        <OSComponent>
          <Files>
-			 <!-- Copy batch files for appx installation -->
-			 <!-- DestinationDir should be always starting with global macros defined in %KITROOT%\Tools\bin\i386\pkggen.cfg.xml-->
+             <!-- Copy batch files for appx installation -->
+             <!-- DestinationDir should be always starting with global macros defined in %KITROOT%\Tools\bin\i386\pkggen.cfg.xml-->
              <File Source="AppInstall\AppInstall.cmd" DestinationDir="$(runtime.root)\AppInstall" Name="AppInstall.cmd"/>
-             <File Source="AppInstall\AppInstall_TH.cmd" DestinationDir="$(runtime.root)\AppInstall" Name="AppInstall_TH.cmd"/>				
-             <File Source="AppInstall\DeployTask.cmd" DestinationDir="$(runtime.root)\AppInstall" Name="DeployTask.cmd"/>
-             <File Source="AppInstall\AppxConfig.cmd" DestinationDir="$(runtime.root)\AppInstall" Name="AppxConfig.cmd"/>				
+             <File Source="AppInstall\AppxConfig.cmd" DestinationDir="$(runtime.root)\AppInstall" Name="AppxConfig.cmd"/>               
 
-			<!-- Copy appx files and its dependencies -->
+            <!-- Copy appx files and its dependencies -->
              <File Source="AppInstall\MainAppx_1.0.0.0_arm.appx" DestinationDir="$(runtime.root)\AppInstall" Name="MainAppx_1.0.0.0_arm.appx"/>
              <File Source="AppInstall\MainAppx_1.0.0.0_arm.cer" DestinationDir="$(runtime.root)\AppInstall" Name="MainAppx_1.0.0.0_arm.cer"/>
              <File Source="AppInstall\Microsoft.NET.Native.Runtime.1.1.appx" DestinationDir="$(runtime.root)\AppInstall" Name="Microsoft.NET.Native.Runtime.1.1.appx"/>

@@ -9,3 +9,5 @@
 set AppxName=MainAppx_1.0.2.0_arm
 set certslist=MainAppx_1.0.2.0_arm
 set dependencylist=Microsoft.VCLibs.ARM.14.00 Microsoft.NET.Native.Runtime.1.1 Microsoft.NET.Native.Framework.1.2
+set forceinstall=0
+set launchapp=1

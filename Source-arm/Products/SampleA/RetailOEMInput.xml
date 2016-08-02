@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<OEMInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+<OEMInput 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
   <Description>Contoso Windows 10 IoT Core RPi2 Retail FFU with RPi2 BSP </Description>
   <SOC>RPi2</SOC>
   <SV>RASPBERRY PI</SV>
@@ -44,6 +47,8 @@
       <Feature>IOT_NETCMD</Feature>
       <Feature>IOT_SSH</Feature>
       <Feature>IOT_SIREP</Feature>
+      <Feature>IOT_ENABLE_ADMIN</Feature>
+      <Feature>IOT_APPLICATIONS</Feature>
     </Microsoft>
     <OEM>
       <!-- Include BSP Features -->

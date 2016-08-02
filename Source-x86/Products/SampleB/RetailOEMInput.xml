@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<OEMInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+<OEMInput 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
   <Description>Contoso Windows 10 IoT Core Retail FFU with CustomMBM BSP</Description>
   <SOC>CustomMBM</SOC>
   <SV>Intel</SV>
@@ -35,15 +38,14 @@
       <Feature>IOT_EFIESP_BCD</Feature>
       <Feature>IOT_DMAP_DRIVER</Feature>
       <Feature>IOT_GENERIC_POP</Feature>
-      <Feature>IOT_POWER_SETIINGS</Feature>
       <Feature>IOT_POWER_SETTINGS</Feature>
-      <!-- Correct spelling in RS. Keeping old value for backward compatibility -->
       <!-- Following two required for Appx Installation -->
       <Feature>IOT_UAP_OOBE</Feature>
       <Feature>IOT_APP_TOOLKIT</Feature>
       <!-- for Connectivity -->
       <Feature>IOT_SSH</Feature>
       <Feature>IOT_SIREP</Feature>
+      <Feature>IOT_APPLICATIONS</Feature>
     </Microsoft>
     <OEM>
       <!-- Include BSP Features -->

@@ -30,6 +30,10 @@ if [%ARCH%] == [arm] (
 	echo Building RPi2 product 
 	call :COPY_AND_BUILD RPi2 %FLAVOUR%
 ) else if [%ARCH%] == [x86] (
+	echo Building MBM and APL products
+	call :COPY_AND_BUILD MBM %FLAVOUR%
+	call :COPY_AND_BUILD APL %FLAVOUR%
+) else if [%ARCH%] == [x64] (
 	echo Building MBM product
 	call :COPY_AND_BUILD MBM %FLAVOUR%
 )
