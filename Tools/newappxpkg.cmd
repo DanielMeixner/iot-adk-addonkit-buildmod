@@ -79,11 +79,11 @@ if [%FILE_TYPE%] == [.appx] (
     REM Update AppxConfig.cmd
     echo set AppxName=%FILE_NAME%> %NEWPKG_DIR%\AppInstall\AppxConfig.cmd
     for /f "useback delims=" %%i in ("%FILE_PATH%\appx_cerlist.txt") do (
-        set certslist=!certslist!%%~ni
+        set certslist=!certslist!%%~ni 
     )
     echo set certslist=!certslist! >> %NEWPKG_DIR%\AppInstall\AppxConfig.cmd
     for /f "useback delims=" %%i in ("%FILE_PATH%\appx_deplist.txt") do (
-        set dependencylist=!dependencylist!%%~ni
+        set dependencylist=!dependencylist!%%~ni 
     )
     echo set dependencylist=!dependencylist! >> %NEWPKG_DIR%\AppInstall\AppxConfig.cmd
     echo set forceinstall=0 >> %NEWPKG_DIR%\AppInstall\AppxConfig.cmd
