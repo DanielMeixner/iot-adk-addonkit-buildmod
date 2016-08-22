@@ -37,6 +37,9 @@ if [%1] == [-?] goto Usage
 if [%1] == [] goto Usage
 
 if /I [%1] == [All] (
+    echo Building all provisioning packages
+    call buildprovpkg.cmd all
+
     echo Building all packages under %COMMON_DIR%\Packages
     dir %COMMON_DIR%\Packages\*.pkg.xml /S /b > %PKGLOG_DIR%\packagelist.txt
 
@@ -54,6 +57,7 @@ if /I [%1] == [All] (
 
 
 ) else if /I [%1] == [Clean] (
+    call buildprovpkg.cmd clean
     if exist %PKGBLD_DIR% (
         rmdir "%PKGBLD_DIR%" /S /Q >nul
         echo Build directories cleaned
