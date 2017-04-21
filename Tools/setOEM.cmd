@@ -1,1 +1,1 @@
-set OEM_NAME=Contoso
+set OEM_NAME=dmx

@@ -46,7 +46,9 @@ if exist "%FILE_PATH%\Dependencies\%ARCH%" (
     dir /b "%FILE_PATH%\Dependencies\%ARCH%\*.appx" > "%FILE_PATH%\appx_deplist.txt"
 ) else (
     dir /b "%FILE_PATH%\Dependencies\*.appx" > "%FILE_PATH%\appx_deplist.txt"
+
 )
+echo "%IOTADK_ROOT%\Templates\AppInstall\*.cmd" > "%FILE_PATH%\appx_scriptlist.txt"
 dir /b "%IOTADK_ROOT%\Templates\AppInstall\*.cmd" > "%FILE_PATH%\appx_scriptlist.txt"
 dir /b "%FILE_PATH%\*.cer" > "%FILE_PATH%\appx_cerlist.txt"
 echo. Authoring %COMP_NAME%.%SUB_NAME%.pkg.xml
@@ -56,7 +58,7 @@ call :CREATE_PKGFILE
 
 REM Cleanup temp files
 REM del "%FILE_PATH%\appx_deplist.txt"
-del "%FILE_PATH%\appx_scriptlist.txt"
+echo deleting "%FILE_PATH%\appx_scriptlist.txt"
 
 endlocal
 exit /b 0

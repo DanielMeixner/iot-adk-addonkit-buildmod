@@ -1,1 +1,0 @@
-This is the output directory where the build contents are stored
